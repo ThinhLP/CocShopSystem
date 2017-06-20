@@ -15,7 +15,7 @@
   </head>
   <body>
     <h2>Login</h2>
-    <spring:url value="/productPage" var="login"></spring:url>
+    <spring:url value="/login" var="login"></spring:url>
   <form:form action="${login}" method="post">
     <table>
       <tr>
