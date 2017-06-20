@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="CocShopSystemVer2:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="CocShopSystemVer2/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="CocShopSystemVer2" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="JPA 2.0-2.0" />
+          <element id="library" level="project" name="Hibernate 5.2.10-5.2.10" />
+          <element id="library" level="project" name="Spring-4.3.9.RELEASE" />
+          <element id="library" level="project" name="Spring MVC-4.3.9.RELEASE" />
+          <element id="library" level="project" name="Spring Data JPA-1.0.0" />
+          <element id="library" level="project" name="mysql-connector-java-5.1.40" />
+          <element id="library" level="project" name="jackson-core-2.8.8" />
+          <element id="library" level="project" name="slf4j-api-1.7.25" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

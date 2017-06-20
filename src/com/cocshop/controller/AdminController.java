@@ -1,0 +1,107 @@
+package com.cocshop.controller;
+
+import com.cocshop.model.TblCategory;
+import com.cocshop.model.TblProduct;
+import com.cocshop.model.TblUser;
+import com.cocshop.repository.CategoryRepository;
+import com.cocshop.repository.ProductRepository;
+import com.cocshop.repository.UserRepository;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sun.org.apache.xpath.internal.operations.Mod;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import com.cocshop.View.view;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Created by Nguyen Cong Chinh on 6/19/2017.
+ */
+
+@RestController
+@EnableWebMvc
+public class AdminController {
+
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    ProductRepository productRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
+
+    @RequestMapping(method = RequestMethod.POST, value = "/login")
+    public ModelAndView login(String username, String password){
+        TblUser user = userRepository.checkLogin(username, password);
+        if(user != null){
+            if(user.getTblRoleByTblRoleRoleId().getRoleId() == 1){
+                return new ModelAndView("adminPage.jsp");
+            }
+        }
+        return new ModelAndView("errorLogin.jsp");
+    }
+
+    @JsonView(view.listProduct.class)
+    @RequestMapping(method = RequestMethod.GET, value = "/api/productList")
+    public List getProductJson(){
+        List<TblProduct> productList = productRepository.listProduct();
+        return productList;
+    }
+
+
+    @JsonView(view.categoryList.class)
+    @RequestMapping(method = RequestMethod.GET, value = "/api/getCategory")
+    public List getCategory(){
+        List<TblCategory> categoryList = categoryRepository.findAll();
+        return categoryList;
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST, value = "/updateProduct")
+    public String updateProduct(int productId,String productName, int quantity, double price, String description){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        TblProduct product = productRepository.findOne(productId);
+        product.setProductName(productName);
+        product.setQuantity(quantity);
+        product.setPrice(price);
+        product.setDescription(description);
+        product.setUpdateAt(dateFormat.format(date));
+        productRepository.save(product);
+        return "";
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST, value = "/deleteProduct")
+    public String deleteProduct (int productId){
+        TblProduct product = productRepository.findOne(productId);
+        product.setDeleted(true);
+        productRepository.save(product);
+        return "";
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST, value = "/createProduct")
+    public String createNewProduct(String createProductName, int createQuantity, double createPrice, int createCategory, String createDescription ){
+        System.out.println("Create Name: " + createProductName);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        TblProduct product = new TblProduct();
+        product.setProductName(createProductName);
+        product.setQuantity(createQuantity);
+        product.setPrice(createPrice);
+        product.setTblCategoryByTblCategoryCategoryId(categoryRepository.findOne(createCategory));
+        product.setDescription(createDescription);
+        product.setCreateAt(dateFormat.format(date));
+        product.setDeleted(false);
+        productRepository.save(product);
+        System.out.println("Ahihi");
+        return "";
+    }
+}
