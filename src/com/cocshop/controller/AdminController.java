@@ -9,8 +9,10 @@ import com.cocshop.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -25,7 +27,7 @@ import java.util.List;
  * Created by Nguyen Cong Chinh on 6/19/2017.
  */
 
-@RestController
+@Controller
 @EnableWebMvc
 public class AdminController {
 
@@ -36,18 +38,21 @@ public class AdminController {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/login")
-    public ModelAndView login(String username, String password){
+    @RequestMapping(method = RequestMethod.POST, value = "/productPage")
+    public String login(String username, String password){
         TblUser user = userRepository.checkLogin(username, password);
         if(user != null){
             if(user.getTblRoleByTblRoleRoleId().getRoleId() == 1){
-                return new ModelAndView("adminPage.jsp");
+//                return new ModelAndView("adminPage.jsp");
+                return "adminPage";
             }
         }
-        return new ModelAndView("errorLogin.jsp");
+//        return new ModelAndView("errorLogin.jsp");
+        return "errorLogin";
     }
 
     @JsonView(view.listProduct.class)
+    @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/api/productList")
     public List getProductJson(){
         List<TblProduct> productList = productRepository.listProduct();
@@ -56,6 +61,7 @@ public class AdminController {
 
 
     @JsonView(view.categoryList.class)
+    @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/api/getCategory")
     public List getCategory(){
         List<TblCategory> categoryList = categoryRepository.findAll();
@@ -89,7 +95,6 @@ public class AdminController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/createProduct")
     public String createNewProduct(String createProductName, int createQuantity, double createPrice, int createCategory, String createDescription ){
-        System.out.println("Create Name: " + createProductName);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         TblProduct product = new TblProduct();
@@ -101,7 +106,6 @@ public class AdminController {
         product.setCreateAt(dateFormat.format(date));
         product.setDeleted(false);
         productRepository.save(product);
-        System.out.println("Ahihi");
         return "";
     }
 }
