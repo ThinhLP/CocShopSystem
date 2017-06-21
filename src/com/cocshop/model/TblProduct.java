@@ -34,6 +34,7 @@ public class TblProduct {
     private Boolean deleted;
 
 
+
     @Id
     @Column(name = "productID")
     public int getProductId() {

@@ -6,8 +6,8 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="NewPersistenceUnit" value="a2a5af52-1ee7-479e-88d8-e872d04defdf" />
-          <factory-entry name="entityManagerFactory" />
+          <factory-entry name="NewPersistenceUnit" value="46a958b3-bcc3-43a4-9cc2-bb9b11311ff7" />
+          <factory-entry name="entityManagerFactory" value="46a958b3-bcc3-43a4-9cc2-bb9b11311ff7" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
       </configuration>
@@ -49,6 +49,6 @@
     <orderEntry type="library" name="Spring Data JPA-1.0.0" level="project" />
     <orderEntry type="library" name="jackson-core-2.8.8" level="project" />
     <orderEntry type="library" name="slf4j-api-1.7.25" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.41-bin" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.40" level="project" />
   </component>
 </module>

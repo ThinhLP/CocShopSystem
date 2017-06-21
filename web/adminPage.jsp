@@ -11,6 +11,17 @@
 <head>
     <title>Admin Page</title>
     <style>
+
+        .productLink {
+            background-color: #5bc0de;
+        }
+
+        .productLink:hover {
+            color: white;
+            border: 1px solid white;
+            text-decoration: underline;
+        }
+
         .dropdown-content {
             background-color: #f9f9f9;
             min-width: 160px;
@@ -26,9 +37,9 @@
             margin: 5px;
         }
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f1
-        }
+        /*.dropdown-content a:hover {*/
+        /*background-color: #f1f1f1*/
+        /*}*/
 
         .web_dialog_overlay {
             position: fixed;
@@ -88,14 +99,14 @@
         }
 
 
-
     </style>
     <link rel="stylesheet" href="resources/css/bootstrap.css">
     <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
 </head>
 <body>
 <div style="width: 15%;float:left" class="dropdown-content">
-    <a href="#">Product</a>
+    <a href="adminPage.jsp" class="productLink">Product</a>
+    <a href="employeePage.jsp">Manage Employee</a>
     <a href="#">Order</a>
 </div>
 <div style="width:5%;float:left;">
@@ -131,44 +142,46 @@
                     <a href="#" id="btnClose" onclick="HideUpdate()">x</a>
                 </td>
             </tr>
-            <tr>
-                <td>Product ID:</td>
-                <td><input type="text" id="productID" readonly/></td>
-            </tr>
-            <tr>
-                <td>Product Name:</td>
-                <td><input type="text" id="productName"/></td>
-            </tr>
-            <tr>
-                <td>Quantity:</td>
-                <td><input type="text" id="quantity"/></td>
-            </tr>
-            <tr>
-                <td>Price:</td>
-                <td><input type="text" id="price"/></td>
-            </tr>
-            <tr>
-                <td>Category:</td>
-                <td>
-                    <select id="updateCategory" style="width: 87%">
+            <form>
+                <tr>
+                    <td>Product ID:</td>
+                    <td><input type="text" id="productID" readonly/></td>
+                </tr>
+                <tr>
+                    <td>Product Name:</td>
+                    <td><input type="text" id="productName" required/></td>
+                </tr>
+                <tr>
+                    <td>Quantity:</td>
+                    <td><input type="text" id="quantity"/></td>
+                </tr>
+                <tr>
+                    <td>Price:</td>
+                    <td><input type="text" id="price"/></td>
+                </tr>
+                <tr>
+                    <td>Category:</td>
+                    <td>
+                        <select id="updateCategory" style="width: 87%">
 
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Description:</td>
-                <td>
-                    <textarea cols="21" rows="10" id="description"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button class="btn btn-default pull-right" onclick="HideUpdate()">Cancel</button>
-                </td>
-                <td>
-                    <button class="btn btn-warning" onclick="updateData()">Update</button>
-                </td>
-            </tr>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>
+                        <textarea cols="21" rows="10" id="description"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn btn-default pull-right" onclick="HideUpdate()">Cancel</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" onclick="updateData()">Update</button>
+                    </td>
+                </tr>
+            </form>
         </table>
     </div>
 
@@ -202,38 +215,42 @@
                     <a href="#" id="close" onclick="HideCreate()">x</a>
                 </td>
             </tr>
-            <form autocomplete="off">
-            <tr>
-                <td>Product Name:</td>
-                <td ><input type="text" id="createProductName" required/></td>
-            </tr>
-            <tr>
-                <td>Quantity:</td>
-                <td > <input type="text" id="createQuantity" required/></td>
-            </tr>
-            <tr>
-                <td>Price:</td>
-                <td><input type="text"  id="createPrice" required/></td>
-            </tr>
-            <tr>
-                <td>Category:</td>
-                <td>
-                    <select id="createCategory" required>
+            <form autocomplete="off" id="proCreate">
+                <tr>
+                    <td>Product Name:</td>
+                    <td><input type="text" id="createProductName" required/></td>
+                </tr>
+                <tr>
+                    <td>Quantity:</td>
+                    <td><input type="text" id="createQuantity" required/></td>
+                </tr>
+                <tr>
+                    <td>Price:</td>
+                    <td><input type="text" id="createPrice" required/></td>
+                </tr>
+                <tr>
+                    <td>Category:</td>
+                    <td>
+                        <select id="createCategory" required>
 
-                    </select>
-                </td>
-            </tr>
+                        </select>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>Description:</td>
-                <td>
-                    <textarea cols="21" rows="10" id="createDescription"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td><button class="btn btn-default pull-right" onclick="HideCreate()">Cancel</button></td>
-                <td><button class="btn btn-success" onclick="CreateProduct()" type="button">Create</button></td>
-            </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>
+                        <textarea cols="21" rows="10" id="createDescription"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn btn-default pull-right" onclick="HideCreate()" type="button">Cancel</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-success" onclick="CreateProduct()" id="btnCreatePro">Create</button>
+                    </td>
+                </tr>
             </form>
         </table>
     </div>
@@ -375,15 +392,19 @@
 
 
     function CreateProduct() {
-        $.ajax({
-            url: '/api/product/create',
-            method: 'POST',
-            data: 'createProductName=' + $("#createProductName").val() + '&createQuantity=' + $("#createQuantity").val()
-            + "&createPrice=" + $("#createPrice").val() + "&createCategory=" + $("#createCategory").find(":selected").val()
-            + "&createDescription=" + $("#createDescription").val(),
-            success: function (data) {
-                HideCreate();
-                showData();
+        $("#btnCreatePro").click(function () {
+            if($("#proCreate").checkValidity()){
+                $.ajax({
+                    url: '/api/product/create',
+                    method: 'POST',
+                    data: 'createProductName=' + $("#createProductName").val() + '&createQuantity=' + $("#createQuantity").val()
+                    + "&createPrice=" + $("#createPrice").val() + "&createCategory=" + $("#createCategory").find(":selected").val()
+                    + "&createDescription=" + $("#createDescription").val(),
+                    success: function (data) {
+                        HideCreate();
+                        showData();
+                    }
+                });
             }
         });
     }

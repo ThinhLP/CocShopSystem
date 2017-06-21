@@ -1,5 +1,8 @@
 package com.cocshop.model;
 
+import com.cocshop.View.view;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -10,19 +13,29 @@ import java.util.Collection;
 @Entity
 @Table(name = "tbl_user", schema = "cocshop", catalog = "")
 public class TblUser {
+    @JsonView(view.listAllEmployee.class)
     private int userId;
+    @JsonView(view.listAllEmployee.class)
     private String username;
+    @JsonView(view.listAllEmployee.class)
     private String password;
+    @JsonView(view.listAllEmployee.class)
     private String email;
+    @JsonView(view.listAllEmployee.class)
     private String firstname;
+    @JsonView(view.listAllEmployee.class)
     private String lastname;
+    @JsonView(view.listAllEmployee.class)
     private String birthdate;
     private Collection<TblOrder> tblOrdersByUserId;
+    @JsonView(view.listAllEmployee.class)
     private TblRole tblRoleByTblRoleRoleId;
+    private Boolean deleted;
 
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userID")
     public int getUserId() {
         return userId;
@@ -139,5 +152,15 @@ public class TblUser {
 
     public void setTblRoleByTblRoleRoleId(TblRole tblRoleByTblRoleRoleId) {
         this.tblRoleByTblRoleRoleId = tblRoleByTblRoleRoleId;
+    }
+
+    @Basic
+    @Column(name = "deleted")
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 }

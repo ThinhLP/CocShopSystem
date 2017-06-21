@@ -1,5 +1,8 @@
 package com.cocshop.model;
 
+import com.cocshop.View.view;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -9,7 +12,9 @@ import java.util.Collection;
 @Entity
 @Table(name = "tbl_role", schema = "cocshop", catalog = "")
 public class TblRole {
+    @JsonView(view.listAllEmployee.class)
     private int roleId;
+    @JsonView(view.listAllEmployee.class)
     private String roleName;
     private Collection<TblUser> tblUsersByRoleId;
 

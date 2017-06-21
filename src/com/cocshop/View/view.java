@@ -6,4 +6,5 @@ package com.cocshop.View;
 public class view  {
     public interface listProduct{};
     public interface categoryList{};
+    public interface listAllEmployee{};
 }

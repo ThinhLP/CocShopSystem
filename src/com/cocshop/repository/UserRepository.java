@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 /**
  * Created by Nguyen Cong Chinh on 6/19/2017.
  */
@@ -12,4 +14,8 @@ public interface UserRepository extends CrudRepository<TblUser, Integer> {
 
     @Query(value = "select p from TblUser p where p.username=:username and p.password=:password")
     public TblUser checkLogin(@Param("username") String username, @Param("password") String password);
+
+
+    @Query(value = "select p from TblUser  p where p.tblRoleByTblRoleRoleId.roleId=2 and p.deleted = false")
+    public List<TblUser> listAllEmployee();
 }
