@@ -9,6 +9,12 @@
         <class>com.cocshop.model.TblProduct</class>
         <class>com.cocshop.model.TblRole</class>
         <class>com.cocshop.model.TblUser</class>
+        <class>com.cocshop.model.TblCategoryEntity</class>
+        <class>com.cocshop.model.TblOrderEntity</class>
+        <class>com.cocshop.model.TblOrderdetailsEntity</class>
+        <class>com.cocshop.model.TblProductEntity</class>
+        <class>com.cocshop.model.TblRoleEntity</class>
+        <class>com.cocshop.model.TblUserEntity</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/cocshop"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
