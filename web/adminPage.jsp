@@ -9,38 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>Admin Page</title>
     <style>
-
-        .productLink {
-            background-color: #5bc0de;
-        }
-
-        .productLink:hover {
-            color: white;
-            border: 1px solid white;
-            text-decoration: underline;
-        }
-
-        .dropdown-content {
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            margin: 5px;
-        }
-
-        /*.dropdown-content a:hover {*/
-        /*background-color: #f1f1f1*/
-        /*}*/
-
         .web_dialog_overlay {
             position: fixed;
             top: 0;
@@ -57,6 +28,7 @@
             -moz-opacity: .15;
             z-index: 101;
             display: none;
+            border-radius: 5px;
         }
 
         .web_dialog {
@@ -100,37 +72,53 @@
 
 
     </style>
-    <link rel="stylesheet" href="resources/css/bootstrap.css">
-    <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="resources/css/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/main.css">
+    <link rel="stylesheet" href="resources/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div style="width: 15%;float:left" class="dropdown-content">
-    <a href="adminPage.jsp" class="productLink">Product</a>
-    <a href="employeePage.jsp">Manage Employee</a>
-    <a href="#">Order</a>
-</div>
-<div style="width:5%;float:left;">
-    <p>&nbsp</p>
-</div>
-<div style="width: 80%;float:left">
-    <button type="button" class="btn btn-success" id="btnCreate"
-            onclick="ShowCreate()">Add new product
-    </button>
-    <table class="table table-hover table-stripped" id="tblResult">
-        <thead>
-        <th>Product ID</th>
-        <th>Product Name</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Create At</th>
-        <th>Update At</th>
-        <th>Category</th>
-        <th>Description</th>
-        </thead>
-        <tbody id="result">
+    <header id="main-header" class="col-xs-12">
+        <div class="col-sm-2" id="header-left"><b>Coc Shop</b></div>
+        <div class="col-sm-10" id="header-right">
+            <div class="admin-setting pull-right"><img src="resources/img/thinhlp.jpg" /> <span><b>Le Phuc Thinh</b></span><a href="">Log out</a></div>
+        </div>
+    </header>
+    <section class="col-sm-12" id="main-section-wrapper">
+        <div class="col-sm-2" id="section-left">
+            <div class="admin-info"> <img src="resources/img/thinhlp.jpg" /> <span class="admin-name"><b>Le Phuc Thinh</b></span> <span class="admin-status"><i class="fa fa-circle text-success" aria-hidden="true"></i> Online</span></div>
+            <div class="menu-navigation">MANAGEMENT MENU</div>
+            <ul id="menu-wrapper">
+                <li class="menu-active"><a href="adminPage.jsp"><i class="fa fa-dropbox" aria-hidden="true"></i>Products</a></li>
+                <li> <a href="employeePage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Employees</a></li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="col-sm-10" id="section-right">
+            <h3>Product Management</h3>
+            <button type="button" class="btn btn-success" id="btnCreate"
+                                                onclick="ShowCreate()">Add new product
+        </button>
+            <table class="table table-hover table-stripped" id="tblResult">
+                <thead>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Create At</th>
+                <th>Update At</th>
+                <th>Category</th>
+                <th>Description</th>
+                </thead>
+                <tbody id="result">
 
-        </tbody>
-    </table>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <footer class="col-sm-12" id="footer-wrapper">
+        <div class="col-sm-2" id="footer-left">&nbsp;</div>
+        <div class="col-sm-10" id="footer-right"><span> Design by <b>ThinhLP</b></span> <span class="pull-right">Version 1.0</span></div>
+    </footer>
 
 
     <div id="overlay" class="web_dialog_overlay"></div>
@@ -144,7 +132,7 @@
             </tr>
             <form>
                 <tr>
-                    <td>Product ID:</td>
+                    <td>ID:</td>
                     <td><input type="text" id="productID" readonly/></td>
                 </tr>
                 <tr>
@@ -257,10 +245,12 @@
 
 
 </div>
-
+<script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
 <script>
     $(document).ready(function () {
         showData();
+        var rightHeight = $('#section-right').height();
+        $('#section-left').height(rightHeight);
     });
 
     function showData() {

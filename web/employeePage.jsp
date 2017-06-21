@@ -13,36 +13,6 @@
 <head>
     <title>Employee Page</title>
     <style>
-
-        .productLink {
-            background-color: #5bc0de;
-        }
-
-        .productLink:hover {
-            color: white;
-            border: 1px solid white;
-            text-decoration: underline;
-        }
-
-        .dropdown-content {
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            margin: 5px;
-        }
-
-        /*.dropdown-content a:hover {*/
-        /*background-color: #f1f1f1*/
-        /*}*/
-
         .web_dialog_overlay {
             position: fixed;
             top: 0;
@@ -102,40 +72,53 @@
 
 
     </style>
-    <link rel="stylesheet" href="resources/css/bootstrap.css">
-    <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="resources/css/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/main.css">
+    <link rel="stylesheet" href="resources/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div style="width: 15%;float:left" class="dropdown-content">
-    <a href="adminPage.jsp">Product</a>
-    <a href="employeePage.jsp" class="productLink">Manage Employee</a>
-    <a href="#">Order</a>
-</div>
+<header id="main-header" class="col-xs-12">
+    <div class="col-sm-2" id="header-left"><b>Coc Shop</b></div>
+    <div class="col-sm-10" id="header-right">
+        <div class="admin-setting pull-right"><img src="resources/img/thinhlp.jpg" /> <span><b>Le Phuc Thinh</b></span><a href="">Log out</a></div>
+    </div>
+</header>
+<section class="col-sm-12" id="main-section-wrapper">
+    <div class="col-sm-2" id="section-left">
+        <div class="admin-info"> <img src="resources/img/thinhlp.jpg" /> <span class="admin-name"><b>Le Phuc Thinh</b></span> <span class="admin-status"><i class="fa fa-circle text-success" aria-hidden="true"></i> Online</span></div>
+        <div class="menu-navigation">MANAGEMENT MENU</div>
+        <ul id="menu-wrapper">
+            <li><a href="adminPage.jsp"><i class="fa fa-dropbox" aria-hidden="true"></i>Products</a></li>
+            <li class="menu-active"><a href="employeePage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Employees</a></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="col-sm-10" id="section-right">
+        <h3>Employee Management</h3>
+        <button type="button" class="btn btn-success" id="btnCreate"
+                onclick="ShowCreate()">Add new employee
+        </button>
+        <table class="table table-hover table-stripped" id="tblResult">
+            <thead>
+                <th>Employee ID</th>
+                <th>User</th>
+                <th>Password</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>BirthDate</th>
+             </thead>
+            <tbody id="result">
 
-<div style="width:5%;float:left;">
-    <p>&nbsp</p>
-</div>
+            </tbody>
+        </table>
+    </div>
+</section>
+<footer class="col-sm-12" id="footer-wrapper">
+    <div class="col-sm-2" id="footer-left">&nbsp;</div>
+    <div class="col-sm-10" id="footer-right"><span> Design by <b>ThinhLP</b></span> <span class="pull-right">Version 1.0</span></div>
+</footer>
 
-<div style="width: 80%;float:left">
-    <button type="button" class="btn btn-success" id="btnCreate"
-            onclick="ShowCreate()">Add New Employee
-    </button>
-    <table class="table table-hover table-stripped" id="tblResult">
-        <thead>
-        <th>Employee ID</th>
-        <th>User</th>
-        <th>Password</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>BirthDate</th>
-        </thead>
-        <tbody id="result">
-
-        </tbody>
-    </table>
-</div>
-
-
+<%--For popup--%>
 <div id="overlay" class="web_dialog_overlay"></div>
 
 <div id="dialogUpdate" class="web_dialog">
@@ -216,7 +199,7 @@
 <div id="dialogCreate" class="web_dialog">
     <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
         <tr>
-            <td class="web_dialog_title">Add New Product</td>
+            <td class="web_dialog_title">Add new employee</td>
             <td class="web_dialog_title align_right">
                 <a href="#" id="close" onclick="HideCreate()">x</a>
             </td>
@@ -263,7 +246,7 @@
     </table>
 </div>
 
-
+<script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
 <script>
 
     $(document).ready(function () {

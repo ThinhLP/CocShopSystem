@@ -1,0 +1,200 @@
+*,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: serif, sans-serif;
+    font-size: 16px;
+    width: 100%;
+    min-width: 1000px;
+}
+
+section,
+header,
+footer {
+    display: block;
+    width: 100%;
+    padding: 0 !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+#main-header {
+    height: 50px;
+    line-height: 50px;
+    color: #ffffff;
+    text-align: center !important;
+}
+
+#header-left {
+    background-color: #367FA9;
+    font-size: 18px;
+}
+
+#header-left > b {
+    font-size: 20px;
+}
+
+#header-right {
+    background-color: #3C8DBC;
+}
+
+.admin-setting {
+    width: 220px;
+    height: 100%;
+    font-size: 12px;
+}
+
+.admin-setting img {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.admin-setting span {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.admin-setting a {
+    display: inline-block;
+    color: #B8C7CE;
+}
+
+.admin-setting a:hover {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+
+/* format for section */
+
+#section-left {
+    background-color: #222D32;
+    min-height: 100vh;
+    padding: 0;
+}
+
+#section-right {
+    background-color: #ECF0F5;
+    min-height: 100vh;
+    position: relative;
+}
+
+#btnCreate {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#menu-wrapper {
+    width: 100%;
+    padding: 0;
+}
+
+#menu-wrapper li {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    border-left: 4px solid #222D32;
+}
+
+#menu-wrapper a {
+    color: #B8C7CE;
+    text-align: left;
+}
+
+.menu-active {
+    background-color: #2C3B41;
+    border-left: 4px solid #3C8DBC !important;
+}
+
+.menu-active a {
+    color: #ffffff !important;
+}
+
+#menu-wrapper li a:hover {
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+#menu-wrapper li i {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.menu-navigation {
+    width: 100%;
+    height: 30px;
+    background-color: #1A2226;
+    line-height: 30px;
+    color: #B8C7CE;
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+
+/* Admin info */
+
+.admin-info {
+    width: 100%;
+    height: 70px;
+    font-size: 12px;
+    color: #ffffff;
+    position: relative;
+}
+
+.admin-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.admin-name {
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 70px;
+}
+
+.admin-status {
+    display: block;
+    font-size: 10px;
+    position: absolute;
+    top: 35px;
+    left: 70px;
+}
+
+
+/* format for footer */
+
+#footer-wrapper {
+    height: 50px;
+    line-height: 50px;
+}
+
+#footer-left {
+    background-color: #222D32;
+}
+
+#footer-right {
+    background-color: #ffffff;
+    border-top: 1px solid #D2D6DE;
+}
+
+#footer-right b {
+    color: #3c8dbc;
+}
