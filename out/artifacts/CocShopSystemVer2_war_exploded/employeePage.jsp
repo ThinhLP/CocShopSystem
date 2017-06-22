@@ -90,6 +90,7 @@
         <ul id="menu-wrapper">
             <li><a href="adminPage.jsp"><i class="fa fa-dropbox" aria-hidden="true"></i>Products</a></li>
             <li class="menu-active"><a href="employeePage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Employees</a></li>
+            <li> <a href="customerPage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Customer</a></li>
             <li></li>
         </ul>
     </div>

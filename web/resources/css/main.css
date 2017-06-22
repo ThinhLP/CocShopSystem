@@ -179,6 +179,7 @@ a {
 }
 
 
+
 /* format for footer */
 
 #footer-wrapper {
@@ -197,4 +198,17 @@ a {
 
 #footer-right b {
     color: #3c8dbc;
+}
+
+
+/*Customer Order Details Page*/
+#total{
+    float: right; !important;
+    background-color: #1b6d85;
+}
+
+#section-right:after{
+    content: '';
+    display: block;
+    clear: both;
 }
