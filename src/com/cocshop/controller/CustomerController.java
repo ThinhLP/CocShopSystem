@@ -39,4 +39,13 @@ public class CustomerController  {
         return "";
     }
 
+    @JsonView(view.searchCusByFirstName.class)
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/api/customers/searchValue")
+    public List searchCusbyFirstName (String searchValue){
+        List<TblUser> list = userRepository.searchCustomerByFirstName(searchValue);
+        System.err.println("Size: " + list.size());
+        return list;
+    }
+
 }

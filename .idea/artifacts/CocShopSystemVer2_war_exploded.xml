@@ -16,6 +16,7 @@
           <element id="library" level="project" name="jackson-core-2.8.8" />
           <element id="library" level="project" name="slf4j-api-1.7.25" />
           <element id="library" level="project" name="mysql-connector-java-5.1.40" />
+          <element id="library" level="project" name="jstl-1.2" />
         </element>
       </element>
     </root>

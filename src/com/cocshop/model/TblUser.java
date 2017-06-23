@@ -13,22 +13,36 @@ import java.util.Collection;
 @Entity
 @Table(name = "tbl_user", schema = "cocshop", catalog = "")
 public class TblUser {
-    @JsonView({view.listAllEmployee.class, view.listAllCustomer.class, view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+    @JsonView({view.listAllEmployee.class, view.listAllCustomer.class,
+            view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
     private int userId;
-    @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+    @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
+            view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
     private String username;
-    @JsonView({view.listAllEmployee.class,view.listAllCustomer.class, view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+    @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
+            view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
     private String password;
-    @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+    @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
+            view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
     private String email;
-    @JsonView({view.listAllEmployee.class, view.listAllCustomer.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+    @JsonView({view.listAllEmployee.class, view.listAllCustomer.class,
+            view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
     private String firstname;
-    @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+    @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
+            view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
     private String lastname;
-    @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+    @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
+            view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
     private String birthdate;
     private Collection<TblOrder> tblOrdersByUserId;
-    @JsonView({view.listAllEmployee.class, view.listAllCustomer.class})
+    @JsonView({view.listAllEmployee.class, view.listAllCustomer.class,view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
     private TblRole tblRoleByTblRoleRoleId;
     private Boolean deleted;
 
