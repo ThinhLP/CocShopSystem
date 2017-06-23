@@ -12,9 +12,9 @@ import java.util.Collection;
 @Entity
 @Table(name = "tbl_role", schema = "cocshop", catalog = "")
 public class TblRole {
-    @JsonView(view.listAllEmployee.class)
+    @JsonView({view.listAllEmployee.class,view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
     private int roleId;
-    @JsonView(view.listAllEmployee.class)
+    @JsonView({view.listAllEmployee.class,view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
     private String roleName;
     private Collection<TblUser> tblUsersByRoleId;
 

@@ -40,6 +40,7 @@ public class EmployeeController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/employees/update")
     public String updateEmployee (int userId, String username, String password, String firstname, String lastname, String mail, String birthdate){
+        System.err.println("Ahihi");
         TblUser user = userRepository.findOne(userId);
         user.setUsername(username);
         user.setPassword(password);
@@ -77,4 +78,18 @@ public class EmployeeController {
         userRepository.save(user);
         return "";
     }
+
+    @JsonView(view.searchEmployeeByFirstName.class)
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/api/employee/searchValue")
+    public List searchEmpByFirstName (String searchValue){
+        List<TblUser> list = userRepository.searchByFirstName(searchValue);
+        for(int i =0; i < list.size(); i++){
+            System.err.println("" + list.get(i).getFirstname());
+
+        }
+        return list;
+    }
+
+
 }

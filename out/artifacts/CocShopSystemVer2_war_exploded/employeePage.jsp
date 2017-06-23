@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <html>
 <head>
     <title>Employee Page</title>
@@ -80,17 +79,21 @@
 <header id="main-header" class="col-xs-12">
     <div class="col-sm-2" id="header-left"><b>Coc Shop</b></div>
     <div class="col-sm-10" id="header-right">
-        <div class="admin-setting pull-right"><img src="resources/img/thinhlp.jpg" /> <span><b>Le Phuc Thinh</b></span><a href="">Log out</a></div>
+        <div class="admin-setting pull-right"><img src="resources/img/thinhlp.jpg"/> <span><b>Le Phuc Thinh</b></span><a
+                href="">Log out</a></div>
     </div>
 </header>
 <section class="col-sm-12" id="main-section-wrapper">
     <div class="col-sm-2" id="section-left">
-        <div class="admin-info"> <img src="resources/img/thinhlp.jpg" /> <span class="admin-name"><b>Le Phuc Thinh</b></span> <span class="admin-status"><i class="fa fa-circle text-success" aria-hidden="true"></i> Online</span></div>
+        <div class="admin-info"><img src="resources/img/thinhlp.jpg"/> <span
+                class="admin-name"><b>Le Phuc Thinh</b></span> <span class="admin-status"><i
+                class="fa fa-circle text-success" aria-hidden="true"></i> Online</span></div>
         <div class="menu-navigation">MANAGEMENT MENU</div>
         <ul id="menu-wrapper">
             <li><a href="adminPage.jsp"><i class="fa fa-dropbox" aria-hidden="true"></i>Products</a></li>
-            <li class="menu-active"><a href="employeePage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Employees</a></li>
-            <li> <a href="customerPage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Customer</a></li>
+            <li class="menu-active"><a href="employeePage.jsp"><i class="fa fa-users"
+                                                                  aria-hidden="true"></i>Employees</a></li>
+            <li><a href="customerPage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Customer</a></li>
             <li></li>
         </ul>
     </div>
@@ -99,15 +102,27 @@
         <button type="button" class="btn btn-success" id="btnCreate"
                 onclick="ShowCreate()">Add new employee
         </button>
+
+
+        <form autocomplete="off">
+            <input type="text" id="searchValue" class="form-control" style="width: 30%; display: inline-block" required>
+            <button onclick="SearchEmployee()" type="button" class="btn btn-success" style="display: inline-block"
+                    id="btnSearch">
+                Search
+            </button>
+            <button type="button" class="btn btn-success" onclick="showData()">View all employees</button>
+        </form>
+
         <table class="table table-hover table-stripped" id="tblResult">
             <thead>
-                <th>Employee ID</th>
-                <th>User</th>
-                <th>Password</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>BirthDate</th>
-             </thead>
+            <th>Employee ID</th>
+            <th>User</th>
+            <th>Password</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>BirthDate</th>
+            </thead>
             <tbody id="result">
 
             </tbody>
@@ -116,21 +131,22 @@
 </section>
 <footer class="col-sm-12" id="footer-wrapper">
     <div class="col-sm-2" id="footer-left">&nbsp;</div>
-    <div class="col-sm-10" id="footer-right"><span> Design by <b>ThinhLP</b></span> <span class="pull-right">Version 1.0</span></div>
+    <div class="col-sm-10" id="footer-right"><span> Design by <b>ThinhLP</b></span> <span
+            class="pull-right">Version 1.0</span></div>
 </footer>
 
 <%--For popup--%>
 <div id="overlay" class="web_dialog_overlay"></div>
 
 <div id="dialogUpdate" class="web_dialog">
-        <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
-            <tr>
-                <td class="web_dialog_title">Update</td>
-                <td class="web_dialog_title align_right">
-                    <a href="#" id="btnClose" onclick="HideUpdate()">x</a>
-                </td>
-            </tr>
-            <form id="empUpdate">
+    <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
+        <tr>
+            <td class="web_dialog_title">Update</td>
+            <td class="web_dialog_title align_right">
+                <a href="#" id="btnClose" onclick="HideUpdate()">x</a>
+            </td>
+        </tr>
+        <form id="updateForm">
             <tr>
                 <td>Employee ID:</td>
                 <td><input type="text" id="empId" readonly/></td>
@@ -140,12 +156,18 @@
                 <td><input type="text" id="username" required/></td>
             </tr>
             <tr>
+                <td><label class="error" for="username" id="username_error">This field is required.</label></td>
+            </tr>
+            <tr>
                 <td>Password:</td>
                 <td><input type="password" id="password"/></td>
             </tr>
             <tr>
                 <td>New Password:</td>
                 <td><input type="password" id="newpassword" required></td>
+            </tr>
+            <tr>
+                <td><label class="error" for="newpassword" id="newpassword_error">This field is required.</label></td>
             </tr>
             <tr>
                 <td>FirstName:</td>
@@ -160,6 +182,9 @@
                 <td><input type="email" id="mail" required></td>
             </tr>
             <tr>
+                <td><label class="error" for="mail" id="mail_error">This field is required.</label></td>
+            </tr>
+            <tr>
                 <td>Birthdate:</td>
                 <td><input type="date" id="birthdate"></td>
             </tr>
@@ -168,11 +193,11 @@
                     <button class="btn btn-default pull-right" onclick="HideUpdate()" type="button">Cancel</button>
                 </td>
                 <td>
-                    <button class="btn btn-warning" onclick="updateData()" id="btnUpdate" value="Update">Update</button>
+                    <button class="btn btn-warning" onclick="updateData()" type="button" id="btnUpdate">Update</button>
                 </td>
             </tr>
-            </form>
-        </table>
+        </form>
+    </table>
 </div>
 
 <div id="dialogDelete" class="web_dialog">
@@ -225,7 +250,7 @@
             <tr>
                 <td>Email:</td>
                 <td>
-                  <input type="email" id="createMail" required>
+                    <input type="email" id="createMail" required>
                 </td>
             </tr>
 
@@ -248,13 +273,18 @@
 </div>
 
 <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script>
 
     $(document).ready(function () {
         showData();
+        $(".error").hide();
     });
 
     function showData() {
+        $("#newpassword").val("");
+        $("#searchValue").val("");
         $.ajax({
             url: '/api/employees',
             method: 'GET',
@@ -266,7 +296,8 @@
                     tr.append('<td>' + data[i].userId + '</td>');
                     tr.append('<td>' + data[i].username + '</td>');
                     tr.append("<td><input readonly type='password' value=" + data[i].password + ">" + "</td>");
-                    tr.append('<td>' + data[i].lastname + ' ' + data[i].firstname + '</td>');
+                    tr.append('<td>' + data[i].firstname + '</td>');
+                    tr.append('<td>' + data[i].lastname + '</td>');
                     tr.append('<td>' + data[i].email + '</td>');
                     tr.append('<td>' + data[i].birthdate + '</td>');
                     tr.append('<td><button class="btn btn-warning" onclick=\'ShowUpdate("' + data[i].userId + '","' + data[i].username + '","'
@@ -288,26 +319,50 @@
         $("#mail").val(email);
         $("#birthdate").val(birthdate);
         $("#overlay").show();
+        $("#newpassword").val("");
         $("#dialogUpdate").fadeIn(300);
     }
 
+    function checkValid() {
+        var isValid = true;
+        $('.error').hide();
+        if ($("#username").val() === "") {
+            $("label#username_error").show();
+            $("input#username").focus();
+            isValid = false;
+        }
+        if ($("#newpassword").val() === ""){
+            $("label#newpassword_error").show();
+            $("input#newpassword").focus();
+            isValid = false;
+        }
+        if($("#mail").val() === ""){
+            $("label#mail_error").show();
+            $("input#mail").focus();
+            isValid = false;
+        }
+        return isValid;
+    }
+
     function updateData() {
-        $("#btnUpdate").click(function () {
-            if($("#empUpdate").validity()){
-                $.ajax({
-                    url: '/api/employees/update',
-                    method: 'POST',
-                    data: 'userId=' + $("#empId").val() + '&username=' + $("#username").val() + '&password=' + $("#newpassword").val()
-                    + '&firstname=' + $("#firstname").val() + '&lastname=' + $("#lastname").val() + '&mail=' + $("#mail").val()
-                    + '&birthdate=' + $("#birthdate").val(),
-                    success: function (data) {
-                        HideUpdate();
+        var check = checkValid();
+        if (check == true) {
+            $.ajax({
+                url: '/api/employees/update',
+                method: 'POST',
+                data: 'userId=' + $("#empId").val() + '&username=' + $("#username").val() + '&password=' + $("#newpassword").val()
+                + '&firstname=' + $("#firstname").val() + '&lastname=' + $("#lastname").val() + '&mail=' + $("#mail").val()
+                + '&birthdate=' + $("#birthdate").val(),
+                success: function (data) {
+                    HideUpdate();
+                    if ($("#searchValue").val() != "") {
+                        SearchEmployee();
+                    } else {
                         showData();
                     }
-                });
-            }
-        })
-
+                }
+            })
+        }
     }
 
     function HideUpdate() {
@@ -328,14 +383,17 @@
     }
 
     function deleteData() {
-        console.log($("#empDelete").val());
         $.ajax({
             url: '/api/employees/delete',
             method: 'POST',
             data: 'empId=' + $("#empDelete").val(),
             success: function (data) {
                 HideDelete();
-                showData();
+                if ($("#searchValue").val() != "") {
+                    SearchEmployee();
+                } else {
+                    showData();
+                }
             }
         });
     }
@@ -356,17 +414,47 @@
         $("#dialogCreate").fadeOut(300);
     }
 
-    function CreateEmployee(){
+    function CreateEmployee() {
         $.ajax({
             url: '/api/employees/create',
             method: 'POST',
             data: 'username=' + $("#createusername").val() + '&password=' + $("#createpassword").val() + '&firstname=' + $("#createFirstName").val()
-                    + '&lastname=' + $("#createLastName").val() + '&mail=' + $("#createMail").val() + '&birthdate=' + $("#createBirthdate").val(),
+            + '&lastname=' + $("#createLastName").val() + '&mail=' + $("#createMail").val() + '&birthdate=' + $("#createBirthdate").val(),
             success: function (data) {
                 HideCreate();
                 showData();
             }
         })
+    }
+
+    function SearchEmployee() {
+        var searchValue = $("#searchValue").val();
+        if (searchValue != "") {
+            $.ajax({
+                url: '/api/employee/searchValue',
+                method: 'POST',
+                data: 'searchValue=' + searchValue,
+                success: function (data) {
+                    $("#result").empty();
+                    var tr;
+                    for (var i = 0; i < data.length; i++) {
+                        tr = $('<tr/>');
+                        tr.append('<td>' + data[i].userId + '</td>');
+                        tr.append('<td>' + data[i].username + '</td>');
+                        tr.append("<td><input readonly type='password' value=" + data[i].password + ">" + "</td>");
+                        tr.append('<td>' + data[i].firstname + '</td>');
+                        tr.append('<td>' + data[i].lastname + '</td>');
+                        tr.append('<td>' + data[i].email + '</td>');
+                        tr.append('<td>' + data[i].birthdate + '</td>');
+                        tr.append('<td><button class="btn btn-warning" onclick=\'ShowUpdate("' + data[i].userId + '","' + data[i].username + '","'
+                            + data[i].password + '","' + data[i].firstname + '","' + data[i].lastname + '","' + data[i].email
+                            + '","' + data[i].birthdate + '")\'>Update</button></td>');
+                        tr.append('<td><button class="btn btn-danger" onclick=\'ShowDelete("' + data[i].userId + '")\'>Delete</button></td>');
+                        $("#result").append(tr);
+                    }
+                }
+            })
+        }
     }
 
 </script>

@@ -5,6 +5,7 @@ import com.cocshop.model.TblProduct;
 import com.cocshop.repository.CategoryRepository;
 import com.cocshop.repository.ProductRepository;
 import com.cocshop.repository.UserRepository;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -76,5 +77,14 @@ public class ProductController {
         product.setDeleted(false);
         productRepository.save(product);
         return "";
+    }
+
+    @JsonView(view.searchProductByName.class)
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/api/prorudct/searchValue")
+    public List searchByProductName(String searchValue){
+        System.err.println("Search Value in Controller: " + searchValue);
+        List<TblProduct> list = productRepository.searchByProductName(searchValue);
+        return list;
     }
 }

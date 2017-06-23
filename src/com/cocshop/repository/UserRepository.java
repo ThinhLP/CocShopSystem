@@ -21,4 +21,10 @@ public interface UserRepository extends CrudRepository<TblUser, Integer> {
 
     @Query(value = "select p from TblUser p where p.tblRoleByTblRoleRoleId.roleId=3 and p.deleted= false")
     public List<TblUser> listAllCustomer();
+
+    @Query(value = "select p from TblUser p where p.tblRoleByTblRoleRoleId.roleId=2 and p.firstname like concat('%', :firstname, '%') and p.deleted=false ")
+    public List<TblUser> searchByFirstName(@Param("firstname") String firstname);
+
+    @Query(value = "select p from TblUser p where p.tblRoleByTblRoleRoleId.roleId=3 and p.firstname like concat('%', :firstname, '%') and p.deleted=false ")
+    public List<TblUser> searchCustomerByFirstName(@Param("firstname") String firstname);
 }

@@ -98,12 +98,23 @@
     </div>
     <div class="col-sm-10" id="section-right">
         <h3>Customer Management</h3>
+
+        <form autocomplete="off">
+            <input type="text" id="searchValue" class="form-control" style="width: 30%; display: inline-block" required>
+            <button onclick="SearchCustomer()" type="button" class="btn btn-success" style="display: inline-block"
+                    id="btnSearch">
+                Search
+            </button>
+            <button type="button" class="btn btn-success" onclick="showData()">View all customers</button>
+        </form>
+
         <table class="table table-hover table-stripped" id="tblResult">
             <thead>
             <th>Customer ID</th>
             <th>User</th>
             <th>Password</th>
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Email</th>
             <th>BirthDate</th>
             </thead>
@@ -163,7 +174,8 @@
                     tr.append('<td>' + data[i].userId + '</td>');
                     tr.append('<td>' + data[i].username + '</td>');
                     tr.append("<td><input readonly type='password' value=" + data[i].password + ">" + "</td>");
-                    tr.append('<td>' + data[i].lastname + ' ' + data[i].firstname + '</td>');
+                    tr.append('<td>'  + data[i].firstname + '</td>');
+                    tr.append('<td>' + data[i].lastname +  '</td>');
                     tr.append('<td>' + data[i].email + '</td>');
                     tr.append('<td>' + data[i].birthdate + '</td>');
                     tr.append('<td><button class="btn btn-warning" onclick=\'ShowOrderDetails("' + data[i].userId + '")\'>View Orders</button></td>');
@@ -174,6 +186,33 @@
         });
     }
 
+
+    function SearchCustomer() {
+        var searchValue = $("#searchValue").val();
+        if (searchValue != ""){
+            $.ajax({
+                url: '/api/customers/searchValue',
+                method: 'POST',
+                data: 'searchValue=' + searchValue,
+                success: function (data) {
+                    $("#result").empty();
+                    var tr;
+                    for (var i = 0; i < data.length; i++) {
+                        tr = $('<tr/>');
+                        tr.append('<td>' + data[i].userId + '</td>');
+                        tr.append('<td>' + data[i].username + '</td>');
+                        tr.append("<td><input readonly type='password' value=" + data[i].password + ">" + "</td>");
+                        tr.append('<td>' + data[i].lastname + ' ' + data[i].firstname + '</td>');
+                        tr.append('<td>' + data[i].email + '</td>');
+                        tr.append('<td>' + data[i].birthdate + '</td>');
+                        tr.append('<td><button class="btn btn-warning" onclick=\'ShowOrderDetails("' + data[i].userId + '")\'>View Orders</button></td>');
+                        tr.append('<td><button class="btn btn-danger" onclick=\'ShowDelete("' + data[i].userId + '")\'>Delete</button></td>');
+                        $("#result").append(tr);
+                    }
+                }
+            })
+        }
+    }
 
     function ShowDelete(customerId) {
         $("#customerDelete").val(customerId);
@@ -199,13 +238,6 @@
     }
 
     function ShowOrderDetails(userId) {
-//        $.ajax({
-//            url: '/api/customer/orderDetails',
-//            method: 'POST',
-//            success: function (data) {
-//                window.location.replace("/customer/OrderDetail?customer=" + userId);
-//            }
-//        });
             window.location.href = "customerOrderDetailsPage.jsp?customerId=" + userId;
     }
 

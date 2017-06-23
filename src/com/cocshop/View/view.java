@@ -10,4 +10,7 @@ public class view  {
     public interface listAllCustomer{};
     public interface listOrderDetailsForCustomerId{};
     public interface listOrderByDate{};
+    public interface searchProductByName{};
+    public interface searchEmployeeByFirstName{};
+    public interface searchCusByFirstName{};
 }

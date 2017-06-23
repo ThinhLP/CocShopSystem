@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "tbl_category", schema = "cocshop", catalog = "")
 public class TblCategory {
-    @JsonView({view.listProduct.class, view.categoryList.class, view.listOrderDetailsForCustomerId.class})
+    @JsonView({view.listProduct.class, view.categoryList.class, view.listOrderDetailsForCustomerId.class,view.searchProductByName.class})
     private int categoryId;
-    @JsonView({view.listProduct.class, view.categoryList.class, view.listOrderDetailsForCustomerId.class})
+    @JsonView({view.listProduct.class, view.categoryList.class, view.listOrderDetailsForCustomerId.class, view.searchProductByName.class})
     private String categoryName;
     @JsonView(view.categoryList.class)
     private String description;

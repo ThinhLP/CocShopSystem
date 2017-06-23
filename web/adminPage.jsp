@@ -77,170 +77,206 @@
     <link rel="stylesheet" href="resources/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <header id="main-header" class="col-xs-12">
-        <div class="col-sm-2" id="header-left"><b>Coc Shop</b></div>
-        <div class="col-sm-10" id="header-right">
-            <div class="admin-setting pull-right"><img src="resources/img/chinhnc.jpg" /> <span><b>Nguyen Cong Chinh</b></span><a href="">Log out</a></div>
-        </div>
-    </header>
-    <section class="col-sm-12" id="main-section-wrapper">
-        <div class="col-sm-2" id="section-left">
-            <div class="admin-info"> <img src="resources/img/chinhnc.jpg" /> <span class="admin-name"><b>Nguyen Cong Chinh</b></span> <span class="admin-status"><i class="fa fa-circle text-success" aria-hidden="true"></i> Online</span></div>
-            <div class="menu-navigation">MANAGEMENT MENU</div>
-            <ul id="menu-wrapper">
-                <li class="menu-active"><a href="adminPage.jsp"><i class="fa fa-dropbox" aria-hidden="true"></i>Products</a></li>
-                <li> <a href="employeePage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Employees</a></li>
-                <li> <a href="customerPage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Customer</a></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="col-sm-10" id="section-right">
-            <h3>Product Management</h3>
-            <button type="button" class="btn btn-success" id="btnCreate" onclick="ShowCreate()">Add new product</button>
-            <table class="table table-hover table-stripped" id="tblResult">
-                <thead>
-                <th>ID</th>
-                <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Create At</th>
-                <th>Update At</th>
-                <th>Category</th>
-                <th>Description</th>
-                </thead>
-                <tbody id="result">
+<header id="main-header" class="col-xs-12">
+    <div class="col-sm-2" id="header-left"><b>Coc Shop</b></div>
+    <div class="col-sm-10" id="header-right">
+        <div class="admin-setting pull-right"><img src="resources/img/chinhnc.jpg"/>
+            <span><b>Nguyen Cong Chinh</b></span><a href="">Log out</a></div>
+    </div>
+</header>
+<section class="col-sm-12" id="main-section-wrapper">
+    <div class="col-sm-2" id="section-left">
+        <div class="admin-info"><img src="resources/img/chinhnc.jpg"/> <span class="admin-name"><b>Nguyen Cong Chinh</b></span>
+            <span class="admin-status"><i class="fa fa-circle text-success" aria-hidden="true"></i> Online</span></div>
+        <div class="menu-navigation">MANAGEMENT MENU</div>
+        <ul id="menu-wrapper">
+            <li class="menu-active"><a href="adminPage.jsp"><i class="fa fa-dropbox" aria-hidden="true"></i>Products</a>
+            </li>
+            <li><a href="employeePage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Employees</a></li>
+            <li><a href="customerPage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Customer</a></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="col-sm-10" id="section-right">
+        <h3>Product Management</h3>
+        <button type="button" class="btn btn-success" id="btnCreate" onclick="ShowCreate()">Add new product</button>
 
-                </tbody>
-            </table>
-        </div>
-    </section>
-    <footer class="col-sm-12" id="footer-wrapper">
-        <div class="col-sm-2" id="footer-left">&nbsp;</div>
-        <div class="col-sm-10" id="footer-right"><span> Design by <b>ThinhLP</b></span> <span class="pull-right">Version 1.0</span></div>
-    </footer>
+        <form autocomplete="off">
+            <input type="text" id="searchValue" class="form-control" style="width: 30%; display: inline-block" required>
+            <button onclick="SearchProduct()" type="button" class="btn btn-success" style="display: inline-block"
+                    id="btnSearch">
+                Search
+            </button>
+            <button type="button" class="btn btn-success" onclick="showData()">View all product</button>
+        </form>
 
 
-    <div id="overlay" class="web_dialog_overlay"></div>
-    <div id="dialogUpdate" class="web_dialog">
-        <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
-            <tr>
-                <td class="web_dialog_title">Update</td>
-                <td class="web_dialog_title align_right">
-                    <a href="#" id="btnClose" onclick="HideUpdate()">x</a>
-                </td>
-            </tr>
-            <form>
-                <tr>
-                    <td>ID:</td>
-                    <td><input type="text" id="productID" readonly/></td>
-                </tr>
-                <tr>
-                    <td>Product Name:</td>
-                    <td><input type="text" id="productName" required/></td>
-                </tr>
-                <tr>
-                    <td>Quantity:</td>
-                    <td><input type="text" id="quantity"/></td>
-                </tr>
-                <tr>
-                    <td>Price:</td>
-                    <td><input type="text" id="price"/></td>
-                </tr>
-                <tr>
-                    <td>Category:</td>
-                    <td>
-                        <select id="updateCategory" style="width: 87%">
 
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Description:</td>
-                    <td>
-                        <textarea cols="21" rows="10" id="description"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button class="btn btn-default pull-right" onclick="HideUpdate()">Cancel</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-warning" onclick="updateData()">Update</button>
-                    </td>
-                </tr>
-            </form>
+        <table class="table table-hover table-stripped" id="tblResult">
+            <thead>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Create At</th>
+            <th>Update At</th>
+            <th>Category</th>
+            <th>Description</th>
+            </thead>
+            <tbody id="result">
+
+            </tbody>
         </table>
     </div>
+</section>
+<footer class="col-sm-12" id="footer-wrapper">
+    <div class="col-sm-2" id="footer-left">&nbsp;</div>
+    <div class="col-sm-10" id="footer-right"><span> Design by <b>ThinhLP</b></span> <span
+            class="pull-right">Version 1.0</span></div>
+</footer>
 
-    <div id="dialogDelete" class="web_dialog">
-        <table style="width: 100%; height: 100%; border: 0px;" cellpadding="3" cellspacing="0">
-            <tr style="height: 20%">
-                <td class="web_dialog_title">Delete</td>
-                <td class="web_dialog_title align_right">
-                    <a href="#" onclick="HideDelete()">x</a>
+
+<div id="overlay" class="web_dialog_overlay"></div>
+
+
+<div id="dialogUpdate" class="web_dialog">
+    <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
+        <tr>
+            <td class="web_dialog_title">Update</td>
+            <td class="web_dialog_title align_right">
+                <a href="#" id="btnClose" onclick="HideUpdate()">x</a>
+            </td>
+        </tr>
+        <form>
+            <tr>
+                <td>ID:</td>
+                <td><input type="text" id="productID" readonly/></td>
+            </tr>
+            <tr>
+                <td>Product Name:</td>
+                <td><input type="text" id="productName" required/></td>
+            </tr>
+            <tr>
+                <td><label class="error" for="productName" id="productName_error">This field is required.</label></td>
+            </tr>
+            <tr>
+                <td>Quantity:</td>
+                <td><input type="text" id="quantity"/></td>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <td><input type="text" id="price"/></td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td>
+                    <select id="updateCategory" style="width: 87%">
+
+                    </select>
                 </td>
             </tr>
-            <tr style="height: 40%">
-                <td colspan="2">Are you sure?</td>
-            </tr>
-            <tr style="height: 20%">
+            <tr>
+                <td>Description:</td>
                 <td>
-                    <button class="btn btn-default pull-right" onclick="HideDelete()">Cancel</button>
+                    <textarea cols="21" rows="10" id="description"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-default pull-right" onclick="HideUpdate()" type="button">Cancel</button>
                 </td>
                 <td>
-                    <button class="btn btn-danger" id="delete" onclick="deleteData()">Delete</button>
+                    <button class="btn btn-warning" type="button" onclick="updateData()">Update</button>
                 </td>
             </tr>
-        </table>
-    </div>
+        </form>
+    </table>
+</div>
 
-    <div id="dialogCreate" class="web_dialog">
-        <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
+<div id="dialogDelete" class="web_dialog">
+    <table style="width: 100%; height: 100%; border: 0px;" cellpadding="3" cellspacing="0">
+        <tr style="height: 20%">
+            <td class="web_dialog_title">Delete</td>
+            <td class="web_dialog_title align_right">
+                <a href="#" onclick="HideDelete()">x</a>
+            </td>
+        </tr>
+        <tr style="height: 40%">
+            <td colspan="2">Are you sure?</td>
+        </tr>
+        <tr style="height: 20%">
+            <td>
+                <button class="btn btn-default pull-right" onclick="HideDelete()">Cancel</button>
+            </td>
+            <td>
+                <button class="btn btn-danger" id="delete" onclick="deleteData()">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="dialogCreate" class="web_dialog">
+    <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
+        <tr>
+            <td class="web_dialog_title">Add New Product</td>
+            <td class="web_dialog_title align_right">
+                <a href="#" id="close" onclick="HideCreate()">x</a>
+            </td>
+        </tr>
+        <form autocomplete="off">
             <tr>
-                <td class="web_dialog_title">Add New Product</td>
-                <td class="web_dialog_title align_right">
-                    <a href="#" id="close" onclick="HideCreate()">x</a>
+                <td>Product Name:</td>
+                <td><input type="text" id="createProductName" required/></td>
+            </tr>
+            <tr>
+                <td><label class="error" for="createProductName" id="createProName_error">This field is
+                    required.</label></td>
+            </tr>
+            <tr>
+                <td>Quantity:</td>
+                <td><input type="text" id="createQuantity" required/></td>
+            </tr>
+            <tr>
+                <td><label class="error" for="createQuantity" id="createQuantity_error">This field is required.</label>
                 </td>
             </tr>
-            <form autocomplete="off" id="proCreate">
-                <tr>
-                    <td>Product Name:</td>
-                    <td><input type="text" id="createProductName" required/></td>
-                </tr>
-                <tr>
-                    <td>Quantity:</td>
-                    <td><input type="text" id="createQuantity" required/></td>
-                </tr>
-                <tr>
-                    <td>Price:</td>
-                    <td><input type="text" id="createPrice" required/></td>
-                </tr>
-                <tr>
-                    <td>Category:</td>
-                    <td>
-                        <select id="createCategory" required>
+            <tr>
+                <td>Price:</td>
+                <td><input type="text" id="createPrice" required/></td>
+            </tr>
+            <tr>
+                <td><label class="error" for="createPrice" id="createPrice_error">This field is required.</label></td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td>
+                    <select id="createCategory" required>
 
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Description:</td>
-                    <td>
-                        <textarea cols="21" rows="10" id="createDescription"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button class="btn btn-default pull-right" onclick="HideCreate()" type="button">Cancel</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-success" onclick="CreateProduct()" id="btnCreatePro">Create</button>
-                    </td>
-                </tr>
-            </form>
-        </table>
-    </div>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label class="error" for="createCategory" id="createCategory_error">Please select category.</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td>
+                    <textarea cols="21" rows="10" id="createDescription"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-default pull-right" onclick="HideCreate()" type="button">Cancel</button>
+                </td>
+                <td>
+                    <button class="btn btn-success" type="button" onclick="CreateProduct()" id="btnCreatePro">Create
+                    </button>
+                </td>
+            </tr>
+        </form>
+    </table>
+</div>
 
 
 </div>
@@ -253,6 +289,8 @@
     });
 
     function showData() {
+        $("#searchValue").val("");
+        $(".error").hide();
         $.ajax({
             url: '/api/products',
             method: 'GET',
@@ -312,21 +350,40 @@
         $("#dialogUpdate").fadeIn(300);
     }
 
+    function checkValid() {
+        var isValid = true;
+        $('.error').hide();
+        if ($("#productName").val() === "") {
+            $("label#productName_error").show();
+            $("input#productName").focus();
+            isValid = false;
+        }
+        return isValid;
+    }
 
     function updateData() {
-        $.ajax({
-            url: '/api/product/update',
-            method: 'POST',
-            data: 'productId=' + $("#productID").val() + '&productName=' + $("#productName").val() + '&quantity=' + $("#quantity").val()
-            + '&price=' + $("#price").val() + '&description=' + $("#description").val(),
-            success: function (data) {
-                HideUpdate();
-                showData();
-            }
-        });
+        var check = checkValid();
+        if (check == true) {
+            $.ajax({
+                url: '/api/product/update',
+                method: 'POST',
+                data: 'productId=' + $("#productID").val() + '&productName=' + $("#productName").val() + '&quantity=' + $("#quantity").val()
+                + '&price=' + $("#price").val() + '&description=' + $("#description").val(),
+                success: function (data) {
+                    HideUpdate();
+                    if ($("#searchValue").val() != "") {
+                        SearchProduct();
+                    } else {
+                        showData();
+                    }
+                }
+            });
+        }
+
     }
 
     function HideUpdate() {
+        $(".error").hide();
         $("#overlay").hide();
         $("#dialogUpdate").fadeOut(300);
     }
@@ -340,7 +397,11 @@
             data: 'productId=' + $("#delete").val(),
             success: function (data) {
                 HideDelete();
-                showData();
+                if ($("#searchValue").val() != "") {
+                    SearchProduct();
+                } else {
+                    showData();
+                }
             }
         });
     }
@@ -379,28 +440,89 @@
         $("#dialogCreate").fadeIn(300);
     }
 
+    function checkCreate() {
+        var isValid = true;
+        $('.error').hide();
+        if ($("#createProductName").val() === "") {
+            $("label#createProName_error").show();
+            $("input#createusername").focus();
+            isValid = false;
+        }
+        if ($("#createQuantity").val() === "") {
+            $("label#createQuantity_error").show();
+            $("input#createQuantity").focus();
+            isValid = false;
+        }
+        if ($("#createPrice").val() === "") {
+            $("label#createPrice_error").show();
+            $("input#createPrice").focus();
+            isValid = false;
+        }
+        if ($("#createCategory").val() === "") {
+            $("label#createCategory_error").show();
+            $("input#createCategory").focus();
+            isValid = false;
+        }
+        return isValid;
+    }
 
     function CreateProduct() {
-        $("#btnCreatePro").click(function () {
-            if($("#proCreate").checkValidity()){
-                $.ajax({
-                    url: '/api/product/create',
-                    method: 'POST',
-                    data: 'createProductName=' + $("#createProductName").val() + '&createQuantity=' + $("#createQuantity").val()
-                    + "&createPrice=" + $("#createPrice").val() + "&createCategory=" + $("#createCategory").find(":selected").val()
-                    + "&createDescription=" + $("#createDescription").val(),
-                    success: function (data) {
-                        HideCreate();
-                        showData();
-                    }
-                });
-            }
-        });
+        var check = checkCreate();
+        if (check == true) {
+            $.ajax({
+                url: '/api/product/create',
+                method: 'POST',
+                data: 'createProductName=' + $("#createProductName").val() + '&createQuantity=' + $("#createQuantity").val()
+                + "&createPrice=" + $("#createPrice").val() + "&createCategory=" + $("#createCategory").find(":selected").val()
+                + "&createDescription=" + $("#createDescription").val(),
+                success: function (data) {
+                    HideCreate();
+                    showData();
+                }
+            });
+        }
     }
 
     function HideCreate() {
+        $(".error").hide();
         $("#overlay").hide();
         $("#dialogCreate").fadeOut(300);
+    }
+
+    function SearchProduct() {
+        var searchValue = $("#searchValue").val();
+        if (searchValue != "") {
+            $.ajax({
+                url: '/api/prorudct/searchValue',
+                method: 'POST',
+                data: 'searchValue=' + $("#searchValue").val(),
+                success: function (data) {
+                    $("#result").empty();
+                    var tr;
+                    for (var i = 0; i < data.length; i++) {
+                        tr = $('<tr/>');
+                        tr.append('<td>' + data[i].productId + '</td>');
+                        tr.append('<td>' + data[i].productName + '</td>');
+                        tr.append('<td>' + data[i].quantity + '</td>');
+                        tr.append('<td>' + data[i].price + '</td>');
+                        tr.append('<td>' + data[i].createAt + '</td>');
+                        if (data[i].updateAt == null) {
+                            tr.append('<td>' + ' ' + '</td>');
+                        } else {
+                            tr.append('<td>' + data[i].updateAt + '</td>');
+                        }
+                        tr.append('<td>' + data[i].tblCategoryByTblCategoryCategoryId.categoryName + '</td>');
+                        tr.append('<td>' + data[i].description + '</td>');
+                        tr.append('<td><button class="btn btn-warning" onclick=\'ShowUpdate("' + data[i].productId + '","' + data[i].productName + '","'
+                            + data[i].quantity + '","' + data[i].price + '","'
+                            + data[i].tblCategoryByTblCategoryCategoryId.categoryId + '")\'>Update</button></td> ');
+                        tr.append('<td><button class="btn btn-danger" onclick=\'ShowDelete("' + data[i].productId + '")\'>Delete</button></td>');
+                        $("#result").append(tr);
+                    }
+                }
+            });
+        }
+
     }
 
 </script>

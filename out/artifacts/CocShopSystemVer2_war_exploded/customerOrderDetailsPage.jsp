@@ -190,7 +190,6 @@
                         tr.append('<td>' + data[i].quantity * data[i].price + '</td>');
                         total = total + (data[i].quantity * data[i].price);
                         $("#result").append(tr);
-                    
                 }
             }
         })
