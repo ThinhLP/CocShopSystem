@@ -18,4 +18,7 @@ public interface UserRepository extends CrudRepository<TblUser, Integer> {
 
     @Query(value = "select p from TblUser  p where p.tblRoleByTblRoleRoleId.roleId=2 and p.deleted = false")
     public List<TblUser> listAllEmployee();
+
+    @Query(value = "select p from TblUser p where p.tblRoleByTblRoleRoleId.roleId=3 and p.deleted= false")
+    public List<TblUser> listAllCustomer();
 }

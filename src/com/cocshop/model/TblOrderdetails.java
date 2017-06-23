@@ -1,5 +1,8 @@
 package com.cocshop.model;
 
+import com.cocshop.View.view;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 
 /**
@@ -9,9 +12,13 @@ import javax.persistence.*;
 @Table(name = "tbl_orderdetails", schema = "cocshop", catalog = "")
 public class TblOrderdetails {
     private int id;
+    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private Integer quantity;
+    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private Double price;
+    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private TblOrder tblOrderByTblOrderOrderId;
+    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class})
     private TblProduct tblProductByTblProductProductId;
 
     @Id

@@ -1,5 +1,8 @@
 package com.cocshop.model;
 
+import com.cocshop.View.view;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -10,8 +13,11 @@ import java.util.Collection;
 @Entity
 @Table(name = "tbl_order", schema = "cocshop", catalog = "")
 public class TblOrder {
+    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private int orderId;
+    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private String orderDate;
+    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private TblUser tblUserByTblUserUserId;
     private Collection<TblOrderdetails> tblOrderdetailssByOrderId;
 

@@ -7,4 +7,7 @@ public class view  {
     public interface listProduct{};
     public interface categoryList{};
     public interface listAllEmployee{};
+    public interface listAllCustomer{};
+    public interface listOrderDetailsForCustomerId{};
+    public interface listOrderByDate{};
 }

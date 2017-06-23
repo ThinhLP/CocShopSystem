@@ -80,24 +80,23 @@
     <header id="main-header" class="col-xs-12">
         <div class="col-sm-2" id="header-left"><b>Coc Shop</b></div>
         <div class="col-sm-10" id="header-right">
-            <div class="admin-setting pull-right"><img src="resources/img/thinhlp.jpg" /> <span><b>Le Phuc Thinh</b></span><a href="">Log out</a></div>
+            <div class="admin-setting pull-right"><img src="resources/img/chinhnc.jpg" /> <span><b>Nguyen Cong Chinh</b></span><a href="">Log out</a></div>
         </div>
     </header>
     <section class="col-sm-12" id="main-section-wrapper">
         <div class="col-sm-2" id="section-left">
-            <div class="admin-info"> <img src="resources/img/thinhlp.jpg" /> <span class="admin-name"><b>Le Phuc Thinh</b></span> <span class="admin-status"><i class="fa fa-circle text-success" aria-hidden="true"></i> Online</span></div>
+            <div class="admin-info"> <img src="resources/img/chinhnc.jpg" /> <span class="admin-name"><b>Nguyen Cong Chinh</b></span> <span class="admin-status"><i class="fa fa-circle text-success" aria-hidden="true"></i> Online</span></div>
             <div class="menu-navigation">MANAGEMENT MENU</div>
             <ul id="menu-wrapper">
                 <li class="menu-active"><a href="adminPage.jsp"><i class="fa fa-dropbox" aria-hidden="true"></i>Products</a></li>
                 <li> <a href="employeePage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Employees</a></li>
+                <li> <a href="customerPage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Customer</a></li>
                 <li></li>
             </ul>
         </div>
         <div class="col-sm-10" id="section-right">
             <h3>Product Management</h3>
-            <button type="button" class="btn btn-success" id="btnCreate"
-                                                onclick="ShowCreate()">Add new product
-        </button>
+            <button type="button" class="btn btn-success" id="btnCreate" onclick="ShowCreate()">Add new product</button>
             <table class="table table-hover table-stripped" id="tblResult">
                 <thead>
                 <th>ID</th>

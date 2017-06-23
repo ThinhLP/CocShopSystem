@@ -14,22 +14,22 @@ import java.util.Collection;
 @Entity
 @Table(name = "tbl_product", schema = "cocshop", catalog = "")
 public class TblProduct {
-    @JsonView(view.listProduct.class)
+    @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private int productId;
-    @JsonView(view.listProduct.class)
+    @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private String productName;
-    @JsonView(view.listProduct.class)
+    @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private int quantity;
-    @JsonView(view.listProduct.class)
+    @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private double price;
-    @JsonView(view.listProduct.class)
+    @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private String createAt;
-    @JsonView(view.listProduct.class)
+    @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private String updateAt;
-    @JsonView(view.listProduct.class)
+    @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private String description;
     private Collection<TblOrderdetails> tblOrderdetailssByProductId;
-    @JsonView(view.listProduct.class)
+    @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private TblCategory tblCategoryByTblCategoryCategoryId;
     private Boolean deleted;
 
