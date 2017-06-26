@@ -120,7 +120,6 @@
 <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
 <script>
     var temp;
-
     var param = window.location.search.split('?')[1];
     temp = decodeURIComponent(param.split('=')[1]);
     $(document).ready(function () {

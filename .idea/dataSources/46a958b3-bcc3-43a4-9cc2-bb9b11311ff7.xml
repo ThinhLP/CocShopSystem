@@ -76,200 +76,195 @@
       <RefTableName>tbl_user</RefTableName>
       <RefColNames>userID</RefColNames>
     </foreign-key>
-    <column id="28" parent="13" name="ID">
+    <column id="28" parent="13" name="tbl_order_orderID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="29" parent="13" name="quantity">
+    <column id="29" parent="13" name="tbl_product_productID">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="30" parent="13" name="price">
+    <column id="30" parent="13" name="quantity">
       <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="31" parent="13" name="price">
+      <Position>4</Position>
       <DataType>double|0</DataType>
     </column>
-    <column id="31" parent="13" name="tbl_order_orderID">
-      <Position>4</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="32" parent="13" name="tbl_product_productID">
-      <Position>5</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="33" parent="13" name="fk_tbl_orderdetails_tbl_order1_idx">
+    <index id="32" parent="13" name="fk_tbl_orderdetails_tbl_order1_idx">
       <ColNames>tbl_order_orderID</ColNames>
     </index>
-    <index id="34" parent="13" name="fk_tbl_orderdetails_tbl_product1_idx">
+    <index id="33" parent="13" name="fk_tbl_orderdetails_tbl_product1_idx">
       <ColNames>tbl_product_productID</ColNames>
     </index>
-    <key id="35" parent="13" name="PRIMARY">
+    <key id="34" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
+      <ColNames>tbl_order_orderID
+tbl_product_productID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="36" parent="13" name="FKn922v5lx3fuqso43qxu70r36o">
+    <foreign-key id="35" parent="13" name="FKn922v5lx3fuqso43qxu70r36o">
       <ColNames>tbl_order_orderID</ColNames>
       <RefSchemaName>cocshop</RefSchemaName>
       <RefTableName>tbl_order</RefTableName>
       <RefColNames>orderID</RefColNames>
     </foreign-key>
-    <foreign-key id="37" parent="13" name="fk_tbl_orderdetails_tbl_order1">
+    <foreign-key id="36" parent="13" name="fk_tbl_orderdetails_tbl_order1">
       <ColNames>tbl_order_orderID</ColNames>
       <RefSchemaName>cocshop</RefSchemaName>
       <RefTableName>tbl_order</RefTableName>
       <RefColNames>orderID</RefColNames>
     </foreign-key>
-    <foreign-key id="38" parent="13" name="FKrpw7kbg3r1rn5xkqtyrf6716u">
+    <foreign-key id="37" parent="13" name="FKrpw7kbg3r1rn5xkqtyrf6716u">
       <ColNames>tbl_product_productID</ColNames>
       <RefSchemaName>cocshop</RefSchemaName>
       <RefTableName>tbl_product</RefTableName>
       <RefColNames>productID</RefColNames>
     </foreign-key>
-    <foreign-key id="39" parent="13" name="fk_tbl_orderdetails_tbl_product1">
+    <foreign-key id="38" parent="13" name="fk_tbl_orderdetails_tbl_product1">
       <ColNames>tbl_product_productID</ColNames>
       <RefSchemaName>cocshop</RefSchemaName>
       <RefTableName>tbl_product</RefTableName>
       <RefColNames>productID</RefColNames>
     </foreign-key>
-    <column id="40" parent="14" name="productID">
+    <column id="39" parent="14" name="productID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="41" parent="14" name="productName">
+    <column id="40" parent="14" name="productName">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="42" parent="14" name="quantity">
+    <column id="41" parent="14" name="quantity">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="43" parent="14" name="price">
+    <column id="42" parent="14" name="price">
       <Position>4</Position>
       <DataType>double|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="44" parent="14" name="createAt">
+    <column id="43" parent="14" name="createAt">
       <Position>5</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="45" parent="14" name="updateAt">
+    <column id="44" parent="14" name="updateAt">
       <Position>6</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="46" parent="14" name="description">
+    <column id="45" parent="14" name="description">
       <Position>7</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="47" parent="14" name="deleted">
+    <column id="46" parent="14" name="deleted">
       <Position>8</Position>
       <DataType>bit(1)|0</DataType>
     </column>
-    <column id="48" parent="14" name="tbl_category_categoryID">
+    <column id="47" parent="14" name="tbl_category_categoryID">
       <Position>9</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="49" parent="14" name="fk_tbl_product_tbl_category1_idx">
+    <index id="48" parent="14" name="fk_tbl_product_tbl_category1_idx">
       <ColNames>tbl_category_categoryID</ColNames>
     </index>
-    <key id="50" parent="14" name="PRIMARY">
+    <key id="49" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>productID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="51" parent="14" name="FK3dm8r91xw7d7fx21wl3fvb675">
+    <foreign-key id="50" parent="14" name="FK3dm8r91xw7d7fx21wl3fvb675">
       <ColNames>tbl_category_categoryID</ColNames>
       <RefSchemaName>cocshop</RefSchemaName>
       <RefTableName>tbl_category</RefTableName>
       <RefColNames>categoryID</RefColNames>
     </foreign-key>
-    <foreign-key id="52" parent="14" name="fk_tbl_product_tbl_category1">
+    <foreign-key id="51" parent="14" name="fk_tbl_product_tbl_category1">
       <ColNames>tbl_category_categoryID</ColNames>
       <RefSchemaName>cocshop</RefSchemaName>
       <RefTableName>tbl_category</RefTableName>
       <RefColNames>categoryID</RefColNames>
     </foreign-key>
-    <column id="53" parent="15" name="roleID">
+    <column id="52" parent="15" name="roleID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="54" parent="15" name="roleName">
+    <column id="53" parent="15" name="roleName">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <key id="55" parent="15" name="PRIMARY">
+    <key id="54" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>roleID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="56" parent="16" name="userID">
+    <column id="55" parent="16" name="userID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="57" parent="16" name="username">
+    <column id="56" parent="16" name="username">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="16" name="password">
+    <column id="57" parent="16" name="password">
       <Position>3</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="59" parent="16" name="email">
+    <column id="58" parent="16" name="email">
       <Position>4</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="60" parent="16" name="firstname">
+    <column id="59" parent="16" name="firstname">
       <Position>5</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="61" parent="16" name="lastname">
+    <column id="60" parent="16" name="lastname">
       <Position>6</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="62" parent="16" name="deleted">
+    <column id="61" parent="16" name="deleted">
       <Position>7</Position>
       <DataType>bit(1)|0</DataType>
     </column>
-    <column id="63" parent="16" name="birthdate">
+    <column id="62" parent="16" name="birthdate">
       <Position>8</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="64" parent="16" name="tbl_role_roleID">
+    <column id="63" parent="16" name="tbl_role_roleID">
       <Position>9</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="65" parent="16" name="fk_tbl_user_tbl_role_idx">
+    <index id="64" parent="16" name="fk_tbl_user_tbl_role_idx">
       <ColNames>tbl_role_roleID</ColNames>
     </index>
-    <key id="66" parent="16" name="PRIMARY">
+    <key id="65" parent="16" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="67" parent="16" name="FK96f17we9ck5b1jie5opvncwuc">
+    <foreign-key id="66" parent="16" name="FK96f17we9ck5b1jie5opvncwuc">
       <ColNames>tbl_role_roleID</ColNames>
       <RefSchemaName>cocshop</RefSchemaName>
       <RefTableName>tbl_role</RefTableName>
       <RefColNames>roleID</RefColNames>
     </foreign-key>
-    <foreign-key id="68" parent="16" name="fk_tbl_user_tbl_role">
+    <foreign-key id="67" parent="16" name="fk_tbl_user_tbl_role">
       <ColNames>tbl_role_roleID</ColNames>
       <RefSchemaName>cocshop</RefSchemaName>
       <RefTableName>tbl_role</RefTableName>

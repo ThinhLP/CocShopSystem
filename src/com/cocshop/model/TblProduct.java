@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import com.cocshop.View.view;
+import org.hibernate.annotations.GeneratorType;
 
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -44,6 +45,7 @@ public class TblProduct {
 
     @Id
     @Column(name = "productID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getProductId() {
         return productId;
     }
