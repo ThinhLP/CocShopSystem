@@ -111,7 +111,6 @@
         </form>
 
 
-
         <table class="table table-hover table-stripped" id="tblResult">
             <thead>
             <th>ID</th>
@@ -161,16 +160,22 @@
             </tr>
             <tr>
                 <td>Quantity:</td>
-                <td><input type="text" id="quantity"/></td>
+                <td><input type="text" id="quantity" required/></td>
+            </tr>
+            <tr>
+                <td><label class="error" for="quantity" id="quantity_error">This field is required.</label></td>
             </tr>
             <tr>
                 <td>Price:</td>
-                <td><input type="text" id="price"/></td>
+                <td><input type="text" id="price" required/></td>
+            </tr>
+            <tr>
+                <td><label class="error" for="price" id="price_error">This field is required.</label></td>
             </tr>
             <tr>
                 <td>Category:</td>
                 <td>
-                    <select id="updateCategory" style="width: 87%">
+                    <select id="updateCategory" style="width: 87%" required>
 
                     </select>
                 </td>
@@ -358,6 +363,16 @@
             $("input#productName").focus();
             isValid = false;
         }
+        if ($("#quantity").val() === "") {
+            $("label#quantity_error").show();
+            $("input#quantity").focus();
+            isValid = false;
+        }
+        if ($("#price").val() === "") {
+            $("label#price_error").show();
+            $("input#price").focus();
+            isValid = false;
+        }
         return isValid;
     }
 
@@ -498,26 +513,33 @@
                 data: 'searchValue=' + $("#searchValue").val(),
                 success: function (data) {
                     $("#result").empty();
-                    var tr;
-                    for (var i = 0; i < data.length; i++) {
-                        tr = $('<tr/>');
-                        tr.append('<td>' + data[i].productId + '</td>');
-                        tr.append('<td>' + data[i].productName + '</td>');
-                        tr.append('<td>' + data[i].quantity + '</td>');
-                        tr.append('<td>' + data[i].price + '</td>');
-                        tr.append('<td>' + data[i].createAt + '</td>');
-                        if (data[i].updateAt == null) {
-                            tr.append('<td>' + ' ' + '</td>');
-                        } else {
-                            tr.append('<td>' + data[i].updateAt + '</td>');
-                        }
-                        tr.append('<td>' + data[i].tblCategoryByTblCategoryCategoryId.categoryName + '</td>');
-                        tr.append('<td>' + data[i].description + '</td>');
-                        tr.append('<td><button class="btn btn-warning" onclick=\'ShowUpdate("' + data[i].productId + '","' + data[i].productName + '","'
-                            + data[i].quantity + '","' + data[i].price + '","'
-                            + data[i].tblCategoryByTblCategoryCategoryId.categoryId + '")\'>Update</button></td> ');
-                        tr.append('<td><button class="btn btn-danger" onclick=\'ShowDelete("' + data[i].productId + '")\'>Delete</button></td>');
+                    if (data.length == 0) {
+                        var tr = $('<div/>');
+                        tr.append("<h3>No record is matched" + "</h3>");
                         $("#result").append(tr);
+
+                    } else {
+                        var tr;
+                        for (var i = 0; i < data.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append('<td>' + data[i].productId + '</td>');
+                            tr.append('<td>' + data[i].productName + '</td>');
+                            tr.append('<td>' + data[i].quantity + '</td>');
+                            tr.append('<td>' + data[i].price + '</td>');
+                            tr.append('<td>' + data[i].createAt + '</td>');
+                            if (data[i].updateAt == null) {
+                                tr.append('<td>' + ' ' + '</td>');
+                            } else {
+                                tr.append('<td>' + data[i].updateAt + '</td>');
+                            }
+                            tr.append('<td>' + data[i].tblCategoryByTblCategoryCategoryId.categoryName + '</td>');
+                            tr.append('<td>' + data[i].description + '</td>');
+                            tr.append('<td><button class="btn btn-warning" onclick=\'ShowUpdate("' + data[i].productId + '","' + data[i].productName + '","'
+                                + data[i].quantity + '","' + data[i].price + '","'
+                                + data[i].tblCategoryByTblCategoryCategoryId.categoryId + '")\'>Update</button></td> ');
+                            tr.append('<td><button class="btn btn-danger" onclick=\'ShowDelete("' + data[i].productId + '")\'>Delete</button></td>');
+                            $("#result").append(tr);
+                        }
                     }
                 }
             });

@@ -202,7 +202,8 @@
                         tr.append('<td>' + data[i].userId + '</td>');
                         tr.append('<td>' + data[i].username + '</td>');
                         tr.append("<td><input readonly type='password' value=" + data[i].password + ">" + "</td>");
-                        tr.append('<td>' + data[i].lastname + ' ' + data[i].firstname + '</td>');
+                        tr.append('<td>'  + data[i].firstname + '</td>');
+                        tr.append('<td>' + data[i].lastname +  '</td>');
                         tr.append('<td>' + data[i].email + '</td>');
                         tr.append('<td>' + data[i].birthdate + '</td>');
                         tr.append('<td><button class="btn btn-warning" onclick=\'ShowOrderDetails("' + data[i].userId + '")\'>View Orders</button></td>');
