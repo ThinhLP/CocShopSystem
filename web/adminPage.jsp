@@ -315,7 +315,11 @@
                         tr.append('<td>' + data[i].updateAt + '</td>');
                     }
                     tr.append('<td>' + data[i].tblCategoryByTblCategoryCategoryId.categoryName + '</td>');
-                    tr.append('<td>' + data[i].description + '</td>');
+                    if (data[i].description == null) {
+                        tr.append('<td>' + ' ' + '</td>');
+                    } else {
+                        tr.append('<td>' + data[i].description + '</td>');
+                    }
                     tr.append('<td><button class="btn btn-warning" onclick=\'ShowUpdate("' + data[i].productId + '","' + data[i].productName + '","'
                         + data[i].quantity + '","' + data[i].price + '","'
                         + data[i].tblCategoryByTblCategoryCategoryId.categoryId + '")\'>Update</button></td> ');

@@ -67,7 +67,7 @@ public class TblOrderdetails {
 
 
     @ManyToOne
-    @JoinColumn(name = "tbl_order_orderID", referencedColumnName = "orderID", nullable = false, insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "tbl_order_orderID", referencedColumnName = "orderID", nullable = false, insertable = false, updatable = false)})
     public TblOrder getTblOrderByTblOrderOrderId() {
         return tblOrderByTblOrderOrderId;
     }
@@ -77,12 +77,19 @@ public class TblOrderdetails {
     }
 
     @ManyToOne
-    @JoinColumn(name = "tbl_product_productID", referencedColumnName = "productID", nullable = false, insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "tbl_product_productID", referencedColumnName = "productID", nullable = false, insertable = false, updatable = false)})
     public TblProduct getTblProductByTblProductProductId() {
         return tblProductByTblProductProductId;
     }
 
     public void setTblProductByTblProductProductId(TblProduct tblProductByTblProductProductId) {
         this.tblProductByTblProductProductId = tblProductByTblProductProductId;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = quantity != null ? quantity.hashCode() : 0;
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        return result;
     }
 }

@@ -1,5 +1,6 @@
 package com.cocshop.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
@@ -40,6 +41,7 @@ public class TblProduct {
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class, view.searchProductByName.class})
     private TblCategory tblCategoryByTblCategoryCategoryId;
     private Boolean deleted;
+
 
 
 
@@ -166,8 +168,6 @@ public class TblProduct {
         this.tblCategoryByTblCategoryCategoryId = tblCategoryByTblCategoryCategoryId;
     }
 
-
-
     @Basic
     @Column(name = "deleted")
     public Boolean getDeleted() {
@@ -177,4 +177,6 @@ public class TblProduct {
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
+
+
 }

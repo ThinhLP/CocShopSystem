@@ -122,6 +122,7 @@
     var temp;
     var param = window.location.search.split('?')[1];
     temp = decodeURIComponent(param.split('=')[1]);
+    console.log("Temp: " + temp);
     $(document).ready(function () {
         showData();
     });
@@ -132,7 +133,6 @@
                 method: 'POST',
                 data: 'customerId=' + temp,
                 success: function (data) {
-                    console.log("Data Size: " + data.length);
                     if(data.length == 0){
                         var tr = $("<div/>");
                         tr.append("<h3>No Information" + "</h3>");
@@ -145,8 +145,8 @@
                         var total = 0;
                         $("#result").empty();
                         $("#orderDate").empty();
-                        $("#customerName").append(data[0].tblOrderByTblOrderOrderId.tblUserByTblUserUserId.firstname + " "
-                            + data[0].tblOrderByTblOrderOrderId.tblUserByTblUserUserId.lastname);
+                        $("#customerName").append(data[0].tblOrderByTblOrderOrderId.tblUserByCustomerId.firstname + " "
+                            + data[0].tblOrderByTblOrderOrderId.tblUserByCustomerId.lastname);
 
                         /*Set OrderDate*/
                         for (var i = 0; i < data.length; i++) {

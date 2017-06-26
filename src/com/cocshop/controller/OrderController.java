@@ -1,25 +1,18 @@
 package com.cocshop.controller;
 
 import com.cocshop.View.view;
-import com.cocshop.model.TblOrder;
+import com.cocshop.model.TblJsonField;
 import com.cocshop.model.TblOrderdetails;
 import com.cocshop.model.TblProduct;
+import com.cocshop.model.TblWrapper;
 import com.cocshop.repository.OrderRepository;
 import com.fasterxml.jackson.annotation.JsonView;
 
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.DataInput;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -37,6 +30,7 @@ public class OrderController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/customer/orderDetails")
     public List listOrderDetailsFromCusId(int customerId) {
+        System.err.println("Ahihi");
         List<TblOrderdetails> list = orderRepository.listOrderByCusId(customerId);
         return list;
     }
@@ -49,13 +43,25 @@ public class OrderController {
         return list;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/api/order/checkOut")
+//    @RequestMapping(method = RequestMethod.POST, value = "/api/order/checkOut")
+//    @ResponseBody
+//    public Boolean checkOut(@RequestBody List<TblProduct> listData) {
+//        System.err.println("AHHI");
+//        for (int i = 0; i < listData.size(); i++) {
+//            System.err.println("ID: " + listData.get(i).getProductId());
+//        }
+//        return true;
+//    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/api/order/checkOut", consumes = "application/json")
     @ResponseBody
-    public Boolean checkOut(@RequestBody List<TblProduct> listData) {
-        System.err.println("AHHI");
-        for (int i = 0; i < listData.size(); i++) {
-            System.err.println("ID: " + listData.get(i).getProductId());
+    public Boolean checkOut(@RequestBody TblWrapper wrapper){
+        List<TblWrapper> list = wrapper.getList();
+        for (int i = 0; i < list.size(); i++) {
+            System.err.println("ID: " + list.get(i).toString());
+
         }
         return true;
+
     }
 }

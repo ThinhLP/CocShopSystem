@@ -17,9 +17,12 @@ public class TblOrder {
     private int orderId;
     @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
     private String orderDate;
-    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
-    private TblUser tblUserByTblUserUserId;
+//    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+//    private TblUser tblUserByTblUserUserId;
     private Collection<TblOrderdetails> tblOrderdetailssByOrderId;
+    private TblUser tblUserByEmployeeId;
+    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+    private TblUser tblUserByCustomerId;
 
 
 
@@ -63,15 +66,15 @@ public class TblOrder {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "tbl_user_userID", referencedColumnName = "userID", nullable = false)
-    public TblUser getTblUserByTblUserUserId() {
-        return tblUserByTblUserUserId;
-    }
-
-    public void setTblUserByTblUserUserId(TblUser tblUserByTblUserUserId) {
-        this.tblUserByTblUserUserId = tblUserByTblUserUserId;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "tbl_user_userID", referencedColumnName = "userID", nullable = false)
+//    public TblUser getTblUserByTblUserUserId() {
+//        return tblUserByTblUserUserId;
+//    }
+//
+//    public void setTblUserByTblUserUserId(TblUser tblUserByTblUserUserId) {
+//        this.tblUserByTblUserUserId = tblUserByTblUserUserId;
+//    }
 
     @OneToMany(mappedBy = "tblOrderByTblOrderOrderId")
     public Collection<TblOrderdetails> getTblOrderdetailssByOrderId() {
@@ -81,4 +84,33 @@ public class TblOrder {
     public void setTblOrderdetailssByOrderId(Collection<TblOrderdetails> tblOrderdetailssByOrderId) {
         this.tblOrderdetailssByOrderId = tblOrderdetailssByOrderId;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "employeeID", referencedColumnName = "userID")
+    public TblUser getTblUserByEmployeeId() {
+        return tblUserByEmployeeId;
+    }
+
+    public void setTblUserByEmployeeId(TblUser tblUserByEmployeeId) {
+        this.tblUserByEmployeeId = tblUserByEmployeeId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "customerID", referencedColumnName = "userID", nullable = false)
+    public TblUser getTblUserByCustomerId() {
+        return tblUserByCustomerId;
+    }
+
+    public void setTblUserByCustomerId(TblUser tblUserByCustomerId) {
+        this.tblUserByCustomerId = tblUserByCustomerId;
+    }
+
+//    @OneToMany(mappedBy = "tblOrderByTblOrderOrderId")
+//    public Collection<TblOrderdetails> getTblOrderdetailsByOrderId() {
+//        return tblOrderdetailsByOrderId;
+//    }
+//
+//    public void setTblOrderdetailsByOrderId(Collection<TblOrderdetails> tblOrderdetailsByOrderId) {
+//        this.tblOrderdetailsByOrderId = tblOrderdetailsByOrderId;
+//    }
 }

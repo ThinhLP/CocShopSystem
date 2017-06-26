@@ -174,13 +174,11 @@
             </tr>
         </form>
     </table>
-
 </div>
 
 
 <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
 <script>
-    var quantityInput;
     var arrayOrder = new Array();
     $(document).ready(function () {
         showData();
@@ -207,7 +205,11 @@
                     tr.append('<td>' + data[i].quantity + '</td>');
                     tr.append('<td>' + data[i].price + '</td>');
                     tr.append('<td>' + data[i].tblCategoryByTblCategoryCategoryId.categoryName + '</td>');
-                    tr.append('<td>' + data[i].description + '</td>');
+                    if (data[i].description == null) {
+                        tr.append('<td>' + ' ' + '</td>');
+                    } else {
+                        tr.append('<td>' + data[i].description + '</td>');
+                    }
                     tr.append('<td><button class="btn btn-warning" onclick=\'ShowAddProduct("' + data[i].productId + '","' + data[i].productName + '","'
                         + data[i].quantity + '","' + data[i].price + '","' + data[i].description + '","'
                         + data[i].tblCategoryByTblCategoryCategoryId.categoryName + '")\'>Add to Cart</button></td> ');
@@ -224,7 +226,11 @@
         $("#productName").val(productName);
         temp = quantity;
         $("#price").val(price);
-        $("#description").val(description);
+        if (description === "null") {
+            $("#description").val("");
+        } else {
+            $("#description").val(description);
+        }
         $("#category").val(category);
         $("#overlay").show();
         $("#dialogAddtoCart").fadeIn(300);
@@ -234,11 +240,12 @@
         $(".error").hide();
         $("#overlay").hide();
         $("#dialogAddtoCart").fadeOut(300);
+        $("#quantity").val("");
     }
 
     function checkQuantity() {
         var inputQuantity = $("#quantity").val();
-        if (inputQuantity > temp) {
+        if (parseInt(inputQuantity) > parseInt(temp)) {
             $(".error").show();
         } else {
             $(".error").hide();
@@ -250,12 +257,14 @@
     function AddtoCart() {
         var TblOrder = new Object();
         TblOrder = {
-            productId: $("#productID").val(),
-            productName: $("#productName").val(),
-            quantity: $("#quantity").val(),
-            price: $("#price").val(),
-            category: $("#category").val(),
-            description: $("#description").val()
+            products:{
+                productId: $("#productID").val(),
+                productName: $("#productName").val(),
+                quantity: $("#quantity").val(),
+                price: $("#price").val(),
+                category: $("#category").val(),
+                description: $("#description").val()
+            }
         };
         arrayOrder.push(TblOrder);
         $("#overlay").hide();
@@ -274,13 +283,13 @@
         var total = 0;
         for (var i = 0; i < arrayOrder.length; i++) {
             tr = $("<tr/>");
-            tr.append("<td>" + arrayOrder[i].productId + "</td>");
-            tr.append("<td>" + arrayOrder[i].productName + "</td>");
-            tr.append("<td>" + arrayOrder[i].quantity + "</td>");
-            tr.append("<td>" + arrayOrder[i].price + "</td>");
-            tr.append("<td>" + arrayOrder[i].category + "</td>");
-            tr.append("<td>" + arrayOrder[i].description + "</td>");
-            total = total + (arrayOrder[i].quantity * arrayOrder[i].price);
+            tr.append("<td>" + arrayOrder[i].products.productId + "</td>");
+            tr.append("<td>" + arrayOrder[i].products.productName + "</td>");
+            tr.append("<td>" + arrayOrder[i].products.quantity + "</td>");
+            tr.append("<td>" + arrayOrder[i].products.price + "</td>");
+            tr.append("<td>" + arrayOrder[i].products.category + "</td>");
+            tr.append("<td>" + arrayOrder[i].products.description + "</td>");
+            total = total + (arrayOrder[i].products.quantity * arrayOrder[i].products.price);
             $("#result").append(tr);
         }
         $("#totalPrice").append("$ " + total);
@@ -294,7 +303,7 @@
             method: 'POST',
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
-            data: {jsonData: JSON.stringify(arrayOrder)},
+            data: JSON.stringify(arrayOrder),
             success: function (data) {
 
             }
