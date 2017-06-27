@@ -10,26 +10,30 @@ import java.io.Serializable;
  * Created by Nguyen Cong Chinh on 6/26/2017.
  */
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class TblJsonField implements Serializable {
-    @JsonProperty("productId")
-    private String productId;
-    @JsonProperty("productName")
+
+    private int userId;
+
+
+
+    private Integer productId;
+
     private String productName;
-    @JsonProperty("quantity")
+
     private int quantity;
-    @JsonProperty("price")
+
     private double price;
-    @JsonProperty("category")
+
     private String category;
-    @JsonProperty("description")
+
     private String description;
 
-    public String getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -71,5 +75,13 @@ public class TblJsonField implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

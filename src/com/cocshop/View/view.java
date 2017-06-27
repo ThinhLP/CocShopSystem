@@ -14,4 +14,6 @@ public class view  {
     public interface searchEmployeeByFirstName{};
     public interface searchCusByFirstName{};
     public interface checkOut{};
+    public interface checkLogin{};
+    public interface viewAllOrder{};
 }

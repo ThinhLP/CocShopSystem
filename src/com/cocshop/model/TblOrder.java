@@ -13,15 +13,16 @@ import java.util.Collection;
 @Entity
 @Table(name = "tbl_order", schema = "cocshop", catalog = "")
 public class TblOrder {
-    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,view.viewAllOrder.class})
     private int orderId;
-    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,view.viewAllOrder.class})
     private String orderDate;
 //    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
 //    private TblUser tblUserByTblUserUserId;
     private Collection<TblOrderdetails> tblOrderdetailssByOrderId;
+    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,view.viewAllOrder.class})
     private TblUser tblUserByEmployeeId;
-    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
+    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,view.viewAllOrder.class})
     private TblUser tblUserByCustomerId;
 
 

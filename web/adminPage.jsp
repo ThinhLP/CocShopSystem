@@ -287,12 +287,25 @@
 </div>
 <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
 <script>
+    var temp;
     $(document).ready(function () {
+
+        var tmp = window.location.href;
+        var param = window.location.search.split('?')[1];
+        if (param != null) {
+            temp = decodeURIComponent(param.split('=')[1]);
+        }
         showData();
         var rightHeight = $('#section-right').height();
         $('#section-left').height(rightHeight);
     });
 
+
+    /*Set userID if need*/
+//    function employeePage() {
+//        window.location.href = "employeePage.jsp?userId=" + temp;
+//    }
+    
     function showData() {
         $("#searchValue").val("");
         $(".error").hide();

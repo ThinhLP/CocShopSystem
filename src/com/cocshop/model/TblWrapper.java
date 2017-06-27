@@ -12,7 +12,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TblWrapper implements Serializable {
 
-    @JsonProperty("products")
     List<TblWrapper> list;
 
 

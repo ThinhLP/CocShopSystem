@@ -122,12 +122,12 @@
     var temp;
     var param = window.location.search.split('?')[1];
     temp = decodeURIComponent(param.split('=')[1]);
-    console.log("Temp: " + temp);
     $(document).ready(function () {
         showData();
     });
 
     function showData() {
+
             $.ajax({
                 url: '/api/customer/orderDetails',
                 method: 'POST',

@@ -180,17 +180,24 @@
 <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
 <script>
     var arrayOrder = new Array();
+    var userId;
     $(document).ready(function () {
-        showData();
-        $("#btnAddToCart").attr("disabled", "disabled");
+        var param = window.location.search.split('?')[1];
+        if (param != null) {
+            userId = decodeURIComponent(param.split('=')[1]);
+        }
         var rightHeight = $('#section-right').height();
         $('#section-left').height(rightHeight);
+        $("#btnAddToCart").attr("disabled", "disabled");
         $(".error").hide();
         $("#totalPrice").hide();
         $("#btnCheckOut").hide();
+        showData();
     });
 
     function showData() {
+        $("#totalPrice").hide();
+        $("#btnCheckOut").hide();
         $("#searchValue").val("");
         $.ajax({
             url: '/api/products',
@@ -257,14 +264,13 @@
     function AddtoCart() {
         var TblOrder = new Object();
         TblOrder = {
-            products:{
-                productId: $("#productID").val(),
-                productName: $("#productName").val(),
-                quantity: $("#quantity").val(),
-                price: $("#price").val(),
-                category: $("#category").val(),
-                description: $("#description").val()
-            }
+            userId: userId,
+            productId: $("#productID").val(),
+            productName: $("#productName").val(),
+            quantity: $("#quantity").val(),
+            price: $("#price").val(),
+            category: $("#category").val(),
+            description: $("#description").val()
         };
         arrayOrder.push(TblOrder);
         $("#overlay").hide();
@@ -283,21 +289,19 @@
         var total = 0;
         for (var i = 0; i < arrayOrder.length; i++) {
             tr = $("<tr/>");
-            tr.append("<td>" + arrayOrder[i].products.productId + "</td>");
-            tr.append("<td>" + arrayOrder[i].products.productName + "</td>");
-            tr.append("<td>" + arrayOrder[i].products.quantity + "</td>");
-            tr.append("<td>" + arrayOrder[i].products.price + "</td>");
-            tr.append("<td>" + arrayOrder[i].products.category + "</td>");
-            tr.append("<td>" + arrayOrder[i].products.description + "</td>");
-            total = total + (arrayOrder[i].products.quantity * arrayOrder[i].products.price);
+            tr.append("<td>" + arrayOrder[i].productId + "</td>");
+            tr.append("<td>" + arrayOrder[i].productName + "</td>");
+            tr.append("<td>" + arrayOrder[i].quantity + "</td>");
+            tr.append("<td>" + arrayOrder[i].price + "</td>");
+            tr.append("<td>" + arrayOrder[i].category + "</td>");
+            tr.append("<td>" + arrayOrder[i].description + "</td>");
+            total = total + (arrayOrder[i].quantity * arrayOrder[i].price);
             $("#result").append(tr);
         }
         $("#totalPrice").append("$ " + total);
     }
 
     function getMoney() {
-        var temp = JSON.stringify(arrayOrder);
-        console.log(temp);
         $.ajax({
             url: '/api/order/checkOut',
             method: 'POST',
@@ -305,11 +309,11 @@
             dataType: 'json',
             data: JSON.stringify(arrayOrder),
             success: function (data) {
-
+                alert("Order Success");
+                showData();
             }
         })
     }
-
 </script>
 
 

@@ -12,13 +12,13 @@ import javax.persistence.*;
 @Table(name = "tbl_orderdetails", schema = "cocshop", catalog = "")
 public class TblOrderdetails {
 
-    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class})
+    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class, view.viewAllOrder.class})
     private Integer quantity;
-    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class})
+    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class,view.viewAllOrder.class})
     private Double price;
-    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class})
+    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class,view.viewAllOrder.class})
     private TblOrder tblOrderByTblOrderOrderId;
-    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class})
+    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class,view.viewAllOrder.class})
     private TblProduct tblProductByTblProductProductId;
     private TblOrderdetailsPK pk;
 
