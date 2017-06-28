@@ -21,6 +21,8 @@ public interface OrderDetailRepository extends CrudRepository<TblOrderdetails, I
     @Query(value = "select  p from TblOrderdetails p where p.tblOrderByTblOrderOrderId.orderDate=:orderDate")
     public List<TblOrderdetails> listOrderByDate(@Param("orderDate") String orderDate);
 
+    @Query(value = "select p from TblOrderdetails p where p.tblOrderByTblOrderOrderId.orderId=:orderId")
+    public List<TblOrderdetails>getOrderByOrderId(@Param("orderId") int orderId);
 
 
 }

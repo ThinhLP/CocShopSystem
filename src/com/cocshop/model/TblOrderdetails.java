@@ -12,13 +12,17 @@ import javax.persistence.*;
 @Table(name = "tbl_orderdetails", schema = "cocshop", catalog = "")
 public class TblOrderdetails {
 
-    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class, view.viewAllOrder.class})
+    @JsonView({view.listOrderDetailsForCustomerId.class,
+            view.listOrderByDate.class, view.viewAllOrder.class,view.getOrderByOrderId.class})
     private Integer quantity;
-    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class,view.viewAllOrder.class})
+    @JsonView({view.listOrderDetailsForCustomerId.class,
+            view.listOrderByDate.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
     private Double price;
-    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class,view.viewAllOrder.class})
+    @JsonView({view.listOrderDetailsForCustomerId.class,
+            view.listOrderByDate.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
     private TblOrder tblOrderByTblOrderOrderId;
-    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class,view.viewAllOrder.class})
+    @JsonView({view.listOrderDetailsForCustomerId.class,
+            view.listOrderByDate.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
     private TblProduct tblProductByTblProductProductId;
     private TblOrderdetailsPK pk;
 

@@ -2,13 +2,13 @@
   Created by IntelliJ IDEA.
   User: Nguyen Cong Chinh
   Date: 6/27/2017
-  Time: 4:00 PM
+  Time: 11:34 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Employee Order Page</title>
+    <title>Order Detail Page</title>
     <style>
         .web_dialog_overlay {
             position: fixed;
@@ -92,54 +92,93 @@
     </div>
     <div class="col-sm-10" id="section-right">
         <h3>CheckOut Order</h3>
-        <table class="table table-hover table-stripped" id="tblResult">
+        <table>
             <thead>
-            <th>Order ID</th>
+            <th id="orderId">Order ID</th>
             <th>Order Date</th>
             <th>Customer Name</th>
+            </thead>
+            <tbody id="content">
+
+            </tbody>
+        </table>
+        <table class="table table-hover table-stripped" id="tblResult">
+            <thead>
+            <th>Product Name:</th>
+            <th>Quantity</th>
+            <th>$/Unit</th>
             </thead>
             <tbody id="result">
 
             </tbody>
         </table>
-        <%--<span id="totalPrice">Total Price: </span>--%>
-        <%--<button type="button" onclick="getMoney()" id="btnCheckOut">CheckOut</button>--%>
+        <span id="total">Total: </span>
+        <button type="button" id="btnDone" value="Done" disabled>Done</button>
+        <button type="button" id="btnAccept" onclick="submitOrder()" value="Accept">Accept</button>
     </div>
 </section>
 </body>
-
-
 <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
-
 <script>
+
+    var temp = window.location.search.split('?')[1];
+    var param = decodeURIComponent(temp.split('=')[1]);
     $(document).ready(function () {
+        $("#btnDone").hide();
+        $("#btnAccept").hide();
         showData();
     });
 
     function showData() {
+        var total = 0;
         $.ajax({
-            url: '/api/employee/getAllOrderForCheckout',
-            method: 'GET',
+            url: '/api/order/checkOutDetail',
+            method: 'POST',
+            data: 'orderId=' + param,
             success: function (data) {
+                //console.log(data[0].tblOrderByTblOrderOrderId.tblUserByEmployeeId.userId)
+                var test = data[0].tblOrderByTblOrderOrderId.tblUserByEmployeeId;
+                if (test === null) {
+                    $("#btnAccept").show();
+                } else {
+                    $("#btndone").show();
+                }
+
+                $("#content").empty();
+                var tr = $("<tr/>");
+                $("#orderId").val(data[0].tblOrderByTblOrderOrderId.orderId);
+                tr.append("<td>" + data[0].tblOrderByTblOrderOrderId.orderId + "</td>");
+                tr.append("<td>" + data[0].tblOrderByTblOrderOrderId.orderDate + "</td>");
+                tr.append("<td>" + data[0].tblOrderByTblOrderOrderId.tblUserByCustomerId.firstname + " " + data[0].tblOrderByTblOrderOrderId.tblUserByCustomerId.lastname + "</td>");
+                $("#content").append(tr);
                 $("#result").empty();
                 var tr;
-                for(var i = 0; i < data.length; i++){
+                for (var i = 0; i < data.length; i++) {
                     tr = $("<tr/>");
-                    tr.append("<td>" + data[i].orderId + "</td>");
-                    tr.append("<td>" + data[i].orderDate + "</td>");
-                    tr.append("<td>" + data[i].tblUserByCustomerId.firstname + " " + data[i].tblUserByCustomerId.lastname + "</td>");
-                    tr.append('<td><button class="btn btn-warning" onclick=\'viewDetail("' + data[i].orderId + '")\'>View Details</button></td>');
+                    tr.append("<td>" + data[i].tblProductByTblProductProductId.productName + "</td>");
+                    tr.append("<td>" + data[i].quantity + "</td>");
+                    tr.append("<td>" + data[i].price + "</td>");
+                    total = total + (data[i].quantity * data[i].price);
                     $("#result").append(tr);
                 }
+                $("#total").append(total);
             }
         });
     }
 
-    function viewDetail(orderId) {
-        window.location.href = "employeeOrderDetailPage.jsp?orderId=" + orderId;
+    function submitOrder() {
+        var orderID = $("#orderId").val();
+        console.log(orderID);
+        $.ajax({
+            url: '/api/order/acceptedOrder',
+            method: 'POST',
+            data: 'orderId=' + $("#orderId").val() + "&userId=" + param,
+            success: function (data) {
+                
+            }
+        })
+
     }
-
-
 
 </script>
 </html>

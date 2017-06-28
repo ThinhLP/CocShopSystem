@@ -17,16 +17,19 @@ import java.util.Collection;
 @Table(name = "tbl_product", schema = "cocshop", catalog = "")
 public class TblProduct {
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,
-            view.listOrderByDate.class,view.searchProductByName.class,view.viewAllOrder.class})
+            view.listOrderByDate.class,view.searchProductByName.class,
+            view.viewAllOrder.class,view.getOrderByOrderId.class})
     private int productId;
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,
-            view.listOrderByDate.class,view.searchProductByName.class, view.viewAllOrder.class})
+            view.listOrderByDate.class,view.searchProductByName.class,
+            view.viewAllOrder.class,view.getOrderByOrderId.class})
     private String productName;
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,
-            view.listOrderByDate.class,view.searchProductByName.class,view.viewAllOrder.class})
+            view.listOrderByDate.class,view.searchProductByName.class,
+            view.viewAllOrder.class,view.getOrderByOrderId.class})
     private int quantity;
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,
-            view.listOrderByDate.class,view.searchProductByName.class})
+            view.listOrderByDate.class,view.searchProductByName.class,view.getOrderByOrderId.class})
     private double price;
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,
             view.listOrderByDate.class,view.searchProductByName.class})

@@ -7,10 +7,19 @@ import com.cocshop.repository.OrderRepository;
 import com.cocshop.repository.ProductRepository;
 import com.cocshop.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializable;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.google.gson.JsonObject;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,8 +72,8 @@ public class OrderController {
         System.err.println("List Order: " + listOrder);
         ObjectMapper mapper = new ObjectMapper();
         TypeFactory typeFactory = mapper.getTypeFactory();
-        CollectionType collectionType = typeFactory.constructCollectionType(List.class,TblJsonField.class);
-        List<TblJsonField>  list = mapper.readValue(listOrder,collectionType);
+        CollectionType collectionType = typeFactory.constructCollectionType(List.class, TblJsonField.class);
+        List<TblJsonField> list = mapper.readValue(listOrder, collectionType);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         TblOrder order = new TblOrder();
@@ -72,7 +81,7 @@ public class OrderController {
         order.setTblUserByCustomerId(userRepository.findOne(list.get(0).getUserId()));
         orderRepository.save(order);
         order = orderRepository.getLastRecord();
-        for(int i = 0 ; i < list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             TblOrderdetailsPK pk = new TblOrderdetailsPK();
             TblOrderdetails tblOrderdetails = new TblOrderdetails();
             TblProduct tblProduct = new TblProduct();
@@ -87,6 +96,27 @@ public class OrderController {
             orderDetailRepository.save(tblOrderdetails);
         }
         return true;
-
     }
+
+    @JsonView(view.getOrderByOrderId.class)
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/api/order/checkOutDetail")
+    public List listDetailsOrder(int orderId) {
+        System.err.println("Ahihi");
+        List<TblOrderdetails> list = orderDetailRepository.getOrderByOrderId(orderId);
+        return list;
+    }
+
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/api/order/acceptedOrder", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String acceptedOrder(int orderId, int userId){
+        JsonObject jsonObject = new JsonObject();
+        TblOrder tblOrder = orderRepository.findOne(orderId);
+        tblOrder.setTblUserByEmployeeId(userRepository.findOne(userId));
+        orderRepository.save(tblOrder);
+        return Boolean.TRUE.toString();
+    }
+
+
 }

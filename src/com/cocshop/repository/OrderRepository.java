@@ -3,6 +3,7 @@ package com.cocshop.repository;
 import com.cocshop.model.TblOrder;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface OrderRepository extends CrudRepository<TblOrder, Integer> {
 
     @Query(value = "select p from TblOrder  p")
     public List<TblOrder> getAll();
+
+
 }

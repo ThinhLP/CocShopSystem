@@ -80,8 +80,6 @@
     <div class="col-sm-2" id="header-left"><b>Coc Shop</b></div>
     <div class="col-sm-10" id="header-right">
         <div class="admin-setting pull-right">
-            <%--<a href=""><i class="fa fa-shopping-cart" style="font-size: 25px; vertical-align: middle" onclick="CheckOut()"></i></a>--%>
-            <%--<button type="button" onclick="CheckOut()" class="fa fa-shopping-cart">CheckOut</button>--%>
         </div>
     </div>
 </header>
@@ -94,16 +92,6 @@
     </div>
     <div class="col-sm-10" id="section-right">
         <h3>CheckOut Order</h3>
-        <%--<form autocomplete="off">--%>
-        <%--<input type="text" id="searchValue" class="form-control" style="width: 30%; display: inline-block" required>--%>
-        <%--<button onclick="SearchProduct()" type="button" class="btn btn-success" style="display: inline-block"--%>
-        <%--id="btnSearch">--%>
-        <%--Search--%>
-        <%--</button>--%>
-        <%--<button type="button" class="btn btn-success" id="viewAll" onclick="showData()">View all product</button>--%>
-        <%--</form>--%>
-
-
         <table class="table table-hover table-stripped" id="tblResult">
             <thead>
             <th>Order ID</th>
@@ -117,12 +105,7 @@
         <%--<span id="totalPrice">Total Price: </span>--%>
         <%--<button type="button" onclick="getMoney()" id="btnCheckOut">CheckOut</button>--%>
     </div>
-
 </section>
-
-<div id="overlay" class="web_dialog_overlay"></div>
-
-
 </body>
 
 
@@ -149,7 +132,11 @@
                     $("#result").append(tr);
                 }
             }
-        })
+        });
+    }
+
+    function viewDetail(orderId) {
+        window.location.href = "employeeOrderDetailPage.jsp?orderId=" + orderId;
     }
 
 

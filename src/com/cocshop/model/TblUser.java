@@ -17,12 +17,12 @@ public class TblUser {
     @JsonView({view.listAllEmployee.class, view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
             view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
-            view.checkLogin.class,view.viewAllOrder.class})
+            view.checkLogin.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
     private int userId;
     @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
             view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
-            view.checkLogin.class,view.viewAllOrder.class})
+            view.checkLogin.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
     private String username;
     @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
@@ -37,12 +37,12 @@ public class TblUser {
     @JsonView({view.listAllEmployee.class, view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
             view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
-            view.checkLogin.class,view.viewAllOrder.class})
+            view.checkLogin.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
     private String firstname;
     @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
             view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
-            view.checkLogin.class,view.viewAllOrder.class})
+            view.checkLogin.class,view.viewAllOrder.class, view.getOrderByOrderId.class})
     private String lastname;
     @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,

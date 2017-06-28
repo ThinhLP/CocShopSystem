@@ -16,4 +16,5 @@ public class view  {
     public interface checkOut{};
     public interface checkLogin{};
     public interface viewAllOrder{};
+    public interface getOrderByOrderId{};
 }
