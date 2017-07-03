@@ -33,33 +33,35 @@
     <button type="button" onclick="login()">Login</button>
     <button type="reset">Reset</button>
 <%--</form:form>--%>
+</form>
+    <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
+    <script>
+        function login() {
+            var username = $("#username").val();
+            var password = $("#password").val();
+            $.ajax({
+                url: '/api/login',
+                method: 'POST',
+                data: 'username=' + username + '&password=' + password,
+                success: function (data) {
+                    if (data.status == 1) {
+                        if(data.user.role == 1){
+                            window.location.href = "adminPage.jsp?userId=" + data.user.userId;
+                        } else if(data.user.role == 3){
+                            window.location.href = "orderTransaction.jsp?userId=" + data.user.userId;
+                        } else if(data.user.role == 2){
+                            window.location.href = "employeeOrderPage.jsp?userId=" + data.user.userId;
+                        }
+                    } else {
+                        $('#errorMsg').html("Invalid user or password!");
+                    }
+
+                }
+            })
+        }
+    </script>
 </body>
 
 
-<script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
-<script>
-    function login() {
-        var username = $("#username").val();
-        var password = $("#password").val();
-        $.ajax({
-            url: '/api/login',
-            method: 'POST',
-            data: 'username=' + username + '&password=' + password,
-            success: function (data) {
-                if (data.status == 1) {
-                    if(data.user.role == 1){
-                        window.location.href = "adminPage.jsp?userId=" + data.user.userId;
-                    } else if(data.user.role == 3){
-                        window.location.href = "orderTransaction.jsp?userId=" + data.user.userId;
-                    } else if(data.user.role == 2){
-                        window.location.href = "employeeOrderPage.jsp?userId=" + data.user.userId;
-                    }
-                } else {
-                    $('#errorMsg').html("Invalid user or password!");
-                }
 
-            }
-        })
-    }
-</script>
 </html>
