@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface UserRepository extends CrudRepository<TblUser, Integer> {
 
-    @Query(value = "select p from TblUser p where p.username=:username and p.password=:password")
+    @Query(value = "select p from TblUser p where p.username=:username and p.password=:password and p.deleted = false")
     public TblUser checkLogin(@Param("username") String username, @Param("password") String password);
 
 

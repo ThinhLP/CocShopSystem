@@ -1,5 +1,6 @@
 package com.cocshop.controller;
 
+import com.cocshop.dto.UserDto;
 import com.cocshop.model.TblUser;
 import com.cocshop.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -23,11 +24,15 @@ public class LoginController {
     @JsonView(view.checkLogin.class)
     @RequestMapping(method = RequestMethod.POST, value = "/api/login")
     @ResponseBody
-    public TblUser checkLogin(String username, String password){
+    public UserDto checkLogin(String username, String password){
         TblUser user = userRepository.checkLogin(username,password);
         if(user != null){
-            return user;
+            return convertToUserDto(user);
         }
         return null;
+    }
+
+    public UserDto convertToUserDto(TblUser user) {
+        return new UserDto(user.getUserId(), user.getUsername(),user.getEmail(), user.getFirstname(), user.getLastname(), user.getBirthdate(), user.getTblRoleByTblRoleRoleId());
     }
 }
