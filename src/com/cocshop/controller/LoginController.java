@@ -1,11 +1,12 @@
 package com.cocshop.controller;
 
 import com.cocshop.dto.UserDto;
-import com.cocshop.dto.response.LoginResponse;
 import com.cocshop.model.TblUser;
 import com.cocshop.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,18 +26,13 @@ public class LoginController {
     @JsonView(view.loginResponse.class)
     @RequestMapping(method = RequestMethod.POST, value = "/api/login")
     @ResponseBody
-    public LoginResponse checkLogin(String username, String password){
+    public ResponseEntity<UserDto> checkLogin(String username, String password){
         TblUser user = userRepository.checkLogin(username,password);
-        LoginResponse response = new LoginResponse();
         if(user != null){
-            response.setStatus(1);
-            response.setMessage("Login successfully!");
-            response.setUser(convertToUserDto(user));
-        } else {
-            response.setStatus(0);
-            response.setMessage("Login failed!");
+            return new ResponseEntity<>(convertToUserDto(user), HttpStatus.OK);
         }
-        return response;
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
     }
 
     public UserDto convertToUserDto(TblUser user) {

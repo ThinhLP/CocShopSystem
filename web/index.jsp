@@ -43,21 +43,22 @@
                 url: '/api/login',
                 method: 'POST',
                 data: 'username=' + username + '&password=' + password,
-                success: function (data) {
-                    if (data.status == 1) {
-                        if(data.user.role == 1){
-                            window.location.href = "adminPage.jsp?userId=" + data.user.userId;
-                        } else if(data.user.role == 3){
-                            window.location.href = "orderTransaction.jsp?userId=" + data.user.userId;
-                        } else if(data.user.role == 2){
-                            window.location.href = "employeeOrderPage.jsp?userId=" + data.user.userId;
+                statusCode: {
+                    200: function(data) {
+                        if (data.role == 1) {
+                            window.location.href = "adminPage.jsp?userId=" + data.userId;
+                        } else if (data.role == 3) {
+                            window.location.href = "orderTransaction.jsp?userId=" + data.userId;
+                        } else if (data.role == 2) {
+                            window.location.href = "employeeOrderPage.jsp?userId=" + data.userId;
                         }
-                    } else {
-                        $('#errorMsg').html("Invalid user or password!");
+                    },
+                    401: function() {
+                        $('#errorMsg').html("Invalid username or password")
                     }
-
                 }
             })
+
         }
     </script>
 </body>
