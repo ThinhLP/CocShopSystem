@@ -17,6 +17,7 @@
           <element id="library" level="project" name="slf4j-api-1.7.25" />
           <element id="library" level="project" name="mysql-connector-java-5.1.40" />
           <element id="library" level="project" name="jstl-1.2" />
+          <element id="library" level="project" name="gson-2.6.2 (1)" />
         </element>
       </element>
     </root>

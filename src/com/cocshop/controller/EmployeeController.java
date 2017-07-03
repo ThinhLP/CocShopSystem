@@ -1,8 +1,12 @@
 package com.cocshop.controller;
 
 import com.cocshop.View.view;
+import com.cocshop.model.TblOrder;
+import com.cocshop.model.TblOrderdetails;
 import com.cocshop.model.TblRole;
 import com.cocshop.model.TblUser;
+import com.cocshop.repository.OrderDetailRepository;
+import com.cocshop.repository.OrderRepository;
 import com.cocshop.repository.RoleRepository;
 import com.cocshop.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -27,6 +31,8 @@ public class EmployeeController {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    OrderRepository orderRepository;
 
     @JsonView(view.listAllEmployee.class)
     @ResponseBody
@@ -88,6 +94,15 @@ public class EmployeeController {
             System.err.println("" + list.get(i).getFirstname());
 
         }
+        return list;
+    }
+
+
+    @JsonView(view.viewAllOrder.class)
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, value = "/api/employee/getAllOrderForCheckout")
+    public List getOrderForCheckOut(){
+        List<TblOrder> list = orderRepository.getAll();
         return list;
     }
 

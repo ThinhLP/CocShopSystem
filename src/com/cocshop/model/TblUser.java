@@ -4,6 +4,7 @@ import com.cocshop.View.view;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -15,36 +16,45 @@ import java.util.Collection;
 public class TblUser {
     @JsonView({view.listAllEmployee.class, view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
-            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
+            view.checkLogin.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
     private int userId;
     @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
-            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
+            view.checkLogin.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
     private String username;
     @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
-            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
+            view.checkLogin.class,view.viewAllOrder.class})
     private String password;
     @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
-            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
+            view.checkLogin.class,view.viewAllOrder.class})
     private String email;
     @JsonView({view.listAllEmployee.class, view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
-            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
+            view.checkLogin.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
     private String firstname;
     @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
-            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
+            view.checkLogin.class,view.viewAllOrder.class, view.getOrderByOrderId.class})
     private String lastname;
     @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
             view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
-            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
+            view.checkLogin.class, view.viewAllOrder.class})
     private String birthdate;
     private Collection<TblOrder> tblOrdersByUserId;
-    @JsonView({view.listAllEmployee.class, view.listAllCustomer.class,view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class})
+    @JsonView({view.listAllEmployee.class, view.listAllCustomer.class,
+            view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,view.checkLogin.class})
     private TblRole tblRoleByTblRoleRoleId;
     private Boolean deleted;
+
 
 
 
@@ -149,7 +159,7 @@ public class TblUser {
         return result;
     }
 
-    @OneToMany(mappedBy = "tblUserByTblUserUserId")
+    @OneToMany(mappedBy = "tblUserByEmployeeId")
     public Collection<TblOrder> getTblOrdersByUserId() {
         return tblOrdersByUserId;
     }
@@ -177,4 +187,6 @@ public class TblUser {
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
+
+
 }

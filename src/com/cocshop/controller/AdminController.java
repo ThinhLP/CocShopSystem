@@ -28,6 +28,9 @@ public class AdminController {
             if(user.getTblRoleByTblRoleRoleId().getRoleId() == 1){
                 return "redirect:/products";
             }
+            if(user.getTblRoleByTblRoleRoleId().getRoleId() == 3){
+                return "redirect: /orderPage";
+            }
         }
         return "errorLogin";
     }
@@ -37,4 +40,11 @@ public class AdminController {
         return "adminPage";
     }
 
+
+    @RequestMapping(method = RequestMethod.GET, value = "/orderPage")
+    public String orderTransactionPage(){
+        return "orderTransaction";
+    }
+
+    
 }

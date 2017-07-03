@@ -273,8 +273,8 @@
 </div>
 
 <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+<%--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>--%>
 <script>
 
     $(document).ready(function () {
@@ -368,6 +368,7 @@
     function HideUpdate() {
         $("#overlay").hide();
         $("#dialogUpdate").fadeOut(300);
+        $("#newpassword_error").hide();
     }
 
 

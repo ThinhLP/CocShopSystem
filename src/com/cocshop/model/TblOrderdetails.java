@@ -11,24 +11,28 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tbl_orderdetails", schema = "cocshop", catalog = "")
 public class TblOrderdetails {
-    private int id;
-    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
-    private Integer quantity;
-    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
-    private Double price;
-    @JsonView({view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class})
-    private TblOrder tblOrderByTblOrderOrderId;
-    @JsonView({view.listOrderDetailsForCustomerId.class, view.listOrderByDate.class})
-    private TblProduct tblProductByTblProductProductId;
 
-    @Id
-    @Column(name = "ID")
-    public int getId() {
-        return id;
+    @JsonView({view.listOrderDetailsForCustomerId.class,
+            view.listOrderByDate.class, view.viewAllOrder.class,view.getOrderByOrderId.class})
+    private Integer quantity;
+    @JsonView({view.listOrderDetailsForCustomerId.class,
+            view.listOrderByDate.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
+    private Double price;
+    @JsonView({view.listOrderDetailsForCustomerId.class,
+            view.listOrderByDate.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
+    private TblOrder tblOrderByTblOrderOrderId;
+    @JsonView({view.listOrderDetailsForCustomerId.class,
+            view.listOrderByDate.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
+    private TblProduct tblProductByTblProductProductId;
+    private TblOrderdetailsPK pk;
+
+    @EmbeddedId
+    public TblOrderdetailsPK getPk() {
+        return pk;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPk(TblOrderdetailsPK pk) {
+        this.pk = pk;
     }
 
     @Basic
@@ -58,23 +62,16 @@ public class TblOrderdetails {
 
         TblOrderdetails that = (TblOrderdetails) o;
 
-        if (id != that.id) return false;
         if (quantity != null ? !quantity.equals(that.quantity) : that.quantity != null) return false;
         if (price != null ? !price.equals(that.price) : that.price != null) return false;
 
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (quantity != null ? quantity.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        return result;
-    }
+
 
     @ManyToOne
-    @JoinColumn(name = "tbl_order_orderID", referencedColumnName = "orderID", nullable = false)
+    @JoinColumns({@JoinColumn(name = "tbl_order_orderID", referencedColumnName = "orderID", nullable = false, insertable = false, updatable = false)})
     public TblOrder getTblOrderByTblOrderOrderId() {
         return tblOrderByTblOrderOrderId;
     }
@@ -84,12 +81,19 @@ public class TblOrderdetails {
     }
 
     @ManyToOne
-    @JoinColumn(name = "tbl_product_productID", referencedColumnName = "productID", nullable = false)
+    @JoinColumns({@JoinColumn(name = "tbl_product_productID", referencedColumnName = "productID", nullable = false, insertable = false, updatable = false)})
     public TblProduct getTblProductByTblProductProductId() {
         return tblProductByTblProductProductId;
     }
 
     public void setTblProductByTblProductProductId(TblProduct tblProductByTblProductProductId) {
         this.tblProductByTblProductProductId = tblProductByTblProductProductId;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = quantity != null ? quantity.hashCode() : 0;
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        return result;
     }
 }

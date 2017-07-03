@@ -1,9 +1,11 @@
 package com.cocshop.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import com.cocshop.View.view;
+import org.hibernate.annotations.GeneratorType;
 
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -15,16 +17,19 @@ import java.util.Collection;
 @Table(name = "tbl_product", schema = "cocshop", catalog = "")
 public class TblProduct {
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,
-            view.listOrderByDate.class,view.searchProductByName.class})
+            view.listOrderByDate.class,view.searchProductByName.class,
+            view.viewAllOrder.class,view.getOrderByOrderId.class})
     private int productId;
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,
-            view.listOrderByDate.class,view.searchProductByName.class})
+            view.listOrderByDate.class,view.searchProductByName.class,
+            view.viewAllOrder.class,view.getOrderByOrderId.class})
     private String productName;
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,
-            view.listOrderByDate.class,view.searchProductByName.class})
+            view.listOrderByDate.class,view.searchProductByName.class,
+            view.viewAllOrder.class,view.getOrderByOrderId.class})
     private int quantity;
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,
-            view.listOrderByDate.class,view.searchProductByName.class})
+            view.listOrderByDate.class,view.searchProductByName.class,view.getOrderByOrderId.class})
     private double price;
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,
             view.listOrderByDate.class,view.searchProductByName.class})
@@ -42,8 +47,10 @@ public class TblProduct {
 
 
 
+
     @Id
     @Column(name = "productID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getProductId() {
         return productId;
     }
@@ -164,8 +171,6 @@ public class TblProduct {
         this.tblCategoryByTblCategoryCategoryId = tblCategoryByTblCategoryCategoryId;
     }
 
-
-
     @Basic
     @Column(name = "deleted")
     public Boolean getDeleted() {
@@ -175,4 +180,6 @@ public class TblProduct {
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
+
+
 }

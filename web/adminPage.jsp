@@ -287,12 +287,25 @@
 </div>
 <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
 <script>
+    var temp;
     $(document).ready(function () {
+
+        var tmp = window.location.href;
+        var param = window.location.search.split('?')[1];
+        if (param != null) {
+            temp = decodeURIComponent(param.split('=')[1]);
+        }
         showData();
         var rightHeight = $('#section-right').height();
         $('#section-left').height(rightHeight);
     });
 
+
+    /*Set userID if need*/
+//    function employeePage() {
+//        window.location.href = "employeePage.jsp?userId=" + temp;
+//    }
+    
     function showData() {
         $("#searchValue").val("");
         $(".error").hide();
@@ -315,7 +328,11 @@
                         tr.append('<td>' + data[i].updateAt + '</td>');
                     }
                     tr.append('<td>' + data[i].tblCategoryByTblCategoryCategoryId.categoryName + '</td>');
-                    tr.append('<td>' + data[i].description + '</td>');
+                    if (data[i].description == null) {
+                        tr.append('<td>' + ' ' + '</td>');
+                    } else {
+                        tr.append('<td>' + data[i].description + '</td>');
+                    }
                     tr.append('<td><button class="btn btn-warning" onclick=\'ShowUpdate("' + data[i].productId + '","' + data[i].productName + '","'
                         + data[i].quantity + '","' + data[i].price + '","'
                         + data[i].tblCategoryByTblCategoryCategoryId.categoryId + '")\'>Update</button></td> ');
