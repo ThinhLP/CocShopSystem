@@ -1,6 +1,7 @@
 package com.cocshop.controller;
 
 import com.cocshop.dto.UserDto;
+import com.cocshop.dto.response.LoginResponse;
 import com.cocshop.model.TblUser;
 import com.cocshop.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -21,18 +22,24 @@ public class LoginController {
     @Autowired
     UserRepository userRepository;
 
-    @JsonView(view.checkLogin.class)
+    @JsonView(view.loginResponse.class)
     @RequestMapping(method = RequestMethod.POST, value = "/api/login")
     @ResponseBody
-    public UserDto checkLogin(String username, String password){
+    public LoginResponse checkLogin(String username, String password){
         TblUser user = userRepository.checkLogin(username,password);
+        LoginResponse response = new LoginResponse();
         if(user != null){
-            return convertToUserDto(user);
+            response.setStatus(1);
+            response.setMessage("Login successfully!");
+            response.setUser(convertToUserDto(user));
+        } else {
+            response.setStatus(0);
+            response.setMessage("Login failed!");
         }
-        return null;
+        return response;
     }
 
     public UserDto convertToUserDto(TblUser user) {
-        return new UserDto(user.getUserId(), user.getUsername(),user.getEmail(), user.getFirstname(), user.getLastname(), user.getBirthdate(), user.getTblRoleByTblRoleRoleId());
+        return new UserDto(user.getUserId(), user.getUsername(),user.getEmail(), user.getFirstname(), user.getLastname(), user.getBirthdate(), user.getTblRoleByTblRoleRoleId().getRoleId());
     }
 }

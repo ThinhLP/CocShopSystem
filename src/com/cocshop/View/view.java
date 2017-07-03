@@ -17,4 +17,5 @@ public class view  {
     public interface checkLogin{};
     public interface viewAllOrder{};
     public interface getOrderByOrderId{};
+    public interface loginResponse{};
 }

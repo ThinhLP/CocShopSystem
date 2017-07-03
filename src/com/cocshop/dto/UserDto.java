@@ -8,32 +8,40 @@ import com.fasterxml.jackson.annotation.JsonView;
  * Created by Ken on 7/3/2017.
  */
 public class UserDto {
-    @JsonView({view.checkLogin.class})
+    @JsonView(view.loginResponse.class)
     private int userId;
-    @JsonView({view.checkLogin.class})
+    @JsonView(view.loginResponse.class)
     private String username;
-    @JsonView({view.checkLogin.class})
+    @JsonView(view.loginResponse.class)
     private String email;
-    @JsonView({view.checkLogin.class})
+    @JsonView(view.loginResponse.class)
     private String firstname;
-    @JsonView({view.checkLogin.class})
+    @JsonView(view.loginResponse.class)
     private String lastname;
-    @JsonView({view.checkLogin.class})
+    @JsonView(view.loginResponse.class)
     private String birthdate;
-    @JsonView({view.checkLogin.class})
-    private TblRole tblRole;
+    @JsonView(view.loginResponse.class)
+    private int role;
 
     public UserDto() {
     }
 
-    public UserDto(int userId, String username, String email, String firstname, String lastname, String birthdate, TblRole tblRole) {
+    public UserDto(int userId, String username, String email, String firstname, String lastname, String birthdate, int role) {
         this.userId = userId;
         this.username = username;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthdate = birthdate;
-        this.tblRole = tblRole;
+        this.role = role;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 
     public int getUserId() {

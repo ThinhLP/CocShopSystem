@@ -29,6 +29,7 @@
     </table>
     <%--<input type="submit" value="Login">--%>
     <%--<input type="reset" value="Reset">--%>
+    <div id="errorMsg" style="color: red"></div>
     <button type="button" onclick="login()">Login</button>
     <button type="reset">Reset</button>
 <%--</form:form>--%>
@@ -45,13 +46,18 @@
             method: 'POST',
             data: 'username=' + username + '&password=' + password,
             success: function (data) {
-                if(data.tblRoleByTblRoleRoleId.roleId == 1){
-                    window.location.href = "adminPage.jsp?userId=" + data.userId;
-                }else if(data.tblRoleByTblRoleRoleId.roleId == 3){
-                    window.location.href = "orderTransaction.jsp?userId=" + data.userId;
-                }else if(data.tblRoleByTblRoleRoleId.roleId == 2){
-                    window.location.href = "employeeOrderPage.jsp?userId=" + data.userId;
+                if (data.status == 1) {
+                    if(data.user.role == 1){
+                        window.location.href = "adminPage.jsp?userId=" + data.user.userId;
+                    } else if(data.user.role == 3){
+                        window.location.href = "orderTransaction.jsp?userId=" + data.user.userId;
+                    } else if(data.user.role == 2){
+                        window.location.href = "employeeOrderPage.jsp?userId=" + data.user.userId;
+                    }
+                } else {
+                    $('#errorMsg').html("Invalid user or password!");
                 }
+
             }
         })
     }
