@@ -89,10 +89,10 @@
             <span class="admin-status"><i class="fa fa-circle text-success" aria-hidden="true"></i> Online</span></div>
         <div class="menu-navigation">MANAGEMENT MENU</div>
         <ul id="menu-wrapper">
-            <li class="menu-active"><a href="adminPage.jsp"><i class="fa fa-dropbox" aria-hidden="true"></i>Products</a>
+            <li><a href="adminPage.jsp"><i class="fa fa-dropbox" aria-hidden="true"></i>Products</a>
             </li>
             <li><a href="employeePage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Employees</a></li>
-            <li><a href="customerPage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Customer</a></li>
+            <li class="menu-active"><a href="customerPage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Customer</a></li>
             <li></li>
         </ul>
     </div>
