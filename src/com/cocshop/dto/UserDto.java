@@ -1,26 +1,15 @@
 package com.cocshop.dto;
 
-import com.cocshop.View.view;
-import com.cocshop.model.TblRole;
-import com.fasterxml.jackson.annotation.JsonView;
-
 /**
  * Created by Ken on 7/3/2017.
  */
 public class UserDto {
-    @JsonView(view.loginResponse.class)
     private int userId;
-    @JsonView(view.loginResponse.class)
     private String username;
-    @JsonView(view.loginResponse.class)
     private String email;
-    @JsonView(view.loginResponse.class)
     private String firstname;
-    @JsonView(view.loginResponse.class)
     private String lastname;
-    @JsonView(view.loginResponse.class)
     private String birthdate;
-    @JsonView(view.loginResponse.class)
     private int role;
 
     public UserDto() {

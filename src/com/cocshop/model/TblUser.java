@@ -55,8 +55,20 @@ public class TblUser {
     private TblRole tblRoleByTblRoleRoleId;
     private Boolean deleted;
 
+    public TblUser() {
 
+    }
 
+    public TblUser(String username, String password, String email, String firstname, String lastname, String birthdate, TblRole tblRoleByTblRoleRoleId, Boolean deleted) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthdate = birthdate;
+        this.tblRoleByTblRoleRoleId = tblRoleByTblRoleRoleId;
+        this.deleted = deleted;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

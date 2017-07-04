@@ -27,4 +27,6 @@ public interface UserRepository extends CrudRepository<TblUser, Integer> {
 
     @Query(value = "select p from TblUser p where p.tblRoleByTblRoleRoleId.roleId=3 and p.firstname like concat('%', :firstname, '%') and p.deleted=false ")
     public List<TblUser> searchCustomerByFirstName(@Param("firstname") String firstname);
+
+    TblUser findTblUserByUsername(String username);
 }
