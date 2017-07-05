@@ -44,9 +44,8 @@ public class TblProduct {
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class, view.searchProductByName.class})
     private TblCategory tblCategoryByTblCategoryCategoryId;
     private Boolean deleted;
-
-
-
+    @JsonView({view.listProduct.class})
+    private String imageUrl;
 
     @Id
     @Column(name = "productID")
@@ -181,5 +180,14 @@ public class TblProduct {
         this.deleted = deleted;
     }
 
+    @Basic
+    @Column(name = "imageUrl")
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
 }
