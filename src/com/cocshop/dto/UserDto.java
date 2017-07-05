@@ -11,11 +11,12 @@ public class UserDto {
     private String lastname;
     private String birthdate;
     private int role;
+    private String phone;
 
     public UserDto() {
     }
 
-    public UserDto(int userId, String username, String email, String firstname, String lastname, String birthdate, int role) {
+    public UserDto(int userId, String username, String email, String firstname, String lastname, String birthdate, int role, String phone) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -23,6 +24,7 @@ public class UserDto {
         this.lastname = lastname;
         this.birthdate = birthdate;
         this.role = role;
+        this.phone = phone;
     }
 
     public int getRole() {
@@ -80,4 +82,13 @@ public class UserDto {
     public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
 }

@@ -55,11 +55,16 @@ public class TblUser {
     private TblRole tblRoleByTblRoleRoleId;
     private Boolean deleted;
 
+    private String phone;
+
+
+
     public TblUser() {
 
     }
 
-    public TblUser(String username, String password, String email, String firstname, String lastname, String birthdate, TblRole tblRoleByTblRoleRoleId, Boolean deleted) {
+    public TblUser(String username, String password, String email, String firstname, String lastname, String birthdate,
+                   TblRole tblRoleByTblRoleRoleId, Boolean deleted, String phone) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -68,6 +73,7 @@ public class TblUser {
         this.birthdate = birthdate;
         this.tblRoleByTblRoleRoleId = tblRoleByTblRoleRoleId;
         this.deleted = deleted;
+        this.phone = phone;
     }
 
     @Id
@@ -200,5 +206,14 @@ public class TblUser {
         this.deleted = deleted;
     }
 
+    @Basic
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
 }

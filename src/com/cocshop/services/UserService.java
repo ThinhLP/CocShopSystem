@@ -19,12 +19,12 @@ public class UserService {
     @Autowired
     RoleRepository roleRepository;
 
-    public TblUser register(String username, String password, String firstName, String lastName, String email, String birthday, int role) {
+    public TblUser register(String username, String password, String firstName, String lastName, String email, String birthday, int role, String phone) {
         if (userRepository.findTblUserByUsername(username) != null) {
             return null;
         }
         TblRole tblRole = roleRepository.findOne(role);
-        TblUser newUser = new TblUser(username, password, email, firstName, lastName, birthday,tblRole,false);
+        TblUser newUser = new TblUser(username, password, email, firstName, lastName, birthday,tblRole,false, phone);
         return userRepository.save(newUser);
     }
 

@@ -37,8 +37,8 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/api/register")
     @ResponseBody
-    public ResponseEntity registerUser(String username, String password, String firstName, String lastName, String email, String birthday) {
-        TblUser user = userService.register(username, password, firstName, lastName, email, birthday, Const.APP_ROLE.USER);
+    public ResponseEntity registerUser(String username, String password, String firstName, String lastName, String email, String birthday, String phone) {
+        TblUser user = userService.register(username, password, firstName, lastName, email, birthday, Const.APP_ROLE.USER, phone);
         if (user != null) {
             return new ResponseEntity(HttpStatus.OK);
         }
@@ -46,6 +46,7 @@ public class UserController {
     }
 
     public UserDto convertToUserDto(TblUser user) {
-        return new UserDto(user.getUserId(), user.getUsername(),user.getEmail(), user.getFirstname(), user.getLastname(), user.getBirthdate(), user.getTblRoleByTblRoleRoleId().getRoleId());
+        return new UserDto(user.getUserId(), user.getUsername(),user.getEmail(), user.getFirstname(), user.getLastname(),
+                user.getBirthdate(), user.getTblRoleByTblRoleRoleId().getRoleId(), user.getPhone());
     }
 }
