@@ -29,4 +29,6 @@ public interface UserRepository extends CrudRepository<TblUser, Integer> {
     public List<TblUser> searchCustomerByFirstName(@Param("firstname") String firstname);
 
     TblUser findTblUserByUsername(String username);
+
+    TblUser findTblUserByEmail(String email);
 }
