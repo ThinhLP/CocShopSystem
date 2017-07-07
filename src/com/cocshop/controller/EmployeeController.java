@@ -2,15 +2,15 @@ package com.cocshop.controller;
 
 import com.cocshop.View.view;
 import com.cocshop.model.TblOrder;
-import com.cocshop.model.TblOrderdetails;
 import com.cocshop.model.TblRole;
 import com.cocshop.model.TblUser;
-import com.cocshop.repository.OrderDetailRepository;
 import com.cocshop.repository.OrderRepository;
 import com.cocshop.repository.RoleRepository;
 import com.cocshop.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,16 +37,18 @@ public class EmployeeController {
     @JsonView(view.listAllEmployee.class)
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/api/employees")
-    public List getEmployeeJson(){
+    public ResponseEntity<List<TblUser>> getEmployeeJson(){
         List<TblUser> listEmp = userRepository.listAllEmployee();
-        return listEmp;
+        if(listEmp == null || listEmp.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<TblUser>>(listEmp, HttpStatus.OK);
     }
 
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/employees/update")
     public String updateEmployee (int userId, String username, String password, String firstname, String lastname, String mail, String birthdate){
-        System.err.println("Ahihi");
         TblUser user = userRepository.findOne(userId);
         user.setUsername(username);
         user.setPassword(password);
@@ -90,10 +92,6 @@ public class EmployeeController {
     @RequestMapping(method = RequestMethod.POST, value = "/api/employee/searchValue")
     public List searchEmpByFirstName (String searchValue){
         List<TblUser> list = userRepository.searchByFirstName(searchValue);
-        for(int i =0; i < list.size(); i++){
-            System.err.println("" + list.get(i).getFirstname());
-
-        }
         return list;
     }
 
@@ -101,9 +99,12 @@ public class EmployeeController {
     @JsonView(view.viewAllOrder.class)
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/api/employee/getAllOrderForCheckout")
-    public List getOrderForCheckOut(){
+    public ResponseEntity<List<TblOrder>> getOrderForCheckOut(){
         List<TblOrder> list = orderRepository.getAll();
-        return list;
+        if(list == null || list.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<TblOrder>>(list, HttpStatus.OK);
     }
 
 

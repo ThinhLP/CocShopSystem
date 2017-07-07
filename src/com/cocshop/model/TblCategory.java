@@ -3,7 +3,6 @@ package com.cocshop.model;
 import javax.persistence.*;
 import java.util.Collection;
 import com.cocshop.View.view;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 /**

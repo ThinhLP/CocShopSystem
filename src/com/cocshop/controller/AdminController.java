@@ -1,8 +1,6 @@
 package com.cocshop.controller;
 
 import com.cocshop.model.TblUser;
-import com.cocshop.repository.CategoryRepository;
-import com.cocshop.repository.ProductRepository;
 import com.cocshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -7,19 +7,14 @@ import com.cocshop.repository.OrderRepository;
 import com.cocshop.repository.ProductRepository;
 import com.cocshop.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonSerializable;
-import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.google.gson.JsonObject;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,25 +46,31 @@ public class OrderController {
     @JsonView(view.listOrderDetailsForCustomerId.class)
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/customer/orderDetails")
-    public List listOrderDetailsFromCusId(int customerId) {
-
+    public ResponseEntity<List<TblOrderdetails>> listOrderDetailsFromCusId(int customerId) {
         List<TblOrderdetails> list = orderDetailRepository.listOrderByCusId(customerId);
-        return list;
+        if(list == null || list.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<TblOrderdetails>>(list, HttpStatus.OK);
     }
 
     @JsonView(view.listOrderByDate.class)
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/customers/viewOrderByOrderDate")
-    public List listOrderByDate(String orderDate) {
+    public ResponseEntity<List<TblOrderdetails>> listOrderByDate(String orderDate) {
+        System.err.println("Order Date: " + orderDate);
         List<TblOrderdetails> list = orderDetailRepository.listOrderByDate(orderDate);
-        return list;
+        if(list == null || list.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        System.err.println("List Size: " + list.size());
+        return new ResponseEntity<List<TblOrderdetails>>(list,HttpStatus.OK);
     }
 
 
     @RequestMapping(method = RequestMethod.POST, value = "/api/order/checkOut", consumes = "application/json")
     @ResponseBody
     public Boolean checkOut(@RequestBody String listOrder) throws IOException {
-        System.err.println("List Order: " + listOrder);
         ObjectMapper mapper = new ObjectMapper();
         TypeFactory typeFactory = mapper.getTypeFactory();
         CollectionType collectionType = typeFactory.constructCollectionType(List.class, TblJsonField.class);
@@ -102,7 +103,6 @@ public class OrderController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/order/checkOutDetail")
     public List listDetailsOrder(int orderId) {
-        System.err.println("Ahihi");
         List<TblOrderdetails> list = orderDetailRepository.getOrderByOrderId(orderId);
         return list;
     }

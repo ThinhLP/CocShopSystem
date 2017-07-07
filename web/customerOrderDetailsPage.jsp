@@ -118,6 +118,7 @@
 
 </section>
 <script language="JavaScript" src="resources/js/jquery-3.2.1.js"></script>
+<script language="JavaScript" src="resources/js/date.js"></script>
 <script>
     var temp;
     var param = window.location.search.split('?')[1];
@@ -127,7 +128,6 @@
     });
 
     function showData() {
-
             $.ajax({
                 url: '/api/customer/orderDetails',
                 method: 'POST',
@@ -153,10 +153,12 @@
                             array.push(data[i].tblOrderByTblOrderOrderId.orderDate);
                         }
                         array = jQuery.unique(array);
+                        console.log("Date 0: " + array[0].toString());
                         tmp = $("<option selected value=" + array[0].toString() + ">" + array[0].toString() + "</option>");
                         $("#orderDate").append(tmp);
                         for (var i = 1; i < array.length; i++) {
-                            tmp = $("<option  value=" + array[i].toString() + ">" + array[i].toString() + "</option>");
+                           // tmp = $("<option  value=" + array[i].toString() +  ">" + array[i].toString() + "</option>");
+                            tmp = $("<option  value=" +    + ">" + array[i].toString()  + "</option>");
                             $("#orderDate").append(tmp);
                         }
 
@@ -184,12 +186,14 @@
     function selectDate() {
         var date = $("#orderDate").find(":selected").val();
         var total = 0;
+        console.log("Date: " + date);
         $.ajax({
             url: '/api/customers/viewOrderByOrderDate',
             method: 'POST',
             data: 'orderDate=' + date,
             success: function (data) {
                 $("#result").empty();
+                $("#total").empty();
                 var tr;
                 for (var i = 0; i < data.length; i++) {
                     tr = $('<tr>');
@@ -201,6 +205,7 @@
                     total = total + (data[i].quantity * data[i].price);
                     $("#result").append(tr);
                 }
+                $("#total").append(total);
             }
         })
     }

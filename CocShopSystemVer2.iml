@@ -49,8 +49,8 @@
     <orderEntry type="library" name="Spring Data JPA-1.0.0" level="project" />
     <orderEntry type="library" name="jackson-core-2.8.8" level="project" />
     <orderEntry type="library" name="slf4j-api-1.7.25" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.40" level="project" />
     <orderEntry type="library" name="jstl-1.2" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.40" level="project" />
     <orderEntry type="library" name="gson-2.6.2 (1)" level="project" />
   </component>
 </module>

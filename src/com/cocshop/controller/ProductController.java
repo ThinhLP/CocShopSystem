@@ -84,7 +84,6 @@ public class ProductController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/prorudct/searchValue")
     public List searchByProductName(String searchValue){
-        System.err.println("Search Value in Controller: " + searchValue);
         List<TblProduct> list = productRepository.searchByProductName(searchValue);
         return list;
     }

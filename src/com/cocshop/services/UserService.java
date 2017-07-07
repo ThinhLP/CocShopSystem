@@ -1,7 +1,6 @@
 package com.cocshop.services;
 
 import com.cocshop.dto.ErrorDto;
-import com.cocshop.dto.UserDto;
 import com.cocshop.model.TblRole;
 import com.cocshop.model.TblUser;
 import com.cocshop.repository.RoleRepository;
@@ -9,7 +8,6 @@ import com.cocshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -105,7 +105,7 @@
 
 
         <form autocomplete="off">
-            <input type="text" id="searchValue" class="form-control" style="width: 30%; display: inline-block" required>
+            <input type="text" id="searchValue" placeholder="Enter First Name" class="form-control" style="width: 30%; display: inline-block" required>
             <button onclick="SearchEmployee()" type="button" class="btn btn-success" style="display: inline-block"
                     id="btnSearch">
                 Search
