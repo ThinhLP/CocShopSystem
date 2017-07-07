@@ -2,50 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39fb130d-aa3f-4a2c-b971-993c4414515b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/lib/gson-2.6.2 (1).jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/lib/mysql-connector-java-5.1.40.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/AdminController.class" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/AdminController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/CustomerController.class" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/CustomerController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/EmployeeController.class" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/EmployeeController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/OrderController.class" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/OrderController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/ProductController.class" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/ProductController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/UserController.class" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/controller/UserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/model/TblCategory.class" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/model/TblCategory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/model/TblJsonField.class" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/model/TblJsonField.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/services/UserService.class" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/classes/com/cocshop/services/UserService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/AdminController.class" afterPath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/AdminController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/CustomerController.class" afterPath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/CustomerController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/EmployeeController.class" afterPath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/EmployeeController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/OrderController.class" afterPath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/OrderController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/ProductController.class" afterPath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/ProductController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/UserController.class" afterPath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/controller/UserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/model/TblCategory.class" afterPath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/model/TblCategory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/model/TblJsonField.class" afterPath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/model/TblJsonField.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/services/UserService.class" afterPath="$PROJECT_DIR$/out/production/CocShopSystemVer2/com/cocshop/services/UserService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/CocShopSystemVer2_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/CocShopSystemVer2_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_6_2__1_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_6_2__1_.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_40.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_40.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CocShopSystemVer2.iml" afterPath="$PROJECT_DIR$/CocShopSystemVer2.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/WEB-INF/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/adminPage.jsp" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/adminPage.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/customerOrderDetailsPage.jsp" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/customerOrderDetailsPage.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/customerPage.jsp" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/customerPage.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/employeePage.jsp" afterPath="$PROJECT_DIR$/out/artifacts/CocShopSystemVer2_war_exploded/employeePage.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cocshop/controller/AdminController.java" afterPath="$PROJECT_DIR$/src/com/cocshop/controller/AdminController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cocshop/controller/CustomerController.java" afterPath="$PROJECT_DIR$/src/com/cocshop/controller/CustomerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cocshop/controller/EmployeeController.java" afterPath="$PROJECT_DIR$/src/com/cocshop/controller/EmployeeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cocshop/controller/OrderController.java" afterPath="$PROJECT_DIR$/src/com/cocshop/controller/OrderController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cocshop/controller/ProductController.java" afterPath="$PROJECT_DIR$/src/com/cocshop/controller/ProductController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cocshop/controller/UserController.java" afterPath="$PROJECT_DIR$/src/com/cocshop/controller/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cocshop/model/TblCategory.java" afterPath="$PROJECT_DIR$/src/com/cocshop/model/TblCategory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cocshop/model/TblJsonField.java" afterPath="$PROJECT_DIR$/src/com/cocshop/model/TblJsonField.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/cocshop/services/UserService.java" afterPath="$PROJECT_DIR$/src/com/cocshop/services/UserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/adminPage.jsp" afterPath="$PROJECT_DIR$/web/adminPage.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/customerOrderDetailsPage.jsp" afterPath="$PROJECT_DIR$/web/customerOrderDetailsPage.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/customerPage.jsp" afterPath="$PROJECT_DIR$/web/customerPage.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/employeePage.jsp" afterPath="$PROJECT_DIR$/web/employeePage.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -108,8 +65,8 @@
       <file leaf-file-name="customerOrderDetailsPage.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/customerOrderDetailsPage.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="156" column="84" lean-forward="false" selection-start-line="156" selection-start-column="84" selection-end-line="156" selection-end-column="84" />
+            <state relative-caret-position="418">
+              <caret line="186" column="53" lean-forward="false" selection-start-line="186" selection-start-column="53" selection-end-line="186" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -1039,16 +996,15 @@
       <workItem from="1499350020963" duration="2500000" />
       <workItem from="1499386950215" duration="2649000" />
       <workItem from="1499398158664" duration="255000" />
-      <workItem from="1499414356556" duration="8324000" />
+      <workItem from="1499414356556" duration="10292000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95651000" />
+    <option name="totallyTimeSpent" value="97619000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="2582" height="1562" extended-state="7" />
-    <editor active="true" />
+    <frame x="-11" y="-11" width="2582" height="1562" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1069,7 +1025,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43864805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43864805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1479,8 +1435,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/customerOrderDetailsPage.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="156" column="84" lean-forward="false" selection-start-line="156" selection-start-column="84" selection-end-line="156" selection-end-column="84" />
+        <state relative-caret-position="418">
+          <caret line="186" column="53" lean-forward="false" selection-start-line="186" selection-start-column="53" selection-end-line="186" selection-end-column="53" />
           <folding />
         </state>
       </provider>

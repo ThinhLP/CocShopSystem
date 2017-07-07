@@ -157,9 +157,7 @@
                         tmp = $("<option selected value=" + array[0].toString() + ">" + array[0].toString() + "</option>");
                         $("#orderDate").append(tmp);
                         for (var i = 1; i < array.length; i++) {
-//                            console.log("Date time: " + );
-                           // tmp = $("<option  value=" + array[i].toString() +  ">" + array[i].toString() + "</option>");
-                            tmp = $("<option  value=" +  new Date.parse(array[i].toString())  + ">" + array[i].toString()  + "</option>");
+                            tmp = $("<option  value=" +  array[i].toString()   + ">" + array[i].toString()  + "</option>");
                             $("#orderDate").append(tmp);
                         }
 
@@ -185,9 +183,10 @@
     }
 
     function selectDate() {
-        var date = $("#orderDate").find(":selected").val();
-        var total = 0;
+        //var date = $("#orderDate").find(":selected").val();
+        var date = $("#orderDate").find(":selected").text();
         console.log("Date: " + date);
+        var total = 0;
         $.ajax({
             url: '/api/customers/viewOrderByOrderDate',
             method: 'POST',
