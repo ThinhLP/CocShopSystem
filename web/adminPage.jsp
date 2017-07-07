@@ -102,7 +102,7 @@
         <button type="button" class="btn btn-success" id="btnCreate" onclick="ShowCreate()">Add new product</button>
 
         <form autocomplete="off">
-            <input type="text" id="searchValue" class="form-control" style="width: 30%; display: inline-block" required>
+            <input type="text" id="searchValue" placeholder="Enter Product Name" class="form-control" style="width: 30%; display: inline-block" required>
             <button onclick="SearchProduct()" type="button" class="btn btn-success" style="display: inline-block"
                     id="btnSearch">
                 Search
@@ -300,11 +300,6 @@
         $('#section-left').height(rightHeight);
     });
 
-
-    /*Set userID if need*/
-//    function employeePage() {
-//        window.location.href = "employeePage.jsp?userId=" + temp;
-//    }
     
     function showData() {
         $("#searchValue").val("");
@@ -335,7 +330,7 @@
                     }
                     tr.append('<td><button class="btn btn-warning" onclick=\'ShowUpdate("' + data[i].productId + '","' + data[i].productName + '","'
                         + data[i].quantity + '","' + data[i].price + '","'
-                        + data[i].tblCategoryByTblCategoryCategoryId.categoryId + '")\'>Update</button></td> ');
+                        + data[i].tblCategoryByTblCategoryCategoryId.categoryId + '","' + data[i].description +'")\'>Update</button></td> ');
                     tr.append('<td><button class="btn btn-danger" onclick=\'ShowDelete("' + data[i].productId + '")\'>Delete</button></td>');
                     $("#result").append(tr);
                 }
@@ -345,12 +340,12 @@
     }
 
 
-    function ShowUpdate(productId, productName, quantity, price, categoryId) {
+    function ShowUpdate(productId, productName, quantity, price, categoryId, description) {
         $("#productID").val(productId);
         $("#productName").val(productName);
         $("#quantity").val(quantity);
         $("#price").val(price);
-
+        $("#description").val(description);
         $.ajax({
             url: '/api/categories',
             method: 'GET',
@@ -550,7 +545,11 @@
                                 tr.append('<td>' + data[i].updateAt + '</td>');
                             }
                             tr.append('<td>' + data[i].tblCategoryByTblCategoryCategoryId.categoryName + '</td>');
-                            tr.append('<td>' + data[i].description + '</td>');
+                            if (data[i].description == null) {
+                                tr.append('<td>' + ' ' + '</td>');
+                            } else {
+                                tr.append('<td>' + data[i].description + '</td>');
+                            }
                             tr.append('<td><button class="btn btn-warning" onclick=\'ShowUpdate("' + data[i].productId + '","' + data[i].productName + '","'
                                 + data[i].quantity + '","' + data[i].price + '","'
                                 + data[i].tblCategoryByTblCategoryCategoryId.categoryId + '")\'>Update</button></td> ');
