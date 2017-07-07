@@ -34,7 +34,7 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.GET, value = "/api/products")
     public ResponseEntity<List<TblProduct>> getProductJson(){
         List<TblProduct> productList = productRepository.listProduct();
-        if (productList.isEmpty())
+        if (productList == null || productList.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
