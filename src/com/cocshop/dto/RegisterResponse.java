@@ -3,9 +3,17 @@ package com.cocshop.dto;
 /**
  * Created by Ken on 7/5/2017.
  */
-public class ErrorDto {
+public class RegisterResponse {
     private int code;
     private String[] messages;
+
+    public RegisterResponse() {
+    }
+
+    public RegisterResponse(int code, String[] messages) {
+        this.code = code;
+        this.messages = messages;
+    }
 
     public String[] getMessages() {
         return messages;

@@ -1,7 +1,7 @@
 package com.cocshop.controller;
 
 import com.cocshop.common.Const;
-import com.cocshop.dto.ErrorDto;
+import com.cocshop.dto.RegisterResponse;
 import com.cocshop.dto.UserDto;
 import com.cocshop.model.TblUser;
 import com.cocshop.services.UserService;
@@ -35,12 +35,9 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/api/register")
     @ResponseBody
-    public ResponseEntity<ErrorDto> registerUser(String username, String password, String firstName, String lastName, String email, String birthday, String phone) {
-        ErrorDto error = userService.register(username, password, firstName, lastName, email, birthday, Const.APP_ROLE.USER, phone);
-        if (error == null) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<RegisterResponse> registerUser(String username, String password, String firstName, String lastName, String email, String birthday, String phone) {
+        RegisterResponse response = userService.register(username, password, firstName, lastName, email, birthday, Const.APP_ROLE.USER, phone);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     public UserDto convertToUserDto(TblUser user) {

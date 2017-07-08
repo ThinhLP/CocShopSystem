@@ -1,6 +1,6 @@
 package com.cocshop.services;
 
-import com.cocshop.dto.ErrorDto;
+import com.cocshop.dto.RegisterResponse;
 import com.cocshop.model.TblRole;
 import com.cocshop.model.TblUser;
 import com.cocshop.repository.RoleRepository;
@@ -22,9 +22,9 @@ public class UserService {
     @Autowired
     RoleRepository roleRepository;
 
-    public ErrorDto register(String username, String password, String firstName, String lastName, String email, String birthday, int role, String phone) {
-        ErrorDto error = new ErrorDto();
-        error.setCode(HttpStatus.BAD_REQUEST.value());
+    public RegisterResponse register(String username, String password, String firstName, String lastName, String email, String birthday, int role, String phone) {
+        RegisterResponse response = new RegisterResponse();
+        response.setCode(HttpStatus.BAD_REQUEST.value());
         List<String> msgError = new ArrayList<>();
         username = username.toLowerCase();
         email = email.toLowerCase();
@@ -37,13 +37,13 @@ public class UserService {
         if (!msgError.isEmpty()) {
             String[] msgErrorArray = new String[msgError.size()];
             msgErrorArray = msgError.toArray(msgErrorArray);
-            error.setMessages(msgErrorArray);
-            return error;
+            response.setMessages(msgErrorArray);
+            return response;
         }
         TblRole tblRole = roleRepository.findOne(role);
         TblUser newUser = new TblUser(username, password, email, firstName, lastName, birthday,tblRole,false, phone);
         userRepository.save(newUser);
-        return null;
+        return new RegisterResponse(HttpStatus.OK.value(), null);
     }
 
     public TblUser checkLogin(String username, String password) {
