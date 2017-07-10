@@ -20,10 +20,12 @@ public class TblOrderdetails {
     private Double price;
     @JsonView({view.listOrderDetailsForCustomerId.class,
             view.listOrderByDate.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
-    private TblOrder tblOrderByTblOrderOrderId;
+    private TblOrder orderDetail;
+    //private TblOrder tblOrderByTblOrderOrderId;
     @JsonView({view.listOrderDetailsForCustomerId.class,
             view.listOrderByDate.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
-    private TblProduct tblProductByTblProductProductId;
+    private TblProduct productDetail;
+    //private TblProduct tblProductByTblProductProductId;
     private TblOrderdetailsPK pk;
 
     @EmbeddedId
@@ -73,22 +75,43 @@ public class TblOrderdetails {
     @ManyToOne
     @JoinColumns({@JoinColumn(name = "tbl_order_orderID", referencedColumnName = "orderID", nullable = false, insertable = false, updatable = false)})
     public TblOrder getTblOrderByTblOrderOrderId() {
-        return tblOrderByTblOrderOrderId;
+        return orderDetail;
     }
 
     public void setTblOrderByTblOrderOrderId(TblOrder tblOrderByTblOrderOrderId) {
-        this.tblOrderByTblOrderOrderId = tblOrderByTblOrderOrderId;
+        this.orderDetail = tblOrderByTblOrderOrderId;
     }
+
+//    @ManyToOne
+//    @JoinColumns({@JoinColumn(name = "tbl_order_orderID", referencedColumnName = "orderID", nullable = false, insertable = false, updatable = false)})
+//    public TblOrder getTblOrderByTblOrderOrderId() {
+//        return tblOrderByTblOrderOrderId;
+//    }
+//
+//    public void setTblOrderByTblOrderOrderId(TblOrder tblOrderByTblOrderOrderId) {
+//        this.tblOrderByTblOrderOrderId = tblOrderByTblOrderOrderId;
+//    }
 
     @ManyToOne
     @JoinColumns({@JoinColumn(name = "tbl_product_productID", referencedColumnName = "productID", nullable = false, insertable = false, updatable = false)})
     public TblProduct getTblProductByTblProductProductId() {
-        return tblProductByTblProductProductId;
+        return productDetail;
     }
 
     public void setTblProductByTblProductProductId(TblProduct tblProductByTblProductProductId) {
-        this.tblProductByTblProductProductId = tblProductByTblProductProductId;
+        this.productDetail = tblProductByTblProductProductId;
     }
+
+//
+//    @ManyToOne
+//    @JoinColumns({@JoinColumn(name = "tbl_product_productID", referencedColumnName = "productID", nullable = false, insertable = false, updatable = false)})
+//    public TblProduct getTblProductByTblProductProductId() {
+//        return tblProductByTblProductProductId;
+//    }
+//
+//    public void setTblProductByTblProductProductId(TblProduct tblProductByTblProductProductId) {
+//        this.tblProductByTblProductProductId = tblProductByTblProductProductId;
+//    }
 
     @Override
     public int hashCode() {

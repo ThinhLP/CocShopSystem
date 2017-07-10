@@ -22,10 +22,12 @@ public class TblOrder {
     private Collection<TblOrderdetails> tblOrderdetailssByOrderId;
     @JsonView({view.listOrderDetailsForCustomerId.class,
             view.listOrderByDate.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
-    private TblUser tblUserByEmployeeId;
+    //private TblUser tblUserByEmployeeId;
+    private TblUser employee;
     @JsonView({view.listOrderDetailsForCustomerId.class,
             view.listOrderByDate.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
-    private TblUser tblUserByCustomerId;
+    private TblUser customer;
+    //private TblUser tblUserByCustomerId;
 
 
 
@@ -88,24 +90,45 @@ public class TblOrder {
         this.tblOrderdetailssByOrderId = tblOrderdetailssByOrderId;
     }
 
+//    @ManyToOne
+//    @JoinColumn(name = "employeeID", referencedColumnName = "userID")
+//    public TblUser getTblUserByEmployeeId() {
+//        return tblUserByEmployeeId;
+//    }
+//
+//    public void setTblUserByEmployeeId(TblUser tblUserByEmployeeId) {
+//        this.tblUserByEmployeeId = tblUserByEmployeeId;
+//    }
+
+
     @ManyToOne
     @JoinColumn(name = "employeeID", referencedColumnName = "userID")
     public TblUser getTblUserByEmployeeId() {
-        return tblUserByEmployeeId;
+        return employee;
     }
 
     public void setTblUserByEmployeeId(TblUser tblUserByEmployeeId) {
-        this.tblUserByEmployeeId = tblUserByEmployeeId;
+        this.employee = tblUserByEmployeeId;
     }
+
+//    @ManyToOne
+//    @JoinColumn(name = "customerID", referencedColumnName = "userID", nullable = false)
+//    public TblUser getTblUserByCustomerId() {
+//        return tblUserByCustomerId;
+//    }
+//
+//    public void setTblUserByCustomerId(TblUser tblUserByCustomerId) {
+//        this.tblUserByCustomerId = tblUserByCustomerId;
+//    }
 
     @ManyToOne
     @JoinColumn(name = "customerID", referencedColumnName = "userID", nullable = false)
     public TblUser getTblUserByCustomerId() {
-        return tblUserByCustomerId;
+        return customer;
     }
 
     public void setTblUserByCustomerId(TblUser tblUserByCustomerId) {
-        this.tblUserByCustomerId = tblUserByCustomerId;
+        this.customer = tblUserByCustomerId;
     }
 
 //    @OneToMany(mappedBy = "tblOrderByTblOrderOrderId")

@@ -58,12 +58,10 @@ public class OrderController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/customers/viewOrderByOrderDate")
     public ResponseEntity<List<TblOrderdetails>> listOrderByDate(String orderDate) {
-        System.err.println("Order Date: " + orderDate);
         List<TblOrderdetails> list = orderDetailRepository.listOrderByDate(orderDate);
         if(list == null || list.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        System.err.println("List Size: " + list.size());
         return new ResponseEntity<List<TblOrderdetails>>(list,HttpStatus.OK);
     }
 

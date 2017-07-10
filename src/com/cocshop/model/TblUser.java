@@ -52,7 +52,8 @@ public class TblUser {
     private Collection<TblOrder> tblOrdersByUserId;
     @JsonView({view.listAllEmployee.class, view.listAllCustomer.class,
             view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,view.checkLogin.class})
-    private TblRole tblRoleByTblRoleRoleId;
+    private TblRole role;
+    //private TblRole tblRoleByTblRoleRoleId;
     private Boolean deleted;
 
     private String phone;
@@ -71,7 +72,7 @@ public class TblUser {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthdate = birthdate;
-        this.tblRoleByTblRoleRoleId = tblRoleByTblRoleRoleId;
+        this.role = tblRoleByTblRoleRoleId;
         this.deleted = deleted;
         this.phone = phone;
     }
@@ -189,11 +190,11 @@ public class TblUser {
     @ManyToOne
     @JoinColumn(name = "tbl_role_roleID", referencedColumnName = "roleID", nullable = false)
     public TblRole getTblRoleByTblRoleRoleId() {
-        return tblRoleByTblRoleRoleId;
+        return role;
     }
 
     public void setTblRoleByTblRoleRoleId(TblRole tblRoleByTblRoleRoleId) {
-        this.tblRoleByTblRoleRoleId = tblRoleByTblRoleRoleId;
+        this.role = tblRoleByTblRoleRoleId;
     }
 
     @Basic

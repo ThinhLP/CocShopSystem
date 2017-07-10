@@ -49,7 +49,6 @@ public class CustomerController  {
     @RequestMapping(method = RequestMethod.POST, value = "/api/customers/searchValue")
     public List searchCusbyFirstName (String searchValue){
         List<TblUser> list = userRepository.searchCustomerByFirstName(searchValue);
-        System.err.println("Size: " + list.size());
         return list;
     }
 

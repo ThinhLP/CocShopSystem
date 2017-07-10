@@ -136,8 +136,8 @@
             method: 'POST',
             data: 'orderId=' + param,
             success: function (data) {
-                //console.log(data[0].tblOrderByTblOrderOrderId.tblUserByEmployeeId.userId)
-                var test = data[0].tblOrderByTblOrderOrderId.tblUserByEmployeeId;
+                //var test = data[0].tblOrderByTblOrderOrderId.tblUserByEmployeeId;
+                var test = data[0].orderDetail.employee;
                 if (test === null) {
                     $("#btnAccept").show();
                 } else {
@@ -146,16 +146,16 @@
 
                 $("#content").empty();
                 var tr = $("<tr/>");
-                $("#orderId").val(data[0].tblOrderByTblOrderOrderId.orderId);
-                tr.append("<td>" + data[0].tblOrderByTblOrderOrderId.orderId + "</td>");
-                tr.append("<td>" + data[0].tblOrderByTblOrderOrderId.orderDate + "</td>");
-                tr.append("<td>" + data[0].tblOrderByTblOrderOrderId.tblUserByCustomerId.firstname + " " + data[0].tblOrderByTblOrderOrderId.tblUserByCustomerId.lastname + "</td>");
+                $("#orderId").val(data[0].orderDetail.orderId);
+                tr.append("<td>" + data[0].orderDetail.orderId + "</td>");
+                tr.append("<td>" + data[0].orderDetail.orderDate + "</td>");
+                tr.append("<td>" + data[0].orderDetail.customer.firstname + " " + data[0].orderDetail.customer.lastname + "</td>");
                 $("#content").append(tr);
                 $("#result").empty();
                 var tr;
                 for (var i = 0; i < data.length; i++) {
                     tr = $("<tr/>");
-                    tr.append("<td>" + data[i].tblProductByTblProductProductId.productName + "</td>");
+                    tr.append("<td>" + data[i].productDetail.productName + "</td>");
                     tr.append("<td>" + data[i].quantity + "</td>");
                     tr.append("<td>" + data[i].price + "</td>");
                     total = total + (data[i].quantity * data[i].price);

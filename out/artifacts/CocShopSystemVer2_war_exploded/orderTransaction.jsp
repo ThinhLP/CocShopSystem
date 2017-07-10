@@ -211,7 +211,7 @@
                     tr.append('<td>' + data[i].productName + '</td>');
                     tr.append('<td>' + data[i].quantity + '</td>');
                     tr.append('<td>' + data[i].price + '</td>');
-                    tr.append('<td>' + data[i].tblCategoryByTblCategoryCategoryId.categoryName + '</td>');
+                    tr.append('<td>' + data[i].category.categoryName + '</td>');
                     if (data[i].description == null) {
                         tr.append('<td>' + ' ' + '</td>');
                     } else {
@@ -219,7 +219,7 @@
                     }
                     tr.append('<td><button class="btn btn-warning" onclick=\'ShowAddProduct("' + data[i].productId + '","' + data[i].productName + '","'
                         + data[i].quantity + '","' + data[i].price + '","' + data[i].description + '","'
-                        + data[i].tblCategoryByTblCategoryCategoryId.categoryName + '")\'>Add to Cart</button></td> ');
+                        + data[i].category.categoryName + '")\'>Add to Cart</button></td> ');
                     $("#result").append(tr);
                 }
             }
