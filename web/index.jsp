@@ -27,8 +27,6 @@
             <td><input type="password" name="password" id="password"></td>
         </tr>
     </table>
-    <%--<input type="submit" value="Login">--%>
-    <%--<input type="reset" value="Reset">--%>
     <div id="errorMsg" style="color: red"></div>
     <button type="button" onclick="login()">Login</button>
     <button type="reset">Reset</button>

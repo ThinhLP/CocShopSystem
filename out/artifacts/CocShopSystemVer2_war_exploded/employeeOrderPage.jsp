@@ -127,7 +127,7 @@
                     tr = $("<tr/>");
                     tr.append("<td>" + data[i].orderId + "</td>");
                     tr.append("<td>" + data[i].orderDate + "</td>");
-                    tr.append("<td>" + data[i].tblUserByCustomerId.firstname + " " + data[i].tblUserByCustomerId.lastname + "</td>");
+                    tr.append("<td>" + data[i].customer.firstname + " " + data[i].customer.lastname + "</td>");
                     tr.append('<td><button class="btn btn-warning" onclick=\'viewDetail("' + data[i].orderId + '")\'>View Details</button></td>');
                     $("#result").append(tr);
                 }

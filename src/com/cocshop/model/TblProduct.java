@@ -42,7 +42,8 @@ public class TblProduct {
     private String description;
     private Collection<TblOrderdetails> tblOrderdetailssByProductId;
     @JsonView({view.listProduct.class,view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class, view.searchProductByName.class})
-    private TblCategory tblCategoryByTblCategoryCategoryId;
+    private TblCategory category;
+    //private TblCategory tblCategoryByTblCategoryCategoryId;
     private Boolean deleted;
     @JsonView({view.listProduct.class})
     private String imageUrl;
@@ -160,14 +161,24 @@ public class TblProduct {
         this.tblOrderdetailssByProductId = tblOrderdetailssByProductId;
     }
 
+//    @ManyToOne
+//    @JoinColumn(name = "tbl_category_categoryID", referencedColumnName = "categoryID", nullable = false)
+//    public TblCategory getTblCategoryByTblCategoryCategoryId() {
+//        return tblCategoryByTblCategoryCategoryId;
+//    }
+//
+//    public void setTblCategoryByTblCategoryCategoryId(TblCategory tblCategoryByTblCategoryCategoryId) {
+//        this.tblCategoryByTblCategoryCategoryId = tblCategoryByTblCategoryCategoryId;
+//    }
+
     @ManyToOne
     @JoinColumn(name = "tbl_category_categoryID", referencedColumnName = "categoryID", nullable = false)
     public TblCategory getTblCategoryByTblCategoryCategoryId() {
-        return tblCategoryByTblCategoryCategoryId;
+        return category;
     }
 
-    public void setTblCategoryByTblCategoryCategoryId(TblCategory tblCategoryByTblCategoryCategoryId) {
-        this.tblCategoryByTblCategoryCategoryId = tblCategoryByTblCategoryCategoryId;
+    public void setTblCategoryByTblCategoryCategoryId(TblCategory category) {
+        this.category = category;
     }
 
     @Basic

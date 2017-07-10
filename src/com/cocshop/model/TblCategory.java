@@ -17,7 +17,8 @@ public class TblCategory {
     private String categoryName;
     @JsonView(view.categoryList.class)
     private String description;
-    private Collection<TblProduct> tblProductsByCategoryId;
+    //private Collection<TblProduct> tblProductsByCategoryId;
+    private Collection<TblProduct> Category;
 
 
     @Id
@@ -72,16 +73,23 @@ public class TblCategory {
         return result;
     }
 
+//    @OneToMany(mappedBy = "tblCategoryByTblCategoryCategoryId")
+//    public Collection<TblProduct> getTblProductsByCategoryId() {
+//        return tblProductsByCategoryId;
+//    }
+//
+//    public void setTblProductsByCategoryId(Collection<TblProduct> tblProductsByCategoryId) {
+//        this.tblProductsByCategoryId = tblProductsByCategoryId;
+//    }
+
     @OneToMany(mappedBy = "tblCategoryByTblCategoryCategoryId")
     public Collection<TblProduct> getTblProductsByCategoryId() {
-        return tblProductsByCategoryId;
+        return Category;
     }
 
-    public void setTblProductsByCategoryId(Collection<TblProduct> tblProductsByCategoryId) {
-        this.tblProductsByCategoryId = tblProductsByCategoryId;
+    public void setTblProductsByCategoryId(Collection<TblProduct> Category) {
+        this.Category = Category;
     }
-
-
 
 
 }

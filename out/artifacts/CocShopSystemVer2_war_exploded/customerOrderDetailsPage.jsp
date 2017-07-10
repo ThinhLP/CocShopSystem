@@ -145,15 +145,14 @@
                         var total = 0;
                         $("#result").empty();
                         $("#orderDate").empty();
-                        $("#customerName").append(data[0].tblOrderByTblOrderOrderId.tblUserByCustomerId.firstname + " "
-                            + data[0].tblOrderByTblOrderOrderId.tblUserByCustomerId.lastname);
+                        $("#customerName").append(data[0].orderDetail.customer.firstname + " "
+                            + data[0].orderDetail.customer.lastname);
 
                         /*Set OrderDate*/
                         for (var i = 0; i < data.length; i++) {
-                            array.push(data[i].tblOrderByTblOrderOrderId.orderDate);
+                            array.push(data[i].orderDetail.orderDate);
                         }
                         array = jQuery.unique(array);
-                        console.log("Date 0: " + array[0].toString());
                         tmp = $("<option selected value=" + array[0].toString() + ">" + array[0].toString() + "</option>");
                         $("#orderDate").append(tmp);
                         for (var i = 1; i < array.length; i++) {
@@ -163,10 +162,10 @@
 
                         /*View Order Details*/
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].tblOrderByTblOrderOrderId.orderDate == array[0].toString()) {
+                            if (data[i].orderDetail.orderDate == array[0].toString()) {
                                 tr = $('<tr>');
-                                tr.append('<td>' + data[i].tblOrderByTblOrderOrderId.orderId + '</td>');
-                                tr.append('<td>' + data[i].tblProductByTblProductProductId.productName + '</td>');
+                                tr.append('<td>' + data[i].orderDetail.orderId + '</td>');
+                                tr.append('<td>' + data[i].productDetail.productName + '</td>');
                                 tr.append('<td>' + data[i].quantity + '</td>');
                                 tr.append('<td>' + data[i].price + '</td>');
                                 tr.append('<td>' + data[i].quantity * data[i].price + '</td>');
@@ -197,8 +196,8 @@
                 var tr;
                 for (var i = 0; i < data.length; i++) {
                     tr = $('<tr>');
-                    tr.append('<td>' + data[i].tblOrderByTblOrderOrderId.orderId + '</td>');
-                    tr.append('<td>' + data[i].tblProductByTblProductProductId.productName + '</td>');
+                    tr.append('<td>' + data[i].orderDetail.orderId + '</td>');
+                    tr.append('<td>' + data[i].productDetail.productName + '</td>');
                     tr.append('<td>' + data[i].quantity + '</td>');
                     tr.append('<td>' + data[i].price + '</td>');
                     tr.append('<td>' + data[i].quantity * data[i].price + '</td>');
