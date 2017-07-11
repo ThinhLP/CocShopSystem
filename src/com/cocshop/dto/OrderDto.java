@@ -10,18 +10,18 @@ import java.util.List;
 public class OrderDto {
     private int orderId;
     private String orderDate;
-    private UserDto employee;
-    private UserDto customer;
+    private int employeeId;
+    private int customerId;
     private List<OrderDetailDto> orderDetails;
 
     public OrderDto() {
     }
 
-    public OrderDto(int orderId, String orderDate, UserDto employee, UserDto customer) {
+    public OrderDto(int orderId, String orderDate, int employee, int customer) {
         this.orderId = orderId;
         this.orderDate = orderDate;
-        this.employee = employee;
-        this.customer = customer;
+        this.employeeId = employee;
+        this.customerId = customer;
     }
 
     public int getOrderId() {
@@ -40,20 +40,21 @@ public class OrderDto {
         this.orderDate = orderDate;
     }
 
-    public UserDto getEmployee() {
-        return employee;
+
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(UserDto employee) {
-        this.employee = employee;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public UserDto getCustomer() {
-        return customer;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(UserDto customer) {
-        this.customer = customer;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public List<OrderDetailDto> getOrderDetails() {

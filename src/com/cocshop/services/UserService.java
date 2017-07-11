@@ -1,6 +1,7 @@
 package com.cocshop.services;
 
 import com.cocshop.dto.RegisterResponse;
+import com.cocshop.dto.UserDto;
 import com.cocshop.model.TblRole;
 import com.cocshop.model.TblUser;
 import com.cocshop.repository.RoleRepository;
@@ -46,7 +47,16 @@ public class UserService {
         return new RegisterResponse(HttpStatus.OK.value(), null);
     }
 
-    public TblUser checkLogin(String username, String password) {
-        return userRepository.checkLogin(username, password);
+    public UserDto checkLogin(String username, String password) {
+        TblUser user = userRepository.checkLogin(username, password);
+        if (user != null) {
+            return convertToUserDto(user);
+        }
+        return null;
+    }
+
+    public UserDto convertToUserDto(TblUser user) {
+        return new UserDto(user.getUserId(), user.getUsername(),user.getEmail(), user.getFirstname(), user.getLastname(),
+                user.getBirthdate(), user.getTblRoleByTblRoleRoleId().getRoleId(), user.getPhone());
     }
 }

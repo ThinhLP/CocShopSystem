@@ -1,9 +1,11 @@
 package com.cocshop.controller;
 
 import com.cocshop.View.view;
+import com.cocshop.dto.ProductDto;
 import com.cocshop.model.TblProduct;
 import com.cocshop.repository.CategoryRepository;
 import com.cocshop.repository.ProductRepository;
+import com.cocshop.services.ProductService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -86,5 +88,21 @@ public class ProductController {
     public List searchByProductName(String searchValue){
         List<TblProduct> list = productRepository.searchByProductName(searchValue);
         return list;
+    }
+
+
+    /**  API 1.0 - For Mobile
+     *   Created by ThinhLP
+     **/
+    @Autowired
+    ProductService productService;
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, value = "/api/1.0/product")
+    public ResponseEntity<List<ProductDto>> getProductList(){
+        List<ProductDto> productList = productService.getProductDtoList();
+        if (productList == null)
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 }

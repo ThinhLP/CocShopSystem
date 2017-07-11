@@ -6,6 +6,7 @@ import com.cocshop.dto.ProductDto;
 import com.cocshop.dto.UserDto;
 import com.cocshop.model.TblOrder;
 import com.cocshop.model.TblOrderdetails;
+import com.cocshop.model.TblUser;
 import com.cocshop.repository.OrderDetailRepository;
 import com.cocshop.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,12 @@ public class OrderService {
     private OrderDto convertToOrderDto(TblOrder order) {
         OrderDto dto = new OrderDto();
         dto.setOrderId(order.getOrderId());
-        dto.setCustomer(new UserDto(order.getTblUserByCustomerId()));
-       // if (order.getTblUserByEmployeeId() != null) {
-            dto.setEmployee(new UserDto(order.getTblUserByEmployeeId()));
-        //}
+        TblUser customer = order.getTblUserByCustomerId();
+        TblUser employee = order.getTblUserByEmployeeId();
+        if (customer != null)
+            dto.setCustomerId(customer.getUserId());
+        if (employee != null)
+            dto.setEmployeeId(employee.getUserId());
         dto.setOrderDate(order.getOrderDate());
         List<TblOrderdetails> list = orderDetailRepository.getOrderByOrderId(order.getOrderId());
         if (list == null || list.isEmpty()) {

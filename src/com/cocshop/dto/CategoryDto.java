@@ -8,7 +8,6 @@ import com.cocshop.model.TblCategory;
 public class CategoryDto {
     private int categoryId;
     private String categoryName;
-    private String description;
 
     public CategoryDto() {
     }
@@ -16,7 +15,6 @@ public class CategoryDto {
     public CategoryDto(TblCategory category) {
         categoryId = category.getCategoryId();
         categoryName = category.getCategoryName();
-        description = category.getDescription();
     }
 
     public int getCategoryId() {
@@ -35,11 +33,4 @@ public class CategoryDto {
         this.categoryName = categoryName;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

@@ -61,15 +61,6 @@ public class OrderController {
         return new ResponseEntity<List<TblOrderdetails>>(list, HttpStatus.OK);
     }
 
-    @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, value = "/api/customer/orderdetail")
-    public ResponseEntity<List<OrderDto>> listOrderDetailsByCustomer(int customerId) {
-        List<OrderDto> orderDtoList = orderService.listAllOrderOfCustomer(customerId);
-        System.out.println(orderDtoList.size());
-        return new ResponseEntity(orderDtoList, HttpStatus.OK);
-    }
-
-
     @JsonView(view.listOrderByDate.class)
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/customers/viewOrderByOrderDate")
@@ -133,4 +124,11 @@ public class OrderController {
     }
 
 
+    /** For Mobile API **/
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/api/1.0/orders")
+    public ResponseEntity<List<OrderDto>> listOrderDetailsByCustomer(int customerId) {
+        List<OrderDto> orderDtoList = orderService.listAllOrderOfCustomer(customerId);
+        return new ResponseEntity(orderDtoList, HttpStatus.OK);
+    }
 }

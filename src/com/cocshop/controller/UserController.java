@@ -23,25 +23,22 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/api/login")
+    @RequestMapping(method = RequestMethod.POST, value = "/api/1.0/login")
     @ResponseBody
     public ResponseEntity<UserDto> checkLogin(String username, String password){
-        TblUser user = userService.checkLogin(username,password);
+        UserDto user = userService.checkLogin(username,password);
         if(user != null){
-            return new ResponseEntity<>(convertToUserDto(user), HttpStatus.OK);
+            return new ResponseEntity<>(user, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/api/register")
+    @RequestMapping(method = RequestMethod.POST, value = "/api/1.0/register")
     @ResponseBody
     public ResponseEntity<RegisterResponse> registerUser(String username, String password, String firstName, String lastName, String email, String birthday, String phone) {
         RegisterResponse response = userService.register(username, password, firstName, lastName, email, birthday, Const.APP_ROLE.USER, phone);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    public UserDto convertToUserDto(TblUser user) {
-        return new UserDto(user.getUserId(), user.getUsername(),user.getEmail(), user.getFirstname(), user.getLastname(),
-                user.getBirthdate(), user.getTblRoleByTblRoleRoleId().getRoleId(), user.getPhone());
-    }
+
 }
