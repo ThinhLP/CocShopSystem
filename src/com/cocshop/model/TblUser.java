@@ -25,7 +25,7 @@ public class TblUser {
             view.checkLogin.class,view.viewAllOrder.class,view.getOrderByOrderId.class})
     private String username;
     @JsonView({view.listAllEmployee.class,view.listAllCustomer.class,
-            view.listOrderDetailsForCustomerId.class,view.listOrderByDate.class,
+            view.listOrderByDate.class,
             view.searchEmployeeByFirstName.class,view.searchCusByFirstName.class,
             view.checkLogin.class,view.viewAllOrder.class})
     private String password;
