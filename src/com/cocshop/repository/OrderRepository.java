@@ -19,8 +19,9 @@ public interface OrderRepository extends CrudRepository<TblOrder, Integer> {
     @Query(value = "select p from TblOrder  p")
     public List<TblOrder> getAll();
 
-//    @Query(value = "select p from TblOrderdetails  p where p.tblOrderByTblOrderOrderId.tblUserByCustomerId.userId=:userId")
-//    public List<TblOrderdetails> listOrderByCusId(@Param("userId") int userId);
+    @Query(value = "select p from TblOrderdetails  p where p.tblOrderByTblOrderOrderId.tblUserByCustomerId.userId=:userId")
+    public List<TblOrderdetails> listOrderByCusId(@Param("userId") int userId);
+
     @Query(value ="select p from TblOrder p, TblOrderdetails a where p.tblUserByCustomerId.userId=:userId and p.orderId=a.tblOrderByTblOrderOrderId.orderId")
     public List<TblOrder> listOrderByCustomerId(@Param("userId") int userId);
 

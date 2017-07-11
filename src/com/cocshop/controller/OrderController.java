@@ -52,12 +52,13 @@ public class OrderController {
     @JsonView(view.listOrderDetailsForCustomerId.class)
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/customer/orderDetails")
-    public ResponseEntity<List<TblOrder>> listOrderDetailsFromCusId(int customerId) {
-        List<TblOrder> list = orderRepository.listOrderByCustomerId(customerId);
+    public ResponseEntity<List<TblOrderdetails>> listOrderDetailsFromCusId(int customerId) {
+        System.err.println("Customer ID: " + customerId);
+        List<TblOrderdetails> list = orderDetailRepository.listOrderByCusId(customerId);
         if (list == null || list.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<TblOrder>>(list, HttpStatus.OK);
+        return new ResponseEntity<List<TblOrderdetails>>(list, HttpStatus.OK);
     }
 
     @ResponseBody
