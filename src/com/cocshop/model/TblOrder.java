@@ -1,10 +1,12 @@
 package com.cocshop.model;
 
 import com.cocshop.View.view;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -80,6 +82,7 @@ public class TblOrder {
 //    public void setTblUserByTblUserUserId(TblUser tblUserByTblUserUserId) {
 //        this.tblUserByTblUserUserId = tblUserByTblUserUserId;
 //    }
+
 
     @OneToMany(mappedBy = "tblOrderByTblOrderOrderId")
     public Collection<TblOrderdetails> getTblOrderdetailssByOrderId() {

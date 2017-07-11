@@ -1,5 +1,7 @@
 package com.cocshop.dto;
 
+import com.cocshop.model.TblUser;
+
 /**
  * Created by Ken on 7/3/2017.
  */
@@ -14,6 +16,19 @@ public class UserDto {
     private String phone;
 
     public UserDto() {
+    }
+
+    public UserDto(TblUser user) {
+        if (user == null)
+            return;
+        userId = user.getUserId();
+        username = user.getUsername();
+        email = user.getEmail();
+        firstname = user.getFirstname();
+        lastname = user.getLastname();
+        birthdate = user.getBirthdate();
+        role = user.getTblRoleByTblRoleRoleId().getRoleId();
+        phone = user.getPhone();
     }
 
     public UserDto(int userId, String username, String email, String firstname, String lastname, String birthdate, int role, String phone) {

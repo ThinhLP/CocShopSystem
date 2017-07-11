@@ -1,13 +1,16 @@
 package com.cocshop.controller;
 
 import com.cocshop.View.view;
+import com.cocshop.dto.OrderDto;
 import com.cocshop.model.*;
 import com.cocshop.repository.OrderDetailRepository;
 import com.cocshop.repository.OrderRepository;
 import com.cocshop.repository.ProductRepository;
 import com.cocshop.repository.UserRepository;
+import com.cocshop.services.OrderService;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.google.gson.JsonObject;
@@ -43,26 +46,39 @@ public class OrderController {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    OrderService orderService;
+
     @JsonView(view.listOrderDetailsForCustomerId.class)
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/customer/orderDetails")
     public ResponseEntity<List<TblOrderdetails>> listOrderDetailsFromCusId(int customerId) {
+        System.err.println("Customer ID: " + customerId);
         List<TblOrderdetails> list = orderDetailRepository.listOrderByCusId(customerId);
-        if(list == null || list.isEmpty()){
+        if (list == null || list.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<TblOrderdetails>>(list, HttpStatus.OK);
     }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/api/customer/orderdetail")
+    public ResponseEntity<List<OrderDto>> listOrderDetailsByCustomer(int customerId) {
+        List<OrderDto> orderDtoList = orderService.listAllOrderOfCustomer(customerId);
+        System.out.println(orderDtoList.size());
+        return new ResponseEntity(orderDtoList, HttpStatus.OK);
+    }
+
 
     @JsonView(view.listOrderByDate.class)
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/customers/viewOrderByOrderDate")
     public ResponseEntity<List<TblOrderdetails>> listOrderByDate(String orderDate) {
         List<TblOrderdetails> list = orderDetailRepository.listOrderByDate(orderDate);
-        if(list == null || list.isEmpty()){
+        if (list == null || list.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<TblOrderdetails>>(list,HttpStatus.OK);
+        return new ResponseEntity<List<TblOrderdetails>>(list, HttpStatus.OK);
     }
 
 
@@ -108,7 +124,7 @@ public class OrderController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/order/acceptedOrder", produces = MediaType.TEXT_PLAIN_VALUE)
-    public String acceptedOrder(int orderId, int userId){
+    public String acceptedOrder(int orderId, int userId) {
         JsonObject jsonObject = new JsonObject();
         TblOrder tblOrder = orderRepository.findOne(orderId);
         tblOrder.setTblUserByEmployeeId(userRepository.findOne(userId));
