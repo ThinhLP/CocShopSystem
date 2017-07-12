@@ -167,7 +167,7 @@
             </tr>
             <tr>
                 <td>Price:</td>
-                <td><input type="text" id="price" required/></td>
+                <td><input type="number" id="price" required/></td>
             </tr>
             <tr>
                 <td><label class="error" for="price" id="price_error">This field is required.</label></td>
@@ -399,7 +399,7 @@
                 url: '/api/product/update',
                 method: 'POST',
                 data: 'productId=' + $("#productID").val() + '&productName=' + $("#productName").val() + '&quantity=' + $("#quantity").val()
-                + '&price=' + $("#price").val() + '&description=' + $("#description").val(),
+                + '&price=' + $("#price").val() + '&description=' + $("#description").val() + '&categoryId=' + $("#updateCategory").find(":selected").val(),
                 success: function (data) {
                     HideUpdate();
                     if ($("#searchValue").val() != "") {

@@ -38,7 +38,7 @@
             var username = $("#username").val();
             var password = $("#password").val();
             $.ajax({
-                url: '/api/login',
+                url: '/api/1.0/login',
                 method: 'POST',
                 data: 'username=' + username + '&password=' + password,
                 statusCode: {
