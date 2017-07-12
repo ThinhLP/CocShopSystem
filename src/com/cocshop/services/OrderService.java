@@ -39,6 +39,7 @@ public class OrderService {
     private OrderDto convertToOrderDto(TblOrder order) {
         OrderDto dto = new OrderDto();
         dto.setOrderId(order.getOrderId());
+        //dto.setCustomer(new UserDto(order.getTblUserByCustomerId()));
         TblUser customer = order.getTblUserByCustomerId();
         TblUser employee = order.getTblUserByEmployeeId();
         if (customer != null)
