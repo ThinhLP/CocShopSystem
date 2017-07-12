@@ -1,4 +1,4 @@
-package com.cocshop.model;
+package com.cocshop.dto;
 import java.io.Serializable;
 
 /**
@@ -6,21 +6,25 @@ import java.io.Serializable;
  */
 
 
-public class TblJsonField implements Serializable {
+public class CartItemDto implements Serializable {
 
     private int userId;
 
     private Integer productId;
 
-    private String productName;
-
     private int quantity;
 
     private double price;
 
-    private String category;
+    private int employeeId;
 
-    private String description;
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
 
     public Integer getProductId() {
         return productId;
@@ -28,14 +32,6 @@ public class TblJsonField implements Serializable {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
     }
 
     public int getQuantity() {
@@ -52,22 +48,6 @@ public class TblJsonField implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public int getUserId() {

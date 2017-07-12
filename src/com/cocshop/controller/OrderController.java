@@ -1,6 +1,7 @@
 package com.cocshop.controller;
 
 import com.cocshop.View.view;
+import com.cocshop.dto.CartItemDto;
 import com.cocshop.dto.OrderDto;
 import com.cocshop.model.*;
 import com.cocshop.repository.OrderDetailRepository;
@@ -10,7 +11,6 @@ import com.cocshop.repository.UserRepository;
 import com.cocshop.services.OrderService;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.google.gson.JsonObject;
@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -75,36 +76,36 @@ public class OrderController {
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, value = "/api/order/checkOut", consumes = "application/json")
-    @ResponseBody
-    public Boolean checkOut(@RequestBody String listOrder) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        TypeFactory typeFactory = mapper.getTypeFactory();
-        CollectionType collectionType = typeFactory.constructCollectionType(List.class, TblJsonField.class);
-        List<TblJsonField> list = mapper.readValue(listOrder, collectionType);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        TblOrder order = new TblOrder();
-        order.setOrderDate(dateFormat.format(date));
-        order.setTblUserByCustomerId(userRepository.findOne(list.get(0).getUserId()));
-        orderRepository.save(order);
-        order = orderRepository.getLastRecord();
-        for (int i = 0; i < list.size(); i++) {
-            TblOrderdetailsPK pk = new TblOrderdetailsPK();
-            TblOrderdetails tblOrderdetails = new TblOrderdetails();
-            TblProduct tblProduct = new TblProduct();
-            pk.setTbl_Order_OrderId(order.getOrderId());
-            pk.setTbl_Product_ProductId(list.get(i).getProductId());
-            tblOrderdetails.setQuantity(list.get(i).getQuantity());
-            tblOrderdetails.setPrice(list.get(i).getPrice());
-            tblOrderdetails.setPk(pk);
-            tblProduct = productRepository.findOne(list.get(i).getProductId());
-            tblProduct.setQuantity(tblProduct.getQuantity() - list.get(i).getQuantity());
-            productRepository.save(tblProduct);
-            orderDetailRepository.save(tblOrderdetails);
-        }
-        return true;
-    }
+//    @RequestMapping(method = RequestMethod.POST, value = "/api/order/checkOut", consumes = "application/json")
+//    @ResponseBody
+//    public Boolean checkOut(@RequestBody String listOrder) throws IOException {
+//        ObjectMapper mapper = new ObjectMapper();
+//        TypeFactory typeFactory = mapper.getTypeFactory();
+//        CollectionType collectionType = typeFactory.constructCollectionType(List.class, CartItemDto.class);
+//        List<CartItemDto> list = mapper.readValue(listOrder, collectionType);
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date date = new Date();
+//        TblOrder order = new TblOrder();
+//        order.setOrderDate(dateFormat.format(date));
+//        order.setTblUserByCustomerId(userRepository.findOne(list.get(0).getUserId()));
+//        orderRepository.save(order);
+//        order = orderRepository.getLastRecord();
+//        for (int i = 0; i < list.size(); i++) {
+//            TblOrderdetailsPK pk = new TblOrderdetailsPK();
+//            TblOrderdetails tblOrderdetails = new TblOrderdetails();
+//            TblProduct tblProduct = new TblProduct();
+//            pk.setTbl_Order_OrderId(order.getOrderId());
+//            pk.setTbl_Product_ProductId(list.get(i).getProductId());
+//            tblOrderdetails.setQuantity(list.get(i).getQuantity());
+//            tblOrderdetails.setPrice(list.get(i).getPrice());
+//            tblOrderdetails.setPk(pk);
+//            tblProduct = productRepository.findOne(list.get(i).getProductId());
+//            tblProduct.setQuantity(tblProduct.getQuantity() - list.get(i).getQuantity());
+//            productRepository.save(tblProduct);
+//            orderDetailRepository.save(tblOrderdetails);
+//        }
+//        return true;
+//    }
 
     @JsonView(view.getOrderByOrderId.class)
     @ResponseBody
@@ -132,5 +133,56 @@ public class OrderController {
     public ResponseEntity<List<OrderDto>> listOrderDetailsByCustomer(int customerId) {
         List<OrderDto> orderDtoList = orderService.listAllOrderOfCustomer(customerId);
         return new ResponseEntity(orderDtoList, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/api/1.0/checkout", consumes = "application/json")
+    @ResponseBody
+    public ResponseEntity checkout(@RequestBody String listOrder){
+        ObjectMapper mapper = new ObjectMapper();
+        TypeFactory typeFactory = mapper.getTypeFactory();
+        CollectionType collectionType = typeFactory.constructCollectionType(List.class, CartItemDto.class);
+        List<CartItemDto> list;
+        try {
+            list = mapper.readValue(listOrder, collectionType);
+        } catch (IOException ex) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        TblOrder order = new TblOrder();
+        order.setOrderDate(dateFormat.format(date));
+        order.setTblUserByCustomerId(userRepository.findOne(list.get(0).getUserId()));
+        order.setTblUserByEmployeeId(userRepository.findOne(list.get(0).getEmployeeId()));
+        orderRepository.save(order);
+        order = orderRepository.getLastRecord();
+
+        List<TblProduct> productList = new ArrayList<>();
+        List<TblOrderdetails> orderdetailsList = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            // Check quantity
+            TblProduct tblProduct = productRepository.findOne(list.get(i).getProductId());
+            if (list.get(i).getQuantity() > tblProduct.getQuantity()) {
+                // Rollback
+                orderRepository.delete(order.getOrderId());
+                return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            }
+            TblOrderdetailsPK pk = new TblOrderdetailsPK();
+            TblOrderdetails tblOrderdetails = new TblOrderdetails();
+            pk.setTbl_Order_OrderId(order.getOrderId());
+            pk.setTbl_Product_ProductId(list.get(i).getProductId());
+            tblOrderdetails.setQuantity(list.get(i).getQuantity());
+            tblOrderdetails.setPrice(list.get(i).getPrice());
+            tblOrderdetails.setPk(pk);
+            tblProduct.setQuantity(tblProduct.getQuantity() - list.get(i).getQuantity());
+            productList.add(tblProduct);
+            orderdetailsList.add(tblOrderdetails);
+        }
+        // Insert to database
+        for (int i = 0; i < list.size(); i++) {
+            productRepository.save(productList.get(i));
+            orderDetailRepository.save(orderdetailsList.get(i));
+        }
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

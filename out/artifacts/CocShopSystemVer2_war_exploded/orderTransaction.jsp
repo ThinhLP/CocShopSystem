@@ -129,7 +129,7 @@
         <tr>
             <td class="web_dialog_title">Update</td>
             <td class="web_dialog_title align_right">
-                <a href="#" id="btnClose" onclick="HideUpdate()">x</a>
+                <a href="#" id="btnClose" onclick="HideAddToCart()">x</a>
             </td>
         </tr>
         <form>
