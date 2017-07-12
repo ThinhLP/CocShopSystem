@@ -41,7 +41,8 @@ public class ProductController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/product/update")
-    public String updateProduct(int productId, String productName, int quantity, double price, String description){
+    public String updateProduct(int productId, String productName, int quantity, double price, String description, int categoryId){
+        System.err.println("CategoryId: " +categoryId);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         TblProduct product = productRepository.findOne(productId);
@@ -49,6 +50,7 @@ public class ProductController {
         product.setQuantity(quantity);
         product.setPrice(price);
         product.setDescription(description);
+        product.setTblCategoryByTblCategoryCategoryId(categoryRepository.findOne(categoryId));
         product.setUpdateAt(dateFormat.format(date));
         productRepository.save(product);
         return "";

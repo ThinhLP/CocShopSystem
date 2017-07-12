@@ -30,25 +30,24 @@ public class OrderService {
     public List<OrderDto> listAllOrderOfCustomer(int customerId) {
         List<TblOrder> list = orderRepository.listOrderByCustomer(customerId);
         List<OrderDto> listOrderDto = new ArrayList<>();
-        for (TblOrder order: list) {
+        for (TblOrder order : list) {
             listOrderDto.add(convertToOrderDto(order));
         }
         return listOrderDto;
     }
+
     private OrderDto convertToOrderDto(TblOrder order) {
         OrderDto dto = new OrderDto();
         dto.setOrderId(order.getOrderId());
         dto.setCustomer(new UserDto(order.getTblUserByCustomerId()));
-       // if (order.getTblUserByEmployeeId() != null) {
-            dto.setEmployee(new UserDto(order.getTblUserByEmployeeId()));
-        //}
+        dto.setEmployee(new UserDto(order.getTblUserByEmployeeId()));
         dto.setOrderDate(order.getOrderDate());
         List<TblOrderdetails> list = orderDetailRepository.getOrderByOrderId(order.getOrderId());
         if (list == null || list.isEmpty()) {
             dto.setOrderDetails(null);
         } else {
             List<OrderDetailDto> orderDetailDtoList = new ArrayList<>();
-            for (TblOrderdetails orderdetails: list) {
+            for (TblOrderdetails orderdetails : list) {
                 orderDetailDtoList.add(convertToOrderDetailDto(orderdetails));
             }
             dto.setOrderDetails(orderDetailDtoList);

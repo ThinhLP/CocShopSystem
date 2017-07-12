@@ -53,7 +53,6 @@ public class OrderController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/api/customer/orderDetails")
     public ResponseEntity<List<TblOrderdetails>> listOrderDetailsFromCusId(int customerId) {
-        System.err.println("Customer ID: " + customerId);
         List<TblOrderdetails> list = orderDetailRepository.listOrderByCusId(customerId);
         if (list == null || list.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -65,7 +64,6 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.POST, value = "/api/customer/orderdetail")
     public ResponseEntity<List<OrderDto>> listOrderDetailsByCustomer(int customerId) {
         List<OrderDto> orderDtoList = orderService.listAllOrderOfCustomer(customerId);
-        System.out.println(orderDtoList.size());
         return new ResponseEntity(orderDtoList, HttpStatus.OK);
     }
 

@@ -23,7 +23,7 @@ public interface OrderRepository extends CrudRepository<TblOrder, Integer> {
     public List<TblOrderdetails> listOrderByCusId(@Param("userId") int userId);
 
     @Query(value ="select p from TblOrder p where p.tblUserByCustomerId.userId=:userId and p.tblUserByEmployeeId is not null")
-    public List<TblOrder> listOrderByCustomerId(@Param("userId") int userId);
+    public List<TblOrder> OrderByCustomerId(@Param("userId") int userId);
 
     // Edit by ThinhLP
     @Query(value ="select o from TblOrder o where o.tblUserByCustomerId.userId=:userId AND o.tblUserByEmployeeId is not null")

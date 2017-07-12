@@ -160,7 +160,7 @@
             </tr>
             <tr>
                 <td>Quantity:</td>
-                <td><input type="text" id="quantity" required/></td>
+                <td><input type="number" id="quantity" required/></td>
             </tr>
             <tr>
                 <td><label class="error" for="quantity" id="quantity_error">This field is required.</label></td>
@@ -304,6 +304,7 @@
     function showData() {
         $("#searchValue").val("");
         $(".error").hide();
+
         $.ajax({
             url: '/api/products',
             method: 'GET',
@@ -315,6 +316,7 @@
                     tr.append('<td>' + data[i].productId + '</td>');
                     tr.append('<td>' + data[i].productName + '</td>');
                     tr.append('<td>' + data[i].quantity + '</td>');
+                    //tr.append('<td>' + data[i].price + '</td>');
                     tr.append('<td>' + data[i].price + '</td>');
                     tr.append('<td>' + data[i].createAt + '</td>');
                     if (data[i].updateAt == null) {
@@ -399,7 +401,7 @@
                 url: '/api/product/update',
                 method: 'POST',
                 data: 'productId=' + $("#productID").val() + '&productName=' + $("#productName").val() + '&quantity=' + $("#quantity").val()
-                + '&price=' + $("#price").val() + '&description=' + $("#description").val(),
+                + '&price=' + $("#price").val() + '&description=' + $("#description").val() + '&categoryId=' + $("#updateCategory").find(":selected").val(),
                 success: function (data) {
                     HideUpdate();
                     if ($("#searchValue").val() != "") {
