@@ -94,6 +94,7 @@
             </li>
             <li><a href="employeePage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Employees</a></li>
             <li><a href="customerPage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Customer</a></li>
+            <li><a href="dashboardPage.jsp"><i class="fa fa-pie-chart" aria-hidden="true"></i>DashBoard</a></li>
             <li></li>
         </ul>
     </div>

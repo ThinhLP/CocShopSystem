@@ -239,7 +239,6 @@
     }
 
     function ShowOrderDetails(userId) {
-        console.log("User ID: " + userId);
         window.location.href = "customerOrderDetailsPage.jsp?customerId=" + userId;
     }
 
