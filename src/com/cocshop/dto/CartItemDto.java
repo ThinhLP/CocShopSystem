@@ -8,23 +8,11 @@ import java.io.Serializable;
 
 public class CartItemDto implements Serializable {
 
-    private int userId;
-
     private Integer productId;
 
     private int quantity;
 
     private double price;
-
-    private int employeeId;
-
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
 
     public Integer getProductId() {
         return productId;
@@ -50,11 +38,4 @@ public class CartItemDto implements Serializable {
         this.price = price;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 }
