@@ -182,10 +182,7 @@
     var arrayOrder = new Array();
     var userId;
     $(document).ready(function () {
-        var param = window.location.search.split('?')[1];
-        if (param != null) {
-            userId = decodeURIComponent(param.split('=')[1]);
-        }
+        userId = localStorage.getItem('userId');
         var rightHeight = $('#section-right').height();
         $('#section-left').height(rightHeight);
         $("#btnAddToCart").attr("disabled", "disabled");
@@ -217,9 +214,13 @@
                     } else {
                         tr.append('<td>' + data[i].description + '</td>');
                     }
+                    if(data[i].quantity > 0){
                     tr.append('<td><button class="btn btn-warning" onclick=\'ShowAddProduct("' + data[i].productId + '","' + data[i].productName + '","'
                         + data[i].quantity + '","' + data[i].price + '","' + data[i].description + '","'
                         + data[i].category.categoryName + '")\'>Add to Cart</button></td> ');
+                    }else{
+                        tr.append('<td><button class="btn btn-warning" disabled="disabled"\'>Add To Cart</button></td>');
+                    }
                     $("#result").append(tr);
                 }
             }
@@ -285,6 +286,7 @@
         $("#totalPrice").show();
         $("#btnCheckOut").show();
         $("#result").empty();
+        $("#totalPrice").empty();
         var tr;
         var total = 0;
         for (var i = 0; i < arrayOrder.length; i++) {
@@ -309,6 +311,7 @@
             dataType: 'json',
             data: JSON.stringify(arrayOrder),
             success: function (data) {
+                arrayOrder = new Array();
                 alert("Order Success");
                 showData();
             }
