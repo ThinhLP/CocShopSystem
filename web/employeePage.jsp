@@ -85,8 +85,8 @@
 </header>
 <section class="col-sm-12" id="main-section-wrapper">
     <div class="col-sm-2" id="section-left">
-        <div class="admin-info"><img src="resources/img/thinhlp.jpg"/> <span
-                class="admin-name"><b>Le Phuc Thinh</b></span> <span class="admin-status"><i
+        <div class="admin-info"><img src="resources/img/chinhnc.jpg"/> <span
+                class="admin-name"><b>Nguyen Cong Chinh</b></span> <span class="admin-status"><i
                 class="fa fa-circle text-success" aria-hidden="true"></i> Online</span></div>
         <div class="menu-navigation">MANAGEMENT MENU</div>
         <ul id="menu-wrapper">
@@ -94,6 +94,7 @@
             <li class="menu-active"><a href="employeePage.jsp"><i class="fa fa-users"
                                                                   aria-hidden="true"></i>Employees</a></li>
             <li><a href="customerPage.jsp"><i class="fa fa-users" aria-hidden="true"></i>Customer</a></li>
+            <li><a href="dashboardPage.jsp"><i class="fa fa-pie-chart" aria-hidden="true"></i>DashBoard</a></li>
             <li></li>
         </ul>
     </div>
