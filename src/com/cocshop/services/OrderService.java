@@ -67,4 +67,13 @@ public class OrderService {
         return orderDetailDto;
     }
 
+
+    public List<OrderDto> listAllOrderByEmployee(int empId) {
+        List<TblOrder> list = orderRepository.listOrderByEmployee(empId);
+        List<OrderDto> listOrderDto = new ArrayList<>();
+        for (TblOrder order: list) {
+            listOrderDto.add(convertToOrderDto(order));
+        }
+        return listOrderDto;
+    }
 }

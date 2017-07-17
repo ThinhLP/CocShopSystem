@@ -102,8 +102,6 @@
 
             </tbody>
         </table>
-        <%--<span id="totalPrice">Total Price: </span>--%>
-        <%--<button type="button" onclick="getMoney()" id="btnCheckOut">CheckOut</button>--%>
     </div>
 </section>
 </body>

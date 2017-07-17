@@ -183,11 +183,6 @@
     var userId;
     $(document).ready(function () {
         userId = localStorage.getItem('userId');
-        console.log("userId: " + userId);
-//        var param = window.location.search.split('?')[1];
-//        if (param != null) {
-//            userId = decodeURIComponent(param.split('=')[1]);
-//        }
         var rightHeight = $('#section-right').height();
         $('#section-left').height(rightHeight);
         $("#btnAddToCart").attr("disabled", "disabled");

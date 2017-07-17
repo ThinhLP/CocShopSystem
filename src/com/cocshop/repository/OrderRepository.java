@@ -28,4 +28,8 @@ public interface OrderRepository extends CrudRepository<TblOrder, Integer> {
     // Edit by ThinhLP
     @Query(value ="select o from TblOrder o where o.tblUserByCustomerId.userId=:userId AND o.tblUserByEmployeeId is not null")
     public List<TblOrder> listOrderByCustomer(@Param("userId") int userId);
+
+
+    @Query(value ="select o from TblOrder o where o.tblUserByEmployeeId.userId=:empId")
+    List<TblOrder> listOrderByEmployee(@Param("empId") int empId);
 }

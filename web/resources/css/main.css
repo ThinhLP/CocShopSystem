@@ -206,7 +206,7 @@ a {
 /*Customer Order Details Page*/
 #total{
     float: right; !important;
-    background-color: #1b6d85;
+    font-family: 'Lora', serif;
 }
 
 #section-right:after{
@@ -215,5 +215,20 @@ a {
     clear: both;
 }
 
-
+#customerName{
+    font-family: 'Lora', serif;
+}
 /*DashBoard Page*/
+
+#result tr td{
+    text-align: center;
+}
+
+#tblResult{
+    margin-top: 10px;
+}
+
+#tblResult thead th {
+    background-color: #a6e1ec;
+    text-align: center;
+}

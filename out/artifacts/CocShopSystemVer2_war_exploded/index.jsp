@@ -48,10 +48,9 @@
                             window.location.href = "adminPage.jsp";
                         } else if (data.role == 3) {
                             localStorage.setItem('userId', data.userId);
-                            //window.location = "orderTransaction.jsp?userId=" + data.userId;
                             window.location.href = "orderTransaction.jsp";
                         } else if (data.role == 2) {
-                           // window.location.href = "employeeOrderPage.jsp?userId=" + data.userId;
+                            localStorage.setItem('userId', data.userId);
                             window.location.href = "employeeOrderPage.jsp" ;
                         }
                     },

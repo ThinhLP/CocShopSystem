@@ -104,13 +104,26 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.POST, value = "/api/1.0/orders")
     public ResponseEntity<List<OrderDto>> listOrderDetailsByCustomer(int customerId) {
         List<OrderDto> orderDtoList = orderService.listAllOrderOfCustomer(customerId);
+        if(orderDtoList == null || orderDtoList.isEmpty()){
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity(orderDtoList, HttpStatus.OK);
+    }
+
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/api/1.0/orders/employee")
+    public ResponseEntity<List<OrderDto>> listOrderDetailsByEmployee(int empId) {
+        List<OrderDto> orderDtoList = orderService.listAllOrderByEmployee(empId);
+        if (orderDtoList == null || orderDtoList.isEmpty()) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
         return new ResponseEntity(orderDtoList, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/api/1.0/checkout", consumes = "application/json")
     @ResponseBody
     public ResponseEntity checkout(@RequestBody CartDto cart){
-
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         TblOrder order = new TblOrder();
