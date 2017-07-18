@@ -79,7 +79,7 @@
 <header id="main-header" class="col-xs-12">
     <div class="col-sm-2" id="header-left"><b>Coc Shop</b></div>
     <div class="col-sm-10" id="header-right">
-        <div class="admin-setting pull-right"><img src="resources/img/thinhlp.jpg"/> <span><b>Le Phuc Thinh</b></span><a
+        <div class="admin-setting pull-right"><img src="resources/img/chinhnc.jpg"/> <span><b>Nguyen Cong Chinh</b></span><a
                 href="">Log out</a></div>
     </div>
 </header>
